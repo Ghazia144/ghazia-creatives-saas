@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function () {
+  if (window.self !== window.top) return;
+  if (/[?&](full|nomockup)\b/.test(location.search)) return;
+  var isDesktop = innerWidth > 820 && matchMedia('(pointer:fine)').matches;
+  if (!isDesktop) return;
+  try { window.stop(); } catch (e) {}
+  var SRC = location.href.split('#')[0];
+  var CSS =
+    'html,body{margin:0;height:100%;overflow:hidden}' +
+    'body{background:radial-gradient(ellipse at 50% 30%,#4a3a31 0%,#33281f 55%,#241b15 100%)}' +
+    '.stage{height:100%;display:flex;align-items:center;justify-content:center}' +
+    '.phone{position:relative;padding:12px;border-radius:58px;background:#0a0a0b;' +
+      'box-shadow:0 0 0 2px #2b2b2e,0 0 0 4px #111,inset 0 0 0 1.5px #3b3b3f,' +
+      '0 50px 90px -10px rgba(0,0,0,.65),0 18px 40px rgba(0,0,0,.45)}' +
+    '.screen{position:relative;width:var(--w);height:var(--h);border-radius:46px;overflow:hidden;' +
+      'background:#000;transform:translateZ(0)}' +
+    '.screen iframe{width:100%;height:100%;border:0;display:block;background:#000}' +
+    '.island{position:absolute;z-index:5;top:22px;left:50%;transform:translateX(-50%);' +
+      'width:96px;height:27px;border-radius:20px;background:#000;pointer-events:none}' +
+    '.sb{position:absolute;width:4px;background:#17171a;box-shadow:inset 0 0 0 1px #2e2e32}' +
+    '.sb.l1{left:-4px;top:110px;height:26px;border-radius:3px 0 0 3px}' +
+    '.sb.l2{left:-4px;top:160px;height:50px;border-radius:3px 0 0 3px}' +
+    '.sb.l3{left:-4px;top:222px;height:50px;border-radius:3px 0 0 3px}' +
+    '.sb.r1{right:-4px;top:190px;height:80px;border-radius:0 3px 3px 0}';
+  function fit() {
+    var H = Math.max(520, Math.min(844, innerHeight - 64));
+    var W = Math.round(H * 430 / 844);
+    var s = document.documentElement.style;
+    s.setProperty('--w', W + 'px');
+    s.setProperty('--h', H + 'px');
+  }
+  setTimeout(function () {
+    document.documentElement.innerHTML =
+      '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
+      '<title>Invitation</title><style>' + CSS + '</style></he' + 'ad>' +
+      '<body>' +
+        '<a href="../../order.html?design=royal-blush" class="floating-cta-btn" style="position:fixed; top:24px; right:24px; z-index:999999; background:#C9A15A; color:#2B1218; font-family:sans-serif; font-size:13px; font-weight:600; text-transform:uppercase; text-decoration:none; padding:12px 24px; border-radius:30px; border:1px solid rgba(255,255,255,0.3); box-shadow:0 4px 20px rgba(0,0,0,0.2); transition:all 0.3s ease;">Make This Invite Yours</a>' +
+        '<div class="stage"><div class="phone">' +
+        '<i class="sb l1"></i><i class="sb l2"></i><i class="sb l3"></i><i class="sb r1"></i>' +
+        '<div class="island"></div>' +
+        '<div class="screen"><iframe id="inviteFrame" name="invite-phone" ' +
+          'allow="autoplay; fullscreen; clipboard-write" allowfullscreen></iframe></div>' +
+      '</div></div></bo' + 'dy>';
+    fit();
+    var f = document.getElementById('inviteFrame');
+    f.addEventListener('load', function () {
+      try { document.title = f.contentDocument.title || document.title; } catch (e) {}
+    });
+    f.src = SRC;
+    addEventListener('resize', function () {
+      if (innerWidth <= 820) location.reload(); else fit();
+    });
+  }, 0);
+})();</script>
+
+<title id="pageTitle">Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lavender: #B9A6C4;
+    --blush-pink: #F3D3DC;
+    --blush-light: #FBE8EC;
+    --rose: #D9AFB5;
+    --gold: #C9A27A;
+    --gold-light: #E0C9A6;
+    --burgundy: #7B2240;
+    --plum: #2A1620;
+    --cream: #FAF6F2;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: linear-gradient(180deg, var(--cream) 0%, var(--blush-light) 100%);
+    color:var(--plum);
+    font-family:'Cormorant Garamond', serif;
+    font-weight:400;
+    overflow-x:hidden;
+  }
+  img,video{max-width:100%;}
+  .wrap{max-width:640px;margin:0 auto;padding:0 28px;position:relative;z-index:2;}
+
+  .script{font-family:'Tangerine', cursive;}
+  
+  .divider{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    margin:22px auto 30px; color:var(--gold);
+  }
+  .divider .line{width:44px;height:1px;background:var(--gold-light);}
+  .divider .mark{font-size:15px;letter-spacing:2px;}
+
+  .eyebrow{
+    font-size:14px;color:var(--burgundy);font-style:italic;letter-spacing:.5px;
+  }
+
+  .wavy-top { position: relative; }
+  .wavy-top::before {
+    content: ''; position: absolute; top: -20px; left: 0; width: 100%; height: 40px;
+    background: inherit; mask-image: radial-gradient(circle at 10px -10px, transparent 20px, black 21px);
+    mask-size: 40px 100%; mask-repeat: repeat-x; z-index: 1;
+  }
+  .wavy-bottom { position: relative; padding-bottom: 60px; }
+  .wavy-bottom::after {
+    content: ''; position: absolute; bottom: -20px; left: 0; width: 100%; height: 40px;
+    background: inherit; mask-image: radial-gradient(circle at 10px 30px, transparent 20px, black 21px);
+    mask-size: 40px 100%; mask-repeat: repeat-x; z-index: 1;
+  }
+  .rv{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .95s ease, transform .95s cubic-bezier(.2,.7,.2,1);
+    transition-delay:calc(var(--i,0) * 110ms);
+    will-change:opacity,transform;
+  }
+  .rv.in{ opacity:1; transform:none; }
+  #envelopeIntro{
+    position:fixed; inset:0; z-index:9999; background:#180a10;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; overflow:hidden;
+  }
+  .envelope-video{width:100%; height:100%; object-fit:cover; object-position:center; display:block;}
+  #envelopeIntro.is-leaving{opacity:0; transition:opacity .4s ease; pointer-events:none;}
+  .envelope-video.in-hero{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; z-index:0;}
+  body.envelope-locked{ overflow:hidden; height:100vh; }
+  .invite-content{opacity:0; transition:opacity 1.3s ease;}
+  .invite-content.is-revealed{ opacity:1; }
+
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:flex-end; justify-content:center;
+    overflow:hidden; background:radial-gradient(120% 85% at 50% 12%, #5c2740 0%, var(--plum) 55%, #180a10 100%);
+  }
+  .hero::after{content:""; position:absolute;inset:0; background:linear-gradient(180deg, rgba(20,8,14,.35) 0%, rgba(20,8,14,.15) 30%, rgba(20,8,14,.55) 78%, rgba(20,8,14,.88) 100%);}
+  .hero-content{position:relative;z-index:2;text-align:center;color:var(--cream);padding:60px 24px 56px;width:100%;align-self:center;}
+  .hero-welcome{font-style:italic;font-weight:500;font-size:16px;letter-spacing:1.5px;color:var(--gold-light);margin-bottom:18px;text-shadow:0 2px 10px rgba(0,0,0,.45);}
+  .hero-names{font-family:'Tangerine', cursive;font-weight:700;font-size:clamp(76px, 22vw, 118px);line-height:.95;color:#fff;text-shadow:0 2px 22px rgba(0,0,0,.55);}
+  .hero-amp{font-family:'Tangerine', cursive;font-weight:700;font-size:clamp(34px, 8vw, 46px);color:var(--gold-light);margin:2px 0;}
+  .hero-sub{font-weight:500;font-size:15px;letter-spacing:1.4px;color:#FFF6F3;margin-top:6px;line-height:1.9;}
+  .hero-sub .role{color:var(--gold-light);font-style:italic;font-weight:500;font-size:14px;}
+  .scroll-cue{position:absolute;z-index:2;left:50%;bottom:18px;transform:translateX(-50%);width:1px;height:44px;background:linear-gradient(180deg, transparent, var(--gold-light) 60%, transparent);}
+
+  .welcome-band{background:linear-gradient(180deg, var(--plum), #3A1B29 55%, var(--blush-light)); color:var(--gold-light); text-align:center; padding:72px 28px 60px;}
+  .welcome-band p{font-size:19px;font-style:italic;line-height:1.85;max-width:480px;margin:0 auto;color:#F1DEE3;}
+  .welcome-band .heart{color:var(--gold);font-size:16px;}
+
+  section{padding:64px 0;text-align:center;}
+  .section-title{font-family:'Tangerine', cursive;font-size:52px;color:var(--burgundy);line-height:1;}
+  .bg-blush{background:var(--blush-light);}
+  .bg-ivory{background:var(--cream);}
+  .bg-pink{background:var(--blush-pink);}
+
+  #scratchSection {
+    background: url('scratch-bg.png') center/cover no-repeat;
+    position: relative;
+    padding: 80px 0 60px;
+  }
+  
+  .reveal-box{display:flex;flex-direction:column;align-items:center;gap:22px; position:relative; z-index:2;}
+  .heart-mask{
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 91 C43 84 8 60 8 34 C8 17 20 8 34 8 C42 8 48 12 50 20 C52 12 58 8 66 8 C80 8 92 17 92 34 C92 60 57 84 50 91 Z'/%3E%3C/svg%3E");
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 91 C43 84 8 60 8 34 C8 17 20 8 34 8 C42 8 48 12 50 20 C52 12 58 8 66 8 C80 8 92 17 92 34 C92 60 57 84 50 91 Z'/%3E%3C/svg%3E");
+    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+    -webkit-mask-size:100% 100%;mask-size:100% 100%;
+    -webkit-mask-position:center;mask-position:center;
+  }
+  .scratch-card{position:relative;width:min(300px,78vw);height:min(300px,78vw);max-height:300px;}
+  
+  .scratch-reveal{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 50% 32%, #FFFDFB 0%, #f5cbd8 68%, #e49bb2 100%);
+    text-align:center;padding:34px 34px 24px;
+  }
+  .scratch-reveal .rv-eyebrow{font-size:11px;letter-spacing:1.5px;color:var(--burgundy);font-style:italic;opacity:.85;}
+  
+  .reveal-date{
+    font-family:'Tangerine', cursive;
+    font-size:64px;
+    font-weight:700;
+    line-height:1.0;
+    color:var(--burgundy);
+    margin-bottom: 41px;
+    width:100%;
+    max-width:200px;
+    padding:0;
+    white-space:normal;
+    overflow-wrap:normal;
+  }
+  #revealMonthYear{
+    display:block;
+    font-size:32px;
+    font-weight:700;
+    line-height:1.05;
+    white-space:normal;
+    letter-spacing:.02em;
+  }
+  
+  .scratch-canvas{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:none;transition:opacity .7s ease;}
+  .scratch-canvas:active{cursor:grabbing;}
+  .scratch-shimmer{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+  .scratch-shimmer::after{
+    content:"";position:absolute;top:-20%;left:-60%;width:40%;height:140%;
+    background:linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent);
+    transform:skewX(-18deg);animation:shimmer 3.2s ease-in-out infinite;
+  }
+  @keyframes shimmer{0%{left:-60%;}45%,100%{left:130%;}}
+  
+  .scratch-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#5A1E30;font-size:14px;letter-spacing:1.5px;font-style:italic;pointer-events:none;text-shadow:0 1px 2px rgba(255,255,255,.4); animation: pulseHint 2s infinite ease-in-out; transition: opacity 0.4s ease;}
+  @keyframes pulseHint {0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }}
+  
+  .reveal-hint{font-size:14px;color:var(--plum);font-style:italic;}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 34px;
+    background:var(--burgundy);color:var(--cream);text-decoration:none;font-size:14px;letter-spacing:1px;
+    border:none;border-radius:4px;cursor:pointer;font-family:'Cormorant Garamond', serif;transition:all .3s;
+    box-shadow: 0 4px 15px rgba(123, 34, 64, 0.3);
+  }
+  .btn:hover{background:var(--plum);}
+  .btn-outline{background:transparent;color:var(--burgundy);border:1px solid var(--burgundy);box-shadow:none;}
+  .btn-outline:hover{background:var(--burgundy);color:var(--cream);}
+  .is-disabled{opacity:.42;pointer-events:none;cursor:not-allowed;filter:grayscale(.6);}
+
+  body.is-preview-2::after {
+    content: "PREVIEW";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(56px, 14vw, 180px);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: rgba(123, 34, 64, 0.16);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 99999;
+  }
+  @media (max-width: 600px) {
+    body.is-preview-2::after { font-size: 18vw; letter-spacing: 0.12em; }
+  }
+
+  #gallerySection {
+    background: linear-gradient(180deg, var(--cream) 0%, var(--blush-light) 100%);
+  }
+  .carousel{position:relative;width:100%;overflow:hidden;padding:20px 0;}
+  .carousel-track{display:flex;transition:transform 0.5s ease-out;gap:20px;}
+  .carousel-slide{flex:0 0 80%;position:relative;transition:all 0.5s ease;opacity:0.4;transform:scale(0.85);filter:blur(2px);}
+  .carousel-slide.active{opacity:1;transform:scale(1);filter:blur(0);}
+  
+  .arch-frame{
+    position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;
+    clip-path: url(#mughal-arch);
+    border: 4px solid var(--gold); border-top: none; border-bottom: none;
+    box-shadow: 0 15px 30px rgba(185, 166, 196, 0.2); 
+    background: var(--blush-pink);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .arch-frame img{width:100%;height:100%;object-fit:cover;transition:transform 5s ease;}
+  .carousel-slide.active .arch-frame img{transform:scale(1.1);}
+  
+  .gallery-dots{display:flex;justify-content:center;gap:12px;margin-top:20px;}
+  .gallery-dots button{width:10px;height:10px;background:var(--gold-light);border:none;transform:rotate(45deg);cursor:pointer;transition:.3s;}
+  .gallery-dots button.active{background:var(--burgundy);transform:rotate(45deg) scale(1.3);}
+
+  #countdownSection {
+    background: linear-gradient(180deg, var(--blush-light), var(--blush-pink));
+  }
+  .countdown-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:12px;max-width:400px;margin:0 auto;}
+  .countdown-card{
+    position:relative;background:var(--cream);text-align:center;padding:20px 5px;
+    clip-path: url(#mughal-arch-small);
+    border-bottom: 3px solid var(--gold); box-shadow: 0 10px 30px rgba(185, 166, 196, 0.15);
+  }
+  .countdown-card::before{
+    content:'';position:absolute;inset:2px;border:1px solid var(--gold-light);
+    clip-path: url(#mughal-arch-small);pointer-events:none;
+  }
+  .countdown-num{font-size:32px;font-weight:600;background:linear-gradient(to right, var(--gold), var(--burgundy));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;transition:transform 0.3s ease;}
+  .countdown-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-top:4px;font-weight:600;}
+  .countdown-card.pulse{animation:heartbeat 2s infinite;}
+  @keyframes heartbeat{0%,100%{transform:scale(1);}50%{transform:scale(1.05);box-shadow:0 0 15px rgba(123,34,64,0.4);}}
+  .num-flip{animation:flipUp 0.4s ease-out;}
+  @keyframes flipUp{0%{transform:translateY(100%);opacity:0;}100%{transform:translateY(0);opacity:1;}}
+
+  .timeline-container{position:relative;max-width:400px;margin:0 auto;padding:20px 0;}
+  .timeline-line-bg{position:absolute;top:0;bottom:0;left:20px;width:2px;background:var(--gold-light);border-left:2px dotted var(--gold);}
+  .timeline-line-fill{position:absolute;top:0;left:20px;width:2px;background:var(--burgundy);height:0;transition:height 0.3s ease;}
+  .timeline-item{position:relative;padding-left:50px;margin-bottom:30px;text-align:left;}
+  .timeline-icon{position:absolute;left:8px;top:10px;width:26px;height:26px;background:var(--burgundy);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);z-index:2;border:2px solid var(--gold);}
+  .timeline-icon svg{width:14px;height:14px;fill:currentColor;}
+  .timeline-card{background:var(--cream);border:1px solid var(--gold-light);border-top-left-radius:20px;border-top-right-radius:20px;padding:16px;box-shadow:0 10px 30px rgba(185,166,196,0.15);position:relative;}
+  .timeline-card::before{content:'';position:absolute;top:-5px;left:50%;transform:translateX(-50%) rotate(45deg);width:10px;height:10px;background:var(--cream);border-top:1px solid var(--gold-light);border-left:1px solid var(--gold-light);}
+  .timeline-time{display:inline-block;background:var(--gold);color:var(--cream);font-size:11px;font-weight:600;padding:2px 10px;border-radius:12px;margin-bottom:6px;}
+  .timeline-title{font-size:20px;color:var(--burgundy);font-weight:600;}
+  .timeline-desc{font-size:14px;color:var(--plum);margin-top:4px;opacity:0.8;font-style:italic;}
+
+  .venue-arch {width: 260px;margin: 0 auto 20px;aspect-ratio: 4/5;}
+  .venue-arch .arch-frame {aspect-ratio: 4/5;}
+  .venue-card{background:var(--cream);border:1px solid var(--gold);border-radius:0 0 20px 20px;border-top:none;padding:30px 20px;box-shadow:0 10px 30px rgba(185,166,196,0.15);position:relative;max-width:320px;margin:0 auto;}
+  .venue-card::before{content:'';position:absolute;top:0;left:0;right:0;height:20px;background:var(--cream);clip-path:path('M 0 100 L 0 0 C 0 0, 20 20, 50 20 C 80 20, 100 0, 100 0 L 100 100 Z');margin-top:-19px;}
+  .venue-name{font-family:'Tangerine', cursive;font-size:36px;color:var(--burgundy);line-height:1;}
+  .venue-address{font-size:14px;color:var(--plum);font-style:italic;margin-top:8px;line-height:1.6;}
+  .map-preview{width:100%;height:120px;background:url('map.jpg') center/cover;border-radius:8px;margin:16px 0;border:1px solid var(--gold-light);position:relative;}
+ 
+  .venue-carousel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:20px 28px;margin:0 -28px;scrollbar-width:none;}
+  .venue-carousel::-webkit-scrollbar{display:none;}
+  .venue-slide{flex:0 0 min(300px,82%);scroll-snap-align:center;}
+  .venue-slide .venue-card{max-width:none;margin:0;height:100%;border:1px solid var(--gold);border-radius:20px;}
+  .venue-slide .venue-card::before{display:none;}
+  .venue-event-tag{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px;}
+  .venue-event-when{font-size:14px;color:var(--burgundy);font-style:italic;margin-top:6px;}
+
+  .dress-code-img{width:100%;max-width:280px;margin:0 auto 20px;display:block;filter:drop-shadow(0 10px 20px rgba(185,166,196,0.3));}
+
+  .rsvp-bg{position:absolute;inset:0;background:linear-gradient(180deg,var(--cream) 0%,var(--blush-light) 100%);z-index:0;pointer-events:none;}
+  .rsvp-petal{position:absolute;width:24px;opacity:.35;}
+  .rsvp-petal.p1{top:110px;left:14px;transform:rotate(-30deg);}
+  .rsvp-petal.p2{top:46%;right:12px;transform:rotate(25deg);width:20px;}
+  .rsvp-petal.p3{bottom:90px;left:22px;transform:rotate(40deg);width:18px;}
+  #rsvpSection .eyebrow{margin-bottom:12px;font-size:15px;letter-spacing:.8px;}
+
+  .rsvp-card{position:relative;max-width:380px;margin:0 auto;filter:drop-shadow(0 12px 24px rgba(185,166,196,.28));}
+  .rsvp-cap{display:block;width:100%;height:auto;margin-bottom:-1px;}
+  .rsvp-cap .cap-fill{fill:var(--cream);stroke:var(--gold);stroke-width:2;}
+  .rsvp-cap .cap-inner{fill:none;stroke:var(--burgundy);stroke-width:1;opacity:.8;}
+  .rsvp-cap .cap-gem{fill:var(--gold);}
+  .rsvp-body{position:relative;background:var(--cream);border:2px solid var(--gold);border-top:none;border-radius:0 0 22px 22px;padding:6px 22px 64px;overflow:hidden;text-align:center;}
+  .rsvp-body::before{content:'';position:absolute;inset:0 4px 5px 4px;border:1px solid var(--burgundy);border-top:none;border-radius:0 0 17px 17px;pointer-events:none;opacity:.8;}
+  .rsvp-flower{position:absolute;bottom:10px;width:58px;height:58px;opacity:.85;pointer-events:none;}
+  .rsvp-flower.left{left:12px;}
+  .rsvp-flower.right{right:12px;transform:scaleX(-1);}
+
+  .rsvp-intro{font-style:italic;font-size:17px;color:var(--burgundy);line-height:1.5;margin:4px 0 0;}
+  .rsvp-mini-divider{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold);margin:10px 0 20px;font-size:13px;}
+  .rsvp-mini-divider span.ln{display:block;width:34px;height:1px;background:var(--gold-light);}
+
+  .rsvp-options{display:flex;gap:12px;margin:0 0 6px;flex-wrap:wrap; justify-content:center;}
+  .rsvp-option{flex:1;min-width:120px;max-width:160px;position:relative;cursor:pointer;}
+  .rsvp-option input{position:absolute;opacity:0;pointer-events:none;}
+  .rsvp-option .card{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;min-height:98px;padding:18px 8px;background:var(--cream);border:1px solid var(--gold-light);border-radius:10px;color:var(--burgundy);font-size:15px;line-height:1.25;text-align:center;transition:all .3s ease;}
+  .rsvp-option .card svg{width:30px;height:30px;fill:var(--gold);margin-bottom:8px;transition:fill .3s ease;}
+  .rsvp-option:hover .card{border-color:var(--gold);}
+  .rsvp-option input:checked + .card{background:var(--burgundy);color:var(--cream);border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 6px 18px rgba(123,34,64,.35),0 0 16px rgba(201,162,122,.45);animation:rsvpPop .35s ease-out;}
+  .rsvp-option input:checked + .card svg{fill:var(--gold-light);}
+  .rsvp-option input:focus-visible + .card{outline:2px solid var(--gold);outline-offset:2px;}
+  @keyframes rsvpPop{0%{transform:scale(.94);}60%{transform:scale(1.04);}100%{transform:scale(1);}}
+
+  .guest-count{max-height:0;opacity:0;overflow:hidden;margin-bottom:0;transition:max-height .45s ease,opacity .35s ease,margin .35s ease;}
+  .guest-count.active{max-height:120px;opacity:1;margin-bottom:6px;}
+  .guest-count-label{display:block;font-size:15px;font-style:italic;color:var(--burgundy);margin:14px 0 10px;}
+  .guest-count-circles{display:flex;justify-content:center;gap:12px;}
+  .guest-count-circles label{cursor:pointer;}
+  .guest-count-circles input{display:none;}
+  .guest-count-circles span{display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;border:1px solid var(--gold);background:var(--cream);color:var(--burgundy);font-size:17px;font-weight:600;transition:all .3s ease;}
+  .guest-count-circles label:hover span{background:var(--blush-light);}
+  .guest-count-circles input:checked + span{background:var(--burgundy);color:var(--cream);border-color:var(--gold);box-shadow:0 0 12px rgba(201,162,122,.55);}
+
+  .input-group{display:flex;flex-direction:column;gap:18px;text-align:left;margin:20px 0 26px;}
+  .field label{font-size:15px;font-style:italic;color:var(--burgundy);margin-bottom:6px;display:block;}
+  .field input,.field textarea{width:100%;padding:13px 14px;background:#fff;border:1px solid var(--gold-light);border-radius:8px;font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--plum);transition:all .3s ease;outline:none;}
+  .field input::placeholder,.field textarea::placeholder{color:#b9a3aa;font-style:italic;}
+  .field input:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,122,.28);}
+  .field textarea{resize:vertical;min-height:70px;}
+  .error-text{color:#b5473f;font-size:13px;font-style:italic;display:none;margin-top:6px;text-align:left;}
+
+  .rsvp-btn{width:100%;position:relative;overflow:hidden;font-size:16px;padding:15px 20px;}
+  .rsvp-btn::after{content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(224,201,166,.55),transparent);transform:skewX(-20deg);animation:rsvpShimmer 4.5s ease-in-out infinite;pointer-events:none;}
+  @keyframes rsvpShimmer{0%{left:-70%;}40%,100%{left:140%;}}
+  .rsvp-help{font-size:14px;color:#A47D55;font-style:italic;margin-top:14px;}
+
+  .rsvp-thanks{display:none;text-align:center;font-style:italic;color:var(--burgundy);font-size:18px;padding:30px 0 20px;}
+  .rsvp-thanks.show{display:block;}
+  .rsvp-rain{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:3;}
+  .rsvp-rain span{position:absolute;top:-24px;width:12px;height:16px;background:var(--rose);border-radius:80% 0 80% 0;opacity:0;animation:rsvpFall linear forwards;}
+  @keyframes rsvpFall{0%{opacity:0;transform:translateY(0) rotate(0deg);}10%{opacity:.85;}100%{opacity:0;transform:translateY(420px) rotate(260deg);}}
+  @media (prefers-reduced-motion:reduce){
+    .rsvp-btn::after{animation:none;}
+    .rsvp-option input:checked + .card{animation:none;}
+    .rsvp-rain{display:none;}
+  }
+
+  footer{background:var(--plum);color:var(--cream);padding:60px 20px 40px;text-align:center;position:relative;}
+  .footer-text{font-size:16px;font-style:italic;color:var(--gold-light);margin-bottom:8px;}
+
+  .footer-fine{
+    font-size:14px;
+    color:rgba(250,246,242,0.85);
+    margin-top:24px;
+    letter-spacing:.5px;
+    position:relative;
+    z-index:2;
+  }
+  .footer-fine a {
+    color:var(--gold-light);
+    text-decoration:none;
+    font-weight:700;
+    border-bottom:1px solid rgba(224,201,166,0.7);
+    padding-bottom:2px;
+    transition:color .3s, border-color .3s;
+  }
+  .footer-fine a:hover { color:#fff; border-color:#fff; }
+
+  @media (max-width:480px){ section{padding:52px 0;} }
+
+  .footer-fine{font-size:12px;color:rgba(250,246,242,0.5);margin-top:20px;}
+  .footer-fine a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+  /* Floating Controls CSS */
+  .float-ctrls{position:fixed;z-index:900;right:14px;bottom:14px;display:flex;flex-direction:column;gap:10px;opacity:0;pointer-events:none;transition:opacity .6s ease;}
+  .float-ctrls.show{opacity:1;pointer-events:auto;}
+  .float-ctrls button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--gold);background:rgba(250,246,242,0.85);color:var(--burgundy);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.15);-webkit-tap-highlight-color:transparent;}
+  .float-ctrls svg{width:20px;height:20px;fill:currentColor;}
+  #muteBtn .ic-off{display:none;}
+  #muteBtn.is-muted .ic-on{display:none;}
+  #muteBtn.is-muted .ic-off{display:block;}
+  #scrollBtn svg{transition:transform .35s ease;}
+  #scrollBtn.is-up svg{transform:rotate(180deg);}
+</style>
+</head>
+<body class="envelope-locked">
+
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <clipPath id="mughal-arch" clipPathUnits="objectBoundingBox">
+      <path d="M 0,1 L 0,0.3 C 0,0.15 0.35,0.15 0.5,0 C 0.65,0.15 1,0.15 1,0.3 L 1,1 Z" />
+    </clipPath>
+    <clipPath id="mughal-arch-small" clipPathUnits="objectBoundingBox">
+      <path d="M 0,1 L 0,0.2 C 0,0.1 0.35,0.1 0.5,0 C 0.65,0.1 1,0.1 1,0.2 L 1,1 Z" />
+    </clipPath>
+  </defs>
+</svg>
+
+<div id="envelopeIntro" role="button" tabindex="0" aria-label="Tap the seal to open your invitation">
+  <video id="envelopeVideo" class="envelope-video" playsinline webkit-playsinline="true" muted preload="auto" poster="envelope-poster.jpg">
+    <source src="upscaled-video.mp4" type="video/mp4">
+  </video>
+</div>
+<noscript><style>#envelopeIntro{display:none!important;} .invite-content{opacity:1!important;}</style></noscript>
+
+<div id="inviteContent" class="invite-content">
+  <audio id="bg-music" loop></audio>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-welcome">You are lovingly invited to the wedding of</div>
+    <div class="hero-names" id="heroBride"></div>
+    <div class="hero-sub">
+      <span id="brideParents"></span><br><span class="role" id="brideRole"></span>
+    </div>
+    <div class="hero-amp">&amp;</div>
+    <div class="hero-names" id="heroGroom"></div>
+    <div class="hero-sub">
+      <span id="groomParents"></span><br><span class="role" id="groomRole"></span>
+    </div>
+  </div>
+  <div class="scroll-cue"></div>
+</section>
+
+<section class="welcome-band">
+  <div class="wrap">
+    <p><span id="welcomeMessage"></span> <span class="heart">&#10084;</span></p>
+    <div class="divider" style="color:var(--gold-light)"><span class="line" style="background:var(--gold)"></span><span class="mark">&#10022;</span><span class="line" style="background:var(--gold)"></span></div>
+    <p style="font-size:15px;"><span id="welcomeNote"></span></p>
+  </div>
+</section>
+
+<section id="scratchSection">
+  <div class="wrap">
+    <div class="eyebrow">Touch to reveal</div>
+    <div class="section-title">Save the Date</div>
+    <div class="divider"><span class="line"></span><span class="mark">&#10022;</span><span class="line"></span></div>
+    
+    <div class="reveal-box">
+      <div class="scratch-card">
+        <div class="scratch-reveal heart-mask">
+          <div class="rv-eyebrow">the date is</div>
+          <div class="reveal-date"><span id="revealDateNum"></span><br><span id="revealMonthYear"></span></div>
+        </div>
+        
+        <canvas class="scratch-canvas heart-mask" id="scratchCanvas" width="300" height="300" aria-label="Scratch card"></canvas>
+        <div class="scratch-shimmer heart-mask" id="scratchShimmer"></div>
+        <div class="scratch-label" id="scratchLabel">scratch here</div>
+      </div>
+      
+      <div class="reveal-hint" id="revealHint">drag your finger across the heart</div>
+      
+      <a class="btn" id="saveDateBtn" href="#" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
+        Add to Google Calendar
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="gallerySection">
+  <div class="divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+  
+  <div class="carousel">
+    <div class="carousel-track" id="galleryTrack"></div>
+  </div>
+  <div class="gallery-dots" id="galleryDots"></div>
+</section>
+
+<section id="countdownSection" class="wavy-top wavy-bottom">
+  <div class="wrap">
+    <div class="eyebrow">Counting down</div>
+    <div class="section-title">To Forever</div>
+    <div class="divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+    <p id="countdownLabel" style="font-style:italic; color:var(--gold); margin-bottom:20px;"></p>
+    
+    <div class="countdown-grid">
+      <div class="countdown-card"><div class="countdown-num" id="cd-days">00</div><div class="countdown-label">Days</div></div>
+      <div class="countdown-card"><div class="countdown-num" id="cd-hours">00</div><div class="countdown-label">Hours</div></div>
+      <div class="countdown-card"><div class="countdown-num" id="cd-mins">00</div><div class="countdown-label">Mins</div></div>
+      <div class="countdown-card pulse"><div class="countdown-num" id="cd-secs">00</div><div class="countdown-label">Secs</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-blush">
+  <div class="wrap">
+    <div class="eyebrow">The day of</div>
+    <div class="section-title">Our Timeline</div>
+    <div class="divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+    
+    <div class="timeline-container" id="timelineContainer">
+      <div class="timeline-line-bg"></div>
+      <div class="timeline-line-fill" id="timelineFill"></div>
+      <div id="timelineList"></div>
+    </div>
+    <div style="margin-top: 20px; font-style: italic; color: var(--gold); font-size: 14px;">Your presence is our greatest gift ♥</div>
+  </div>
+</section>
+
+<section class="bg-ivory">
+  <div class="wrap">
+    <div class="eyebrow">Where to find us</div>
+    <div class="section-title">Venue</div>
+    <div class="divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+    
+    <div class="venue-arch arch-frame">
+      <img src="venue.png" alt="Venue" style="object-position:center;">
+    </div>
+    
+    <div class="venue-carousel" id="venueCarousel"></div>
+    <div class="gallery-dots" id="venueDots"></div>
+  </div>
+</section>
+
+<section id="rsvpSection" class="bg-ivory wavy-top">
+  <div class="rsvp-bg" aria-hidden="true">
+    <svg class="rsvp-petal p1" viewBox="0 0 24 32"><path d="M12 1C4 10 2 20 12 31C22 20 20 10 12 1Z" fill="#E8B4C0"/></svg>
+    <svg class="rsvp-petal p2" viewBox="0 0 24 32"><path d="M12 1C4 10 2 20 12 31C22 20 20 10 12 1Z" fill="#D9AFB5"/></svg>
+    <svg class="rsvp-petal p3" viewBox="0 0 24 32"><path d="M12 1C4 10 2 20 12 31C22 20 20 10 12 1Z" fill="#E8B4C0"/></svg>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="rsvpBud" viewBox="0 0 60 60">
+      <path d="M6 54C14 44 24 40 34 41" stroke="#8FA58A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="17" cy="46" rx="8" ry="3.5" transform="rotate(-35 17 46)" fill="#A9BFA3"/>
+      <ellipse cx="28" cy="49" rx="7" ry="3" transform="rotate(15 28 49)" fill="#A9BFA3"/>
+      <circle cx="36" cy="38" r="10" fill="#EBB9C5"/>
+      <circle cx="36" cy="38" r="6.5" fill="#E19DAE"/>
+      <path d="M32 38C32 34 40 34 40 38C40 41 34 42 33.5 39" stroke="#B76478" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <circle cx="16" cy="30" r="5.5" fill="#F3D3DC"/>
+      <circle cx="16" cy="30" r="3" fill="#E7AEBC"/>
+      <path d="M16 35C18 40 24 40 28 41" stroke="#8FA58A" stroke-width="1.2" fill="none"/>
+      <circle cx="50" cy="52" r="1.6" fill="#C9A27A"/>
+      <circle cx="8" cy="20" r="1.3" fill="#C9A27A"/>
+    </symbol>
+  </svg>
+
+  <div class="wrap">
+    <div class="eyebrow" id="rsvpEyebrow"></div>
+    <div class="section-title">RSVP</div>
+    <div class="divider"><span class="line"></span><span class="mark">&#10022;</span><span class="line"></span></div>
+
+    <img src="couple.png" alt="Couple" class="dress-code-img" loading="lazy">
+
+    <div class="rsvp-card" id="rsvpFormContainer">
+      <svg class="rsvp-cap" viewBox="0 0 380 130" aria-hidden="true">
+        <path class="cap-fill" vector-effect="non-scaling-stroke" d="M1 130V92C1 64 160 60 190 14C220 60 379 64 379 92V130"/>
+        <path class="cap-inner" vector-effect="non-scaling-stroke" d="M7 130V93C7 70 162 66 190 24C218 66 373 70 373 93V130"/>
+        <path class="cap-gem" d="M190 2L194 9L190 16L186 9Z"/>
+      </svg>
+
+      <div class="rsvp-body">
+        <form id="rsvpForm" novalidate>
+          <p class="rsvp-intro">We would be honoured by your presence</p>
+          <div class="rsvp-mini-divider"><span class="ln"></span><span>&#10022;</span><span class="ln"></span></div>
+
+          <div class="rsvp-options" id="rsvpOptions"></div>
+          <div class="error-text" id="attendanceError">Please let us know if you can join us.</div>
+
+          <div class="guest-count" id="guestCountWrapper">
+            <span class="guest-count-label">Number of guests</span>
+            <div class="guest-count-circles">
+              <label><input type="radio" name="guestCount" value="1"><span>1</span></label>
+              <label><input type="radio" name="guestCount" value="2"><span>2</span></label>
+              <label><input type="radio" name="guestCount" value="3"><span>3</span></label>
+              <label><input type="radio" name="guestCount" value="4+"><span>4+</span></label>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <div class="field">
+              <label for="rname">Your Full Name</label>
+              <input id="rname" type="text" placeholder="e.g. Sara Khan" autocomplete="name">
+              <div class="error-text" id="nameError">Please enter your name.</div>
+            </div>
+            <div class="field">
+              <label for="rmsg">Your Message (Optional)</label>
+              <textarea id="rmsg" placeholder="Write your wishes..."></textarea>
+            </div>
+          </div>
+
+          <button class="btn rsvp-btn" type="submit" id="rsvpSubmitBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.1 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.75 14.15c-.23.65-1.35 1.25-1.85 1.3-.5.05-1.16.22-2.98-.52-2.29-.93-3.77-3.28-3.88-3.43-.11-.15-.92-1.22-.92-2.34 0-1.12.58-1.67.78-1.88.2-.2.45-.25.6-.25.15 0 .3 0 .43.01.14.01.32-.05.5.38.18.43.63 1.55.68 1.66.05.11.08.24.01.38-.07.14-.15.24-.3.38-.15.14-.31.32-.44.43-.14.14-.29.29-.13.56.16.27.72 1.18 1.54 1.91.82.73 1.51.96 1.78 1.09.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.59-.13.23.09 1.46.69 1.71.81.25.12.42.18.48.28.06.1.06.58-.17 1.23z"/></svg>
+            Send via WhatsApp
+          </button>
+          <p class="rsvp-help">Your reply will open in WhatsApp</p>
+        </form>
+
+        <div class="rsvp-thanks" id="rsvpThanks">
+          <div style="font-size:40px; margin-bottom:10px;">🌸</div>
+          <h3 style="font-family:'Tangerine', cursive; font-size:42px; color:var(--burgundy); font-weight:700;">Thank you!</h3>
+          <p>We have received your RSVP.</p>
+        </div>
+
+        <svg class="rsvp-flower left" aria-hidden="true"><use href="#rsvpBud"/></svg>
+        <svg class="rsvp-flower right" aria-hidden="true"><use href="#rsvpBud"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wavy-top" style="background:#2A1620; color:#FAF6F2; padding:60px 20px 40px; text-align:center; position:relative;">
+  <div class="wrap" style="position:relative; z-index:2;">
+    <div class="footer-text" style="font-size:20px; font-style:italic; color:var(--gold-light); margin-bottom:10px;">
+      We can't wait to celebrate<br><strong id="footerNames" style="font-family:'Tangerine', cursive; font-size:40px; font-weight:700; color:#fff;"></strong>
+    </div>
+    
+    <div style="margin-top:40px; font-size:13px; color:rgba(250,246,242,0.6); letter-spacing:1px; text-transform:uppercase;">
+      Made by <a href="https://ghaziacreatives.com" target="_blank" style="color:var(--gold-light); text-decoration:none; font-weight:700; border-bottom:1px solid rgba(224,201,166,0.5); padding-bottom:2px;">GhaziaCreatives</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<div class="float-ctrls" id="floatCtrls">
+  <button type="button" id="muteBtn" aria-label="Mute audio" aria-pressed="false">
+    <svg class="ic-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+    <svg class="ic-off" viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.8 8.8 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+  </button>
+  <button type="button" id="scrollBtn" aria-label="Go to next section">
+    <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+  </button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
+<script>
+  const __state = { data:null, preview:false, countdownTarget:null };
+
+  function parseEventDateTime(ev){
+    if(!ev || !ev.date) return null;
+    const parts = String(ev.date).split('-').map(Number);
+    if(parts.length !== 3 || parts.some(isNaN)) return null;
+    const dt = new Date(parts[0], parts[1]-1, parts[2]);
+    const timeStr = ev.gatheringTime || ev.startTime || '00:00';
+    const t = String(timeStr).split(':').map(Number);
+    if(!isNaN(t[0])) dt.setHours(t[0], isNaN(t[1]) ? 0 : t[1], 0, 0);
+    return dt;
+  }
+  function getNextEvent(events){
+    if(!Array.isArray(events) || !events.length) return null;
+    const now = new Date();
+    const parsed = events
+      .map(ev => ({ ev, dt: parseEventDateTime(ev) }))
+      .filter(x => x.dt && !isNaN(x.dt.getTime()))
+      .sort((a,b) => a.dt - b.dt);
+    if(!parsed.length) return events[0];
+    return (parsed.find(x => x.dt > now) || parsed[parsed.length - 1]).ev;
+  }
+  function getNextEventDateTime(events){
+    const ev = getNextEvent(events);
+    return ev ? parseEventDateTime(ev) : null;
+  }
+
+  function safeUrl(url){
+    if(!url) return '';
+    try{
+      const u = new URL(url, location.href);
+      if(u.protocol === 'http:' || u.protocol === 'https:') return u.href;
+    }catch(_){}
+    return '';
+  }
+  function parseDateISO(d){
+    if(!d) return null;
+    const parts = d.split('-').map(Number);
+    if(parts.length !== 3 || parts.some(isNaN)) return null;
+    return new Date(parts[0], parts[1]-1, parts[2]);
+  }
+  function formatDateLong(d){
+    const dt = parseDateISO(d);
+    if(!dt) return d || '';
+    return dt.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+  }
+  function ordinal(n){
+    const s = ['th','st','nd','rd'], v = n % 100;
+    return n + (s[(v-20)%10] || s[v] || s[0]);
+  }
+  function fmt12(t){
+    if(!t) return '';
+    const [hRaw, mRaw] = String(t).split(':');
+    const h = Number(hRaw), m = Number(mRaw || 0);
+    if(isNaN(h)) return t;
+    const ap = h >= 12 ? 'PM' : 'AM';
+    const h12 = h % 12 || 12;
+    return `${h12}:${String(m).padStart(2,'0')} ${ap}`;
+  }
+  function buildCalendarUrl(ev, data){
+    if(!ev || !ev.date) return '';
+    const startTime = (ev.gatheringTime || '16:00').replace(':','');
+    let endTime = (ev.rukhsatiTime || ev.dinnerTime || '').replace(':','');
+    if(!endTime){
+      const h = Number((ev.gatheringTime || '16:00').split(':')[0]);
+      endTime = String(((h+4) % 24)).padStart(2,'0') + '00';
+    }
+    const dstr = ev.date.replace(/-/g,'');
+    const dates = `${dstr}T${startTime}00/${dstr}T${endTime}00`;
+    const params = new URLSearchParams({
+      action:'TEMPLATE',
+      text:`${data?.bride?.name || ''} & ${data?.groom?.name || ''} — ${ev.type || 'Wedding'}`,
+      dates,
+      details:`Join us for ${ev.type || 'our celebration'}`,
+      location:[ev.venueName, ev.venueAddress].filter(Boolean).join(', ')
+    });
+    return 'https://calendar.google.com/calendar/render?' + params.toString();
+  }
+  function buildMapsUrl(ev){
+    if(ev && ev.mapsUrl){
+      const u = safeUrl(ev.mapsUrl);
+      if(u) return u;
+    }
+    const q = [ev?.venueName, ev?.venueAddress].filter(Boolean).join(', ');
+    if(!q) return '';
+    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+  }
+
+  window.renderInvite = function(data, opts){
+    opts = opts || {};
+    const previewMode = new URLSearchParams(location.search).get('preview');
+    const isPreview2 = (opts && opts.preview === true)
+      || (opts && opts.mode === 'order')
+      || previewMode === '2'
+      || previewMode === 'order';
+    
+    __state.data = data || {};
+    __state.preview = isPreview2;
+    document.body.classList.toggle('is-preview-2', isPreview2);
+
+    const bride = data?.bride || {};
+    const groom = data?.groom || {};
+    const events = Array.isArray(data?.events) ? data.events : [];
+
+    document.getElementById('pageTitle').textContent = `${bride.name || ''} & ${groom.name || ''} — Wedding Invitation`;
+
+    document.getElementById('heroBride').textContent = bride.name || '';
+    document.getElementById('heroGroom').textContent = groom.name || '';
+    document.getElementById('groomParents').textContent = groom.father ? `Son of ${groom.father}` : '';
+    document.getElementById('brideParents').textContent = bride.father ? `Daughter of ${bride.father}` : '';
+    
+    document.getElementById('welcomeMessage').textContent = ''; 
+    document.getElementById('welcomeNote').textContent = ''; 
+    document.getElementById('footerNames').textContent = `${bride.name || ''} & ${groom.name || ''}`;
+
+    const nextEvent = getNextEvent(events);
+    const nextDate = nextEvent ? parseEventDateTime(nextEvent) : null;
+    if(nextDate){
+      document.getElementById('revealDateNum').textContent = ordinal(nextDate.getDate());
+      document.getElementById('revealMonthYear').textContent =
+        nextDate.toLocaleDateString('en-US', { month:'long', year:'numeric' });
+    }
+
+    const cdLabel = document.getElementById('countdownLabel');
+    if(cdLabel){
+      cdLabel.textContent = nextDate
+        ? `Until we celebrate on ${ordinal(nextDate.getDate())} ${nextDate.toLocaleDateString('en-US', { month:'long', year:'numeric' })}`
+        : '';
+    }
+
+    const saveBtn = document.getElementById('saveDateBtn');
+    if(nextEvent){
+      saveBtn.href = buildCalendarUrl(nextEvent, data);
+      saveBtn.classList.toggle('is-disabled', isPreview2);
+      saveBtn.style.display = '';
+    } else {
+      saveBtn.style.display = 'none';
+    }
+
+    __state.countdownTarget = nextDate && !isNaN(nextDate.getTime()) ? nextDate : null;
+
+    // VENUE CAROUSEL
+    const vCar = document.getElementById('venueCarousel');
+    const vDots = document.getElementById('venueDots');
+    if(vCar){
+      vCar.innerHTML = events.map((ev) => {
+        const d = parseDateISO(ev.date);
+        const when = [d ? d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }) : (ev.date || ''), fmt12(ev.gatheringTime)].filter(Boolean).join(' · ');
+        const url = buildMapsUrl(ev);
+        const addr = ev.venueAddress || '';
+        
+        return `
+        <div class="venue-slide">
+          <div class="venue-card">
+            <div class="venue-event-tag">${ev.type || 'Event'}</div>
+            <div class="venue-name">${ev.venueName || ''}</div>
+            <div class="venue-address">${addr}</div>
+            <div class="venue-event-when">${when}</div>
+            <div class="map-preview"></div>
+            <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px;">
+              <a class="btn ${isPreview2 ? 'is-disabled' : ''}" href="${url || '#'}" target="_blank" rel="noopener">View on Google Maps</a>
+              <button class="btn btn-outline" type="button" onclick="copyAddress(this)">Copy Address</button>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+      
+      if(events.length === 1) {
+        vCar.style.justifyContent = 'center';
+      } else {
+        vCar.style.justifyContent = '';
+      }
+      vCar.scrollLeft = 0;
+      
+      if(vDots){
+        vDots.innerHTML = events.map((_, i) => `<button type="button" class="${i === 0 ? 'active' : ''}" aria-label="Venue ${i+1}"></button>`).join('');
+        const slides = Array.from(vCar.querySelectorAll('.venue-slide'));
+        const dots = Array.from(vDots.querySelectorAll('button'));
+        dots.forEach((dot, i) => dot.addEventListener('click', () => {
+          if(slides[i]) vCar.scrollTo({ left: slides[i].offsetLeft - (vCar.clientWidth - slides[i].offsetWidth)/2, behavior:'smooth' });
+        }));
+        vCar.onscroll = () => {
+          const center = vCar.scrollLeft + vCar.clientWidth/2;
+          let best = 0, bestDist = Infinity;
+          slides.forEach((s, i) => {
+            const dist = Math.abs(s.offsetLeft + s.offsetWidth/2 - center);
+            if(dist < bestDist){ bestDist = dist; best = i; }
+          });
+          dots.forEach((d, i) => d.classList.toggle('active', i === best));
+        };
+      }
+    }
+
+    // TIMELINE (only times here)
+    // TIMELINE (only times here) - UPDATED FOR ALL EVENTS
+    const timelineList = document.getElementById('timelineList');
+    if(timelineList){
+      timelineList.innerHTML = '';
+      
+      // Debugging: Console mein check karein ke form se kitne events aa rahe hain
+      console.log("Total events received:", events.length);
+
+      // Koi limit nahi, saare events loop honge
+      events.forEach((ev, index) => {
+        const date = parseDateISO(ev.date);
+        const dateStr = date ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ev.date;
+        
+        let iconSvg = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>';
+        if (ev.type.toLowerCase().includes('nikah')) {
+          iconSvg = '<svg viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11z M17.5 13h-11L12 22z"/></svg>';
+        } else if (ev.type.toLowerCase().includes('reception') || ev.type.toLowerCase().includes('dinner')) {
+          iconSvg = '<svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg>';
+        }
+
+        let timeExtra = '';
+        if(ev.dinnerTime) timeExtra += `<div style="font-size:13px; color:var(--gold); margin-top:4px;">Dinner: ${fmt12(ev.dinnerTime)}</div>`;
+        if(ev.rukhsatiTime) timeExtra += `<div style="font-size:13px; color:var(--gold); margin-top:2px;">Rukhsati: ${fmt12(ev.rukhsatiTime)}</div>`;
+
+        const item = document.createElement('div');
+        item.className = 'timeline-item';
+        item.innerHTML = `
+          <div class="timeline-icon">${iconSvg}</div>
+          <div class="timeline-card">
+            <div class="timeline-time">${fmt12(ev.gatheringTime) || 'TBA'}</div>
+            <div class="timeline-title">${ev.type}</div>
+            <div class="timeline-desc">${dateStr} · ${ev.venueName || ''}</div>
+            ${timeExtra}
+          </div>
+        `;
+        timelineList.appendChild(item);
+      });
+    }
+
+    // RSVP OPTIONS (Only 2 buttons)
+    const rsvpOptions = document.getElementById('rsvpOptions');
+    rsvpOptions.innerHTML = `
+      <label class="rsvp-option">
+        <input type="radio" name="attendance" value="Yes, Attending" required>
+        <div class="card">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          Attending
+        </div>
+      </label>
+      <label class="rsvp-option">
+        <input type="radio" name="attendance" value="Unable to attend" required>
+        <div class="card">
+          <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          Not Attending
+        </div>
+      </label>
+    `;
+
+    // RSVP DEADLINE & NOTE
+    const rsvpEyebrow = document.getElementById('rsvpEyebrow');
+    const existingNote = document.querySelector('.rsvp-guest-note');
+    if (existingNote) existingNote.remove();
+
+    if (data?.rsvpDeadline && data.rsvpDeadline.trim() !== '') {
+      rsvpEyebrow.textContent = `Kindly respond by ${formatDateLong(data.rsvpDeadline)}`;
+      rsvpEyebrow.style.display = '';
+    } else {
+      rsvpEyebrow.textContent = '';
+      rsvpEyebrow.style.display = 'none';
+    }
+
+    if (data?.note && data.note.trim() !== '') {
+      const noteHtml = `<p style="font-style:italic; color:var(--burgundy); margin-bottom:20px; max-width:400px; margin-left:auto; margin-right:auto;">"${data.note}"</p>`;
+      rsvpEyebrow.insertAdjacentHTML('afterend', `<div class="rsvp-guest-note">${noteHtml}</div>`);
+    }
+
+    document.getElementById('rsvpSubmitBtn').classList.toggle('is-disabled', isPreview2);
+    if(isPreview2){
+      document.querySelectorAll('#rsvpForm input, #rsvpForm textarea, #rsvpForm button').forEach(el => el.disabled = true);
+      const envVideo = document.getElementById('envelopeVideo');
+      if (envVideo) { envVideo.pause(); envVideo.muted = true; }
+    }
+  };
+
+  window.addEventListener('message', (e) => {
+    if (e.origin !== location.origin) return;
+    if (e.data?.type === 'invite-data') window.renderInvite(e.data.data, { preview: e.data.preview, mode: e.data.mode });
+  });
+
+  (function(){
+    const track = document.getElementById('galleryTrack');
+    const dotsContainer = document.getElementById('galleryDots');
+    if(!track) return;
+    
+    const galleryData = [
+      { src: "gallery-1.png" },
+      { src: "gallery-2.png" },
+      { src: "gallery-3.png" }
+    ];
+    track.innerHTML = galleryData.map((item, i) => `
+      <div class="carousel-slide ${i === 0 ? 'active' : ''}">
+        <div class="arch-frame">
+          <img src="${item.src}" alt="Gallery Image" loading="lazy">
+        </div>
+      </div>
+    `).join('');
+
+    dotsContainer.innerHTML = galleryData.map((_, i) => `<button class="${i === 0 ? 'active' : ''}" aria-label="Slide ${i+1}"></button>`).join('');
+
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.gallery-dots button');
+
+    function updateCarousel() {
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === currentIndex));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+      
+      const containerWidth = track.parentElement.offsetWidth;
+      const slideWidth = slides[0].offsetWidth;
+      const gap = 20;
+      const offset = (containerWidth - slideWidth) / 2;
+      track.style.transform = `translateX(${offset - (currentIndex * (slideWidth + gap))}px)`;
+    }
+
+    dots.forEach((dot, index) => dot.addEventListener('click', () => { currentIndex = index; updateCarousel(); }));
+    
+    let startX = 0;
+    track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    track.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50 && currentIndex < slides.length - 1) currentIndex++;
+      else if (endX - startX > 50 && currentIndex > 0) currentIndex--;
+      updateCarousel();
+    });
+
+    window.addEventListener('resize', updateCarousel);
+    setTimeout(updateCarousel, 100);
+  })();
+
+  (function(){
+    const canvas = document.getElementById('scratchCanvas');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d', { willReadFrequently:true });
+    const label = document.getElementById('scratchLabel');
+    const hint = document.getElementById('revealHint');
+    let revealed = false, scratching = false, lastX = 0, lastY = 0, lastCheck = 0;
+
+    function paintCover(){
+      const w = canvas.width, h = canvas.height;
+      ctx.globalCompositeOperation = 'source-over';
+      
+      const grad = ctx.createLinearGradient(0,0,w,h);
+      grad.addColorStop(0, '#f7dbe4');
+      grad.addColorStop(.45, '#d993aa');
+      grad.addColorStop(1, '#9f3e5b');
+      ctx.fillStyle = grad; ctx.fillRect(0,0,w,h);
+      
+      const shine = ctx.createRadialGradient(w*.35,h*.27,4,w*.35,h*.27,w*.55);
+      shine.addColorStop(0,'rgba(255,255,255,.72)');
+      shine.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle=shine; ctx.fillRect(0,0,w,h);
+      
+      for(let i=0;i<180;i++){
+        const x=Math.random()*w,y=Math.random()*h,r=Math.random()*1.6+.25;
+        ctx.fillStyle = i%3===0 ? 'rgba(255,255,255,.82)' : 'rgba(108,24,49,.28)';
+        ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+      }
+      
+      ctx.font='600 12px Cormorant Garamond, serif';
+      ctx.fillStyle='rgba(255,255,255,.78)';
+      ctx.textAlign='center';
+      ctx.fillText('SCRATCH TO REVEAL',w/2,h*.86);
+    }
+    paintCover();
+
+    function pos(e){
+      const r=canvas.getBoundingClientRect();
+      return {x:(e.clientX-r.left)*(canvas.width/r.width), y:(e.clientY-r.top)*(canvas.height/r.height)};
+    }
+    function erase(x,y){
+      ctx.globalCompositeOperation='destination-out';
+      ctx.lineCap='round'; ctx.lineJoin='round'; ctx.lineWidth=42;
+      ctx.beginPath(); ctx.moveTo(lastX,lastY); ctx.lineTo(x,y); ctx.stroke();
+      ctx.beginPath(); ctx.arc(x,y,21,0,Math.PI*2); ctx.fill();
+      lastX=x; lastY=y;
+    }
+    function scratchedPercent(){
+      const data=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+      let transparent=0,total=0;
+      for(let y=0;y<canvas.height;y+=7) for(let x=0;x<canvas.width;x+=7){
+        total++; if(data[(y*canvas.width+x)*4+3]<25) transparent++;
+      }
+      return transparent/total;
+    }
+    function pinkConfetti(){
+      const pieces=[]; const start=performance.now();
+      const colors=['#f5a9c4','#e98caf','#d96d98','#b83d62','#f8d7e3','#fff1f6'];
+      const rect=canvas.getBoundingClientRect();
+      const ox=rect.left+rect.width/2, oy=rect.top+rect.height*.42;
+      for(let i=0;i<120;i++){
+        const a=Math.random()*Math.PI*2, speed=2+Math.random()*6;
+        pieces.push({x:ox,y:oy,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed-3-Math.random()*3,
+          r:3+Math.random()*5,rot:Math.random()*6.28,vr:(Math.random()-.5)*.3,
+          color:colors[i%colors.length],heart:Math.random()<.28});
+      }
+      const c=document.createElement('canvas'); c.style.cssText='position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:99999';
+      c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devicePixelRatio;
+      document.body.appendChild(c); const x=c.getContext('2d'); x.scale(devicePixelRatio,devicePixelRatio);
+      function frame(now){
+        x.clearRect(0,0,innerWidth,innerHeight);
+        for(const p of pieces){
+          p.vy+=.11;p.vx*=.992;p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;
+          x.save();x.translate(p.x,p.y);x.rotate(p.rot);x.fillStyle=p.color;
+          if(p.heart){x.beginPath();x.moveTo(0,3);x.bezierCurveTo(-7,-2,-5,-7,0,-4);x.bezierCurveTo(5,-7,7,-2,0,3);x.fill();}
+          else{x.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.55);}
+          x.restore();
+        }
+        if(now-start<2600) requestAnimationFrame(frame); else c.remove();
+      }
+      requestAnimationFrame(frame);
+    }
+    function completeReveal(){
+      if(revealed)return; revealed=true; canvas.style.opacity='0';
+      if(label) label.style.display='none'; 
+      if(hint)hint.style.opacity='0';
+      
+      const shimmer=document.getElementById('scratchShimmer'); if(shimmer){shimmer.style.opacity='0';}
+      pinkConfetti();
+      setTimeout(()=>{canvas.style.display='none'; if(shimmer)shimmer.style.display='none';},700);
+    }
+    function move(e){
+      if(!scratching||revealed)return; e.preventDefault();
+      const p=pos(e); erase(p.x,p.y);
+      if(Date.now()-lastCheck>100){lastCheck=Date.now(); if(scratchedPercent()>.26) completeReveal();}
+    }
+    canvas.addEventListener('pointerdown',e=>{
+      if(revealed)return; scratching=true; canvas.setPointerCapture?.(e.pointerId);
+      const p=pos(e); lastX=p.x;lastY=p.y; erase(p.x,p.y); e.preventDefault();
+    });
+    canvas.addEventListener('pointermove',move);
+    canvas.addEventListener('pointerup',()=>scratching=false);
+    canvas.addEventListener('pointercancel',()=>scratching=false);
+    canvas.addEventListener('pointerleave',()=>scratching=false);
+    canvas.setAttribute('tabindex','0');
+    canvas.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();completeReveal();}});
+  })();
+
+  (function() {
+    const els = {
+      days: document.getElementById('cd-days'), hours: document.getElementById('cd-hours'),
+      mins: document.getElementById('cd-mins'), secs: document.getElementById('cd-secs')
+    };
+    if(!els.days) return;
+
+    function updateNum(el, val) {
+      const padded = String(val).padStart(2, '0');
+      if (el.textContent !== padded) {
+        el.textContent = padded;
+        el.classList.remove('num-flip'); void el.offsetWidth; el.classList.add('num-flip');
+      }
+    }
+
+    let cachedTarget = null;
+    let cachedAt = 0;
+    function refreshTarget(){
+      cachedTarget = getNextEventDateTime(__state.data?.events);
+      cachedAt = Date.now();
+    }
+    refreshTarget();
+
+    setInterval(() => {
+      if(!cachedTarget || Date.now() - cachedAt > 60000 || cachedTarget.getTime() <= Date.now()){
+        refreshTarget();
+      }
+      if(!cachedTarget) return;
+      let diff = cachedTarget.getTime() - Date.now();
+      if(diff < 0) diff = 0;
+      updateNum(els.days,  Math.floor(diff / (1000 * 60 * 60 * 24)));
+      updateNum(els.hours, Math.floor((diff / (1000 * 60 * 60)) % 24));
+      updateNum(els.mins,  Math.floor((diff / (1000 * 60)) % 60));
+      updateNum(els.secs,  Math.floor((diff / 1000) % 60));
+    }, 1000);
+  })();
+
+  (function() {
+    const container = document.getElementById('timelineContainer');
+    const fill = document.getElementById('timelineFill');
+    if(!container || !fill) return;
+    window.addEventListener('scroll', () => {
+      const rect = container.getBoundingClientRect();
+      const start = window.innerHeight - rect.top;
+      const end = rect.height + window.innerHeight;
+      fill.style.height = Math.max(0, Math.min(100, (start / end) * 100)) + '%';
+    });
+  })();
+
+  (function() {
+    const form = document.getElementById('rsvpForm');
+    if(!form) return;
+    const guestCountWrapper = document.getElementById('guestCountWrapper');
+    const nameInput = document.getElementById('rname');
+    const nameError = document.getElementById('nameError');
+    const attError = document.getElementById('attendanceError');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    form.addEventListener('change', (e) => {
+      if(e.target.name === 'attendance') {
+        attError.style.display = 'none';
+        guestCountWrapper.classList.toggle('active', e.target.value.includes('Attending'));
+      }
+    });
+    nameInput.addEventListener('input', () => {
+      nameError.style.display = 'none';
+      nameInput.style.borderColor = '';
+    });
+
+    function petalRain() {
+      if (reduceMotion) return;
+      const body = document.querySelector('.rsvp-body');
+      if (!body) return;
+      const rain = document.createElement('div');
+      rain.className = 'rsvp-rain';
+      const colors = ['#F3D3DC', '#E8B4C0', '#D9AFB5', '#E0C9A6'];
+      for (let i = 0; i < 16; i++) {
+        const p = document.createElement('span');
+        p.style.left = (Math.random() * 92 + 2) + '%';
+        p.style.background = colors[i % colors.length];
+        p.style.animationDuration = (3 + Math.random() * 2.5) + 's';
+        p.style.animationDelay = (Math.random() * 1.4) + 's';
+        p.style.transform = 'scale(' + (0.7 + Math.random() * 0.8) + ')';
+        rain.appendChild(p);
+      }
+      body.appendChild(rain);
+      setTimeout(() => rain.remove(), 7000);
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const checked = form.querySelector('input[name="attendance"]:checked');
+      const name = nameInput.value.trim();
+      let ok = true;
+
+      if (!checked) {
+        attError.style.display = 'block';
+        ok = false;
+      }
+      if (!name) {
+        nameError.style.display = 'block';
+        nameInput.style.borderColor = '#b5473f';
+        ok = false;
+      }
+      if (!ok) return;
+
+      const msg = document.getElementById('rmsg').value.trim();
+      const attendance = checked.value;
+      let guestCount = '';
+      if (attendance.includes('Attending')) {
+        const g = form.querySelector('input[name="guestCount"]:checked');
+        guestCount = g ? g.value : '1';
+      }
+
+      let text = `Hi! I'd like to RSVP for ${__state.data.bride.name} & ${__state.data.groom.name}'s wedding.\n\nName: ${name}\nAttendance: ${attendance}`;
+      if (guestCount) text += `\nGuests: ${guestCount}`;
+      if (msg) text += `\nMessage: ${msg}`;
+
+      window.open(`https://wa.me/${__state.data.rsvpWhatsapp.replace(/\D/g,'')}?text=${encodeURIComponent(text)}`, '_blank');
+
+      form.style.display = 'none';
+      document.getElementById('rsvpThanks').classList.add('show');
+      document.querySelector('#rsvpThanks h3').textContent = `Thank you, ${name.split(' ')[0]}!`;
+      petalRain();
+
+      if(typeof confetti === 'function' && !reduceMotion) {
+        confetti({ particleCount: 100, spread: 80, origin: { y: 0.7 }, colors: ['#C9A27A', '#7B2240', '#F3D3DC', '#B9A6C4'] });
+      }
+    });
+  })();
+
+  window.copyAddress = function(btn) {
+    const card = btn ? btn.closest('.venue-card') : null;
+    const el = card ? card.querySelector('.venue-address') : null;
+    const text = el ? el.textContent : '';
+    if(!text) return;
+    navigator.clipboard.writeText(text).then(() => alert("Address copied!"));
+  };
+
+  (function(){
+    const sel = [
+      '.hero-welcome', '.hero-names', '.hero-amp', '.hero-sub',
+      '.welcome-band p', '.welcome-band .divider',
+      '.eyebrow', '.section-title', '.divider',
+      '.reveal-box', '.carousel', '.gallery-dots',
+      '.countdown-grid', '.timeline-container',
+      '.venue-arch', '.venue-carousel', '.gallery-dots',
+      '.dress-code-img', '.rsvp-card', '.footer-text', '.footer-fine'
+    ].join(',');
+    document.querySelectorAll(sel).forEach(el => el.classList.add('rv'));
+
+    const items = Array.from(document.querySelectorAll('.rv'));
+    const groups = new Map();
+    items.forEach(el => {
+      const p = el.parentElement;
+      const n = groups.get(p) || 0;
+      el.style.setProperty('--i', Math.min(n, 6));
+      groups.set(p, n + 1);
+    });
+
+    if(!('IntersectionObserver' in window)){
+      items.forEach(el => el.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    items.forEach(el => io.observe(el));
+  })();
+
+  (function(){
+    const intro = document.getElementById('envelopeIntro');
+    const video = document.getElementById('envelopeVideo');
+    const content = document.getElementById('inviteContent');
+    if(!intro || !video || !content) return;
+    
+    let opened = false, finished = false;
+    function finishOpening(){
+      if(finished) return; finished = true;
+      video.removeEventListener('timeupdate', maybeReveal);
+      const hero = document.querySelector('.hero');
+      if(hero){ video.removeAttribute('poster'); video.classList.add('in-hero'); hero.insertBefore(video, hero.firstChild); }
+      intro.style.background = 'transparent'; intro.classList.add('is-leaving');
+      document.body.classList.remove('envelope-locked'); content.classList.add('is-revealed');
+      setTimeout(()=>{ if(intro.parentNode) intro.remove(); }, 450);
+      document.getElementById('floatCtrls').classList.add('show'); // Show buttons on open
+    }
+    function maybeReveal(){ if(video.currentTime >= 7.85) finishOpening(); }
+    function openEnvelope(){
+      if(opened) return; opened = true;
+      if(!__state.preview) video.muted = false;
+      
+      // Audio Play on Open
+      const bgMusic = document.getElementById('bg-music');
+      if (bgMusic && bgMusic.src && !__state.preview) {
+        bgMusic.play().catch(e => console.log('Audio play failed:', e));
+      }
+
+      video.play().catch(()=>{ video.muted = true; video.play().catch(finishOpening); });
+      video.addEventListener('timeupdate', maybeReveal);
+      setTimeout(finishOpening, 7850 + 1500);
+    }
+    video.addEventListener('ended', () => { if(!finished) finishOpening(); });
+    video.addEventListener('error', finishOpening);
+    intro.addEventListener('click', openEnvelope);
+  })();
+
+  // Floating Controls Logic
+  (function(){
+    const muteBtn = document.getElementById('muteBtn');
+    const scrollBtn = document.getElementById('scrollBtn');
+    const bgMusic = document.getElementById('bg-music');
+    
+    if (muteBtn) {
+      muteBtn.addEventListener('click', () => {
+        if(bgMusic) {
+          bgMusic.muted = !bgMusic.muted;
+          muteBtn.classList.toggle('is-muted', bgMusic.muted);
+        }
+      });
+    }
+
+    if (scrollBtn) {
+      function atBottom(){ return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8; }
+      window.addEventListener('scroll', () => {
+        scrollBtn.classList.toggle('is-up', atBottom());
+      });
+      scrollBtn.addEventListener('click', () => {
+        if(atBottom()) { window.scrollTo({ top:0, behavior:'smooth' }); return; }
+        const sections = Array.from(document.querySelectorAll('main > section:not([hidden]), footer, section'));
+        const next = sections.find(s => s.getBoundingClientRect().top > 8);
+        if(next) next.scrollIntoView({ behavior:'smooth', block:'start' });
+        else window.scrollTo({ top:0, behavior:'smooth' });
+      });
+    }
+  })();
+
+  if(typeof WEDDING !== 'undefined') window.renderInvite(WEDDING);
+
+// ==========================================
+// FIX: Universal Audio Logic
+// ==========================================
+window.addEventListener('message', function(e) {
+  if (e.origin !== location.origin) return;
+  var msg = e.data;
+  
+  if (msg && msg.type === 'invite-data' && msg.data) {
+    var audioTrack = msg.data.audio_track || 'nasheed-1';
+    var bgMusic = document.getElementById('bg-music');
+    
+    if (bgMusic) {
+      if (audioTrack === 'none') {
+        bgMusic.pause();
+        bgMusic.style.display = 'none';
+      } else {
+        if (!bgMusic.src || bgMusic.src.indexOf(audioTrack + '.mp3') === -1) {
+          bgMusic.src = '../audio/' + audioTrack + '.mp3';
+          bgMusic.load();
+        }
+        bgMusic.style.display = 'block';
+      }
+    }
+  }
+});
+
+</script>
+<script src="../audio-fix.js"></script>
+</body>
+</html>

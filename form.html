@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Order Details — Ghazia Creatives</title>
+<link rel="icon" type="image/webp" href="images/favicon.webp">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .form-main { padding: 48px 0 90px; overflow-x: hidden; width: 100%; }
+  .form-layout { display: grid; gap: 32px; grid-template-columns: 1fr; align-items: start; width: 100%; }
+  @media(min-width: 960px) { .form-layout { grid-template-columns: 1fr 420px; } }
+  .form-col { width: 100%; min-width: 0; }
+  .form-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; width: 100%; }
+  .form-head > div { min-width: 0; flex: 1; }
+  .form-head h1 { font-size: clamp(22px, 4vw, 32px); }
+  .form-head p { color: var(--muted); font-size: 14.5px; margin-top: 6px; }
+  .change-design { flex: 0 0 auto; font-size: 13.5px; color: var(--maroon); text-decoration: underline; text-underline-offset: 3px; padding: 8px 4px; }
+  .plan-pill { display: inline-block; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; padding: 6px 14px; border-radius: 20px; background: var(--maroon-deep); color: var(--gold-soft); border: 1px solid var(--gold); margin-top: 10px; }
+  .design-switcher { margin-bottom: 24px; width: 100%; display: none; }
+  .design-switcher h3 { font-size: 16px; margin-bottom: 12px; color: var(--maroon-dk); }
+  .switcher-list { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 12px; scrollbar-width: thin; width: 100%; max-width: 100%; }
+  .switcher-item { flex: 0 0 80px; cursor: pointer; text-align: center; border: 2px solid transparent; border-radius: 4px; padding: 4px; transition: all 0.2s; }
+  .switcher-item.active { border-color: var(--maroon); background: var(--paper); }
+  .switcher-item img { width: 100%; height: 80px; object-fit: cover; border-radius: 2px; margin-bottom: 6px; background: #EFE3D9; }
+  .switcher-item span { display: block; font-size: 11px; color: var(--muted); line-height: 1.2; }
+  .form-card { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 22px 18px; margin-bottom: 18px; width: 100%; max-width: 100%; }
+  .form-card h2 { font-size: 20px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .field { display: block; margin-bottom: 16px; width: 100%; }
+  .field > span { display: block; font-size: 14px; font-weight: 500; color: var(--maroon-dk); margin-bottom: 6px; }
+  .field input, .field select, .field textarea { width: 100%; max-width: 100%; font-family: 'Jost', sans-serif; font-size: 16px; padding: 13px 14px; border: 1px solid var(--line); border-radius: 3px; background: #fff; color: var(--ink); min-height: 48px; box-sizing: border-box; }
+  .field textarea { min-height: 110px; resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid rgba(107,43,58,.25); border-color: var(--maroon); }
+  .field input.has-error, .field select.has-error, .field textarea.has-error { border-color: #B23A48; }
+  .field input:disabled { background: #F0EAE4; color: var(--muted); }
+  .err { display: block; min-height: 16px; margin-top: 5px; font-size: 12.5px; color: #B23A48; line-height: 1.35; }
+  .two-col { display: grid; gap: 14px; grid-template-columns: 1fr; width: 100%; }
+  @media(min-width: 560px) { .two-col { grid-template-columns: 1fr 1fr; } }
+  .check-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; font-size: 14.5px; color: var(--muted); }
+  .check-row input { width: 20px; height: 20px; margin-top: 2px; flex: 0 0 20px; }
+  .note-count { text-align: right; font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .honeypot { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+  .submit-row { margin-top: 24px; width: 100%; }
+  .submit-row .btn { width: 100%; min-height: 54px; font-size: 16px; box-sizing: border-box; }
+  #err_submit { text-align: center; margin-top: 12px; }
+  .form-footnote { margin-top: 18px; font-size: 13px; color: var(--muted); text-align: center; }
+  .preview-col { display: none; width: 100%; }
+  @media(min-width: 960px) { .preview-col { display: block; position: sticky; top: 100px; } }
+  .preview-box { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+  .preview-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .preview-header h3 { font-size: 15px; color: var(--maroon-dk); margin: 0; }
+  .toggle-size { background: none; border: 1px solid var(--line); border-radius: 4px; font-size: 12px; padding: 4px 8px; cursor: pointer; color: var(--muted); }
+  .phone-frame { width: 100%; height: 700px; background: #fff; border: 10px solid #222; border-radius: 36px; overflow: hidden; position: relative; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.15); transition: all 0.3s; max-width: 390px; box-sizing: border-box; }
+  .phone-frame.wide { max-width: 100%; height: 600px; border-width: 4px; border-radius: 8px; }
+  .phone-frame iframe { width: 100%; height: 100%; border: none; display: block; background: #f6f2e8; }
+  .preview-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 14px; line-height: 1.5; }
+  .coming-soon-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: #EFE3D9; color: var(--muted); text-align: center; padding: 20px; box-sizing: border-box; }
+  .coming-soon-placeholder img { width: 120px; height: 120px; border-radius: 8px; margin-bottom: 16px; object-fit: cover; }
+  .mobile-preview-btn { display: block; width: 100%; margin-bottom: 20px; text-align: center; box-sizing: border-box; }
+  @media(min-width: 960px) { .mobile-preview-btn { display: none; } }
+  .mobile-drawer { position: fixed; inset: 0; z-index: 9999; background: var(--paper); display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.3s ease; }
+  .mobile-drawer.open { transform: translateY(0); }
+  .mobile-drawer-header { padding: 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
+  .mobile-drawer-header h3 { margin: 0; font-size: 18px; }
+  .close-drawer { background: none; border: none; font-size: 16px; color: var(--maroon); cursor: pointer; font-weight: 500; padding: 8px; }
+  .mobile-drawer-body { flex: 1; position: relative; background: #e6e0c9; overflow: hidden; }
+  .mobile-drawer-body iframe { width: 100%; height: 100%; border: none; }
+
+    /* Tooltip CSS */
+  .tooltip-wrap { position: relative; display: inline-flex; align-items: center; justify-content: center; cursor: help; }
+  .info-icon { display: inline-block; width: 16px; height: 16px; background: var(--maroon); color: #fff; border-radius: 50%; text-align: center; line-height: 16px; font-size: 11px; font-weight: bold; font-family: sans-serif; }
+  .tooltip-text { visibility: hidden; width: 200px; background-color: #333; color: #fff; text-align: center; border-radius: 6px; padding: 8px; position: absolute; z-index: 10; bottom: 130%; left: 50%; margin-left: -100px; opacity: 0; transition: opacity 0.3s; font-size: 12px; font-weight: normal; line-height: 1.4; font-family: 'Jost', sans-serif; }
+  .tooltip-text::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #333 transparent transparent transparent; }
+  .tooltip-wrap:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+  /* Audio Options CSS */
+  .audio-options { display: flex; flex-direction: column; gap: 10px; }
+  .audio-option { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border: 1px solid var(--line); border-radius: 6px; background: #fff; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+  .audio-option:hover { border-color: var(--maroon); }
+  .audio-option input[type="radio"] { margin-right: 12px; width: 18px; height: 18px; accent-color: var(--maroon); }
+  .audio-option .audio-name { flex-grow: 1; font-family: 'Jost', sans-serif; font-size: 15px; color: var(--ink); }
+  .audio-option .play-btn { background: var(--paper); border: 1px solid var(--maroon); color: var(--maroon); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; transition: all 0.2s; }
+  .audio-option .play-btn:hover { background: var(--maroon); color: #fff; }
+  .audio-option:has(input[type="radio"]:checked) { border-color: var(--maroon); background: rgba(107, 43, 58, 0.04); }
+</style>
+</head>
+<body>
+
+  <!-- ============ EMAIL POPUP MODAL ============ -->
+<div id="emailModal" style="position: fixed; inset: 0; background: rgba(43,18,24,0.6); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 20px; opacity: 0; visibility: hidden; transition: all 0.3s ease;">
+  <div style="background: #F6F0E9; max-width: 480px; width: 100%; padding: 40px 32px; border-radius: 12px; border: 1px solid #E5D2A8; box-shadow: 0 30px 80px rgba(0,0,0,0.3); text-align: center; transform: translateY(20px); transition: transform 0.3s ease;">
+    
+    <span style="display: inline-block; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #C9A15A; margin-bottom: 12px; font-weight: 600; font-family: 'Jost', sans-serif;">Almost There</span>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 26px; color: #4C1F2A; margin-bottom: 10px;">Please Enter Your Email to Preview</h2>
+    <p style="font-family: 'Jost', sans-serif; font-size: 14.5px; color: #8A7076; margin-bottom: 24px; line-height: 1.6;">Please provide a valid email address to view and customize your live invitation.</p>
+    
+    <form id="emailGateForm" style="display: flex; flex-direction: column; gap: 12px;">
+      <input type="email" id="userEmailInput" placeholder="yourname@gmail.com" required style="width: 100%; padding: 14px 16px; border: 1px solid rgba(107,43,58,.16); border-radius: 4px; font-family: 'Jost', sans-serif; font-size: 15px; background: #FBF8F4; outline: none; box-sizing: border-box;">
+      <button type="submit" style="background: #6B2B3A; color: #F6F0E9; border: none; padding: 14px; border-radius: 4px; font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; transition: background 0.2s;">Unlock Live Preview</button>
+      <p id="emailGateError" style="display: none; color: #B76E79; font-size: 13.5px; margin-top: 5px; font-family: 'Jost', sans-serif;">Please enter a valid email address.</p>
+    </form>
+    
+  </div>
+</div>
+
+<header class="navbar">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo"><img src="images/logo.webp" alt="Ghazia Creatives" class="logo-img"></a>
+    <nav class="nav-links">
+      <a href="index.html#designs">Designs</a><a href="index.html#how">How It Works</a><a href="index.html#faq">FAQ</a><a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="index.html#designs" class="btn btn-primary btn-sm">Order</a>
+  </div>
+</header>
+<main class="form-main">
+
+  
+  <div class="wrap">
+    <div class="form-head">
+      <div>
+        <h1 id="designName">Design</h1>
+        <p>Fill in your details — you can see invite live with your details below.</p>
+        <span class="plan-pill" id="planLabel">Plan</span>
+      </div>
+      <a href="index.html#designs" class="change-design">Change design</a>
+    </div>
+    
+    <div class="form-layout">
+      <div class="form-col">
+        <div class="design-switcher">
+          <h3>Try another design</h3>
+          <div class="switcher-list" id="switcherList"></div>
+        </div>
+        <form id="orderForm" novalidate>
+          <input type="text" id="website" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          
+          <section class="form-card">
+            <h2>Bride &amp; Groom</h2>
+            <label class="field"><span>Bride's name *</span><input type="text" id="bride_name" name="bride_name" maxlength="60" autocomplete="name"><small class="err" id="err_bride_name"></small></label>
+            <label class="field"><span>Bride's father's name *</span><input type="text" id="bride_father" name="bride_father" maxlength="60"><small class="err" id="err_bride_father"></small></label>
+            <label class="field"><span>Groom's name *</span><input type="text" id="groom_name" name="groom_name" maxlength="60" autocomplete="name"><small class="err" id="err_groom_name"></small></label>
+            <label class="field"><span>Groom's father's name *</span><input type="text" id="groom_father" name="groom_father" maxlength="60"><small class="err" id="err_groom_father"></small></label>
+          </section>
+
+                    <div id="eventSlots"></div>
+          <div style="text-align: center; margin-bottom: 24px;">
+            <button type="button" id="addEventBtn" class="btn btn-outline" style="display: none; width: 100%; max-width: 300px;">+ Add Another Event</button>
+          </div>
+
+               <!-- NAYA: Audio Section -->
+          <section class="form-card">
+            <h2>Background Nasheed</h2>
+            <span style="display:block; font-size:14px; font-weight:500; color:var(--maroon-dk); margin-bottom:10px;">Select Background Music *</span>
+            
+            <div class="audio-options">
+              <label class="audio-option">
+                <input type="radio" name="audio_track" value="nasheed-1" checked>
+                <span class="audio-name">Nasheed 1 (Soft & Elegant)</span>
+                <button type="button" class="play-btn" data-src="t/audio/nasheed-1.mp3">▶</button>
+              </label>
+              <label class="audio-option">
+                <input type="radio" name="audio_track" value="nasheed-2">
+                <span class="audio-name">Nasheed 2 (Peaceful)</span>
+                <button type="button" class="play-btn" data-src="t/audio/nasheed-2.mp3">▶</button>
+              </label>
+              <label class="audio-option">
+                <input type="radio" name="audio_track" value="nasheed-3">
+                <span class="audio-name">Nasheed 3 (Warm)</span>
+                <button type="button" class="play-btn" data-src="t/audio/nasheed-3.mp3">▶</button>
+              </label>
+                            <label class="audio-option">
+                <input type="radio" name="audio_track" value="nasheed-4">
+                <span class="audio-name">Fairytale Vibe</span>
+                <button type="button" class="play-btn" data-src="t/audio/nasheed-4.mp3">▶</button>
+              </label>
+              <label class="audio-option">
+                <input type="radio" name="audio_track" value="none">
+                <span class="audio-name">No Music (Mute)</span>
+              </label>
+            </div>
+            <small class="err" id="err_audio_track"></small>
+            <!-- Hidden audio player -->
+            <audio id="audioPreview" style="display:none;"></audio>
+          </section>
+
+          <section class="form-card">
+            <h2>RSVP &amp; guests</h2>
+            <label class="field"><span>RSVP WhatsApp number *</span><input type="tel" id="rsvp_whatsapp" name="rsvp_whatsapp" inputmode="tel" placeholder="03XXXXXXXXX or +923XXXXXXXXX" autocomplete="tel"><small class="err" id="err_rsvp_whatsapp"></small></label>
+            <label class="field"><span>RSVP deadline (optional)</span><input type="date" id="rsvp_deadline" name="rsvp_deadline"><small class="err" id="err_rsvp_deadline"></small></label>
+            <label class="field"><span>Special note for guests (optional)</span><textarea id="note" name="note" maxlength="400" placeholder="Anything guests should know"></textarea><div class="note-count" id="noteCount">0/400</div><small class="err" id="err_note"></small></label>
+          </section>
+
+          <section class="form-card">
+            <h2>Order updates</h2>
+            <label class="field"><span>Your WhatsApp number (for order updates) *</span><input type="tel" id="customer_whatsapp" name="customer_whatsapp" inputmode="tel" placeholder="03XXXXXXXXX or +923XXXXXXXXX" autocomplete="tel"><small class="err" id="err_customer_whatsapp"></small></label>
+            <label class="check-row"><input type="checkbox" id="same_as_rsvp" name="same_as_rsvp"><span>Same as RSVP number</span></label>
+          </section>
+
+          <div class="submit-row">
+            <button type="button" class="btn btn-outline mobile-preview-btn" id="showMobilePreview">Show Live Preview</button>
+            <button type="button" class="btn btn-primary" id="submitBtn">Save &amp; continue</button>
+            <small class="err" id="err_submit"></small>
+          </div>
+          <p class="form-footnote">Your details are saved as a draft. You can close this page and come back.</p>
+        </form>
+      </div>
+
+      <div class="preview-col">
+        <div class="preview-box">
+          <div class="preview-header">
+            <h3>Live Preview</h3>
+            <button type="button" class="toggle-size" id="toggleSizeBtn">Wide / Phone</button>
+          </div>
+          <div class="phone-frame" id="desktopPhoneFrame"></div>
+          <p class="preview-note" style="color: #8A7076; font-family: 'Jost', sans-serif; font-size: 13px; line-height: 1.5; margin-top: 14px;">
+  This is just a preview. Your final invitation will have no watermark, and all features like all buttons and RSVP will work perfectly.
+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="mobile-drawer-header"><h3>Live Preview</h3><button class="close-drawer" id="closeMobilePreview">Close</button></div>
+  <div class="mobile-drawer-body" id="mobileIframeContainer"></div>
+</div>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand"><img src="images/logo.webp" alt="Ghazia Creatives" class="logo-img"><p>Premium &amp; Luxury Wedding Invitation Websites</p></div>
+    <div class="footer-links"><h4>Explore</h4><a href="index.html#designs">Designs</a><a href="index.html#how">How It Works</a><a href="index.html#faq">FAQ</a></div>
+    <div class="footer-links"><h4>Contact</h4><a href="https://wa.me/923183040506" target="_blank">WhatsApp</a><a href="https://www.instagram.com/ghazia_creatives/" target="_blank">Instagram</a></div>
+  </div>
+  <div class="wrap footer-bottom">© 2026 Ghazia Creatives. Premium Wedding Invitation Websites</div>
+</footer>
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/form.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('emailModal');
+    const form = document.getElementById('emailGateForm');
+    const emailInput = document.getElementById('userEmailInput');
+    const errorMsg = document.getElementById('emailGateError');
+
+    // Check if email is saved in browser
+    const savedEmail = localStorage.getItem('userEmail');
+    
+    // Agar email save nahi hai, to popup show karein (0.3 sec delay ke sath)
+    if (!savedEmail) {
+      setTimeout(() => {
+        modal.style.opacity = '1';
+        modal.style.visibility = 'visible';
+        modal.querySelector('div').style.transform = 'translateY(0)';
+        document.body.style.overflow = 'hidden'; // Background scroll rokein
+      }, 300);
+    }
+
+       // Form Submit Logic
+    form.addEventListener('submit', async (e) => { // Yahan async add kiya hai
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (emailRegex.test(email)) {
+        localStorage.setItem('userEmail', email); // Local save
+        
+        // NAYA: Backend (Supabase) par email bhejein
+        try {
+            await fetch('https://jqegjvndpzsgxodtljvq.supabase.co/functions/v1/save-lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email })
+            });
+        } catch (err) {
+            console.log("Backend error, but proceeding", err);
+        }
+
+        // Popup close karein
+        modal.style.opacity = '0';
+        modal.style.visibility = 'hidden';
+        document.body.style.overflow = 'auto';
+        setTimeout(() => { modal.style.display = 'none'; }, 300); 
+      } else {
+        errorMsg.style.display = 'block';
+      }
+    });
+  });
+
+    // Audio Player Logic
+    const audioPlayer = document.getElementById('audioPreview');
+    const playBtns = document.querySelectorAll('.play-btn');
+    
+    if (audioPlayer && playBtns.length > 0) {
+      playBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault(); 
+          const src = btn.getAttribute('data-src');
+          
+          if (audioPlayer.src.endsWith(src) && !audioPlayer.paused) {
+            audioPlayer.pause();
+            btn.textContent = '▶';
+          } else {
+            audioPlayer.src = src;
+            audioPlayer.play();
+            playBtns.forEach(b => b.textContent = '▶'); 
+            btn.textContent = '⏸'; 
+          }
+        });
+      });
+      
+      audioPlayer.addEventListener('ended', () => {
+        playBtns.forEach(b => b.textContent = '▶');
+      });
+    }
+
+</script>
+
+</body>
+</html>

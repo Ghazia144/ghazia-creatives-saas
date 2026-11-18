@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Edit Invitation — Ghazia Creatives</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" type="image/webp" href="images/favicon.webp">
+<link rel="apple-touch-icon" href="images/favicon.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  .edit-main { padding: 48px 0 90px; }
+  .edit-header { margin-bottom: 24px; }
+  .edit-header h1 { font-size: clamp(22px, 4vw, 32px); }
+  .edit-header p { color: var(--muted); font-size: 14.5px; margin-top: 6px; }
+  
+  .banner {
+    background: var(--maroon); color: var(--cream);
+    padding: 12px 20px; border-radius: 4px; text-align: center;
+    font-weight: 500; margin-bottom: 24px; font-size: 15px;
+  }
+  .banner.disabled { background: #B23A48; }
+
+  .form-card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 4px; padding: 22px 18px; margin-bottom: 18px;
+  }
+  .form-card h2 {
+    font-size: 20px; margin-bottom: 18px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--line);
+  }
+  .field { display: block; margin-bottom: 16px; }
+  .field > span { display: block; font-size: 14px; font-weight: 500; color: var(--maroon-dk); margin-bottom: 6px; }
+  .field input, .field select, .field textarea {
+    width: 100%; font-family: 'Jost', sans-serif; font-size: 16px;
+    padding: 13px 14px; border: 1px solid var(--line);
+    border-radius: 3px; background: #fff; color: var(--ink);
+    min-height: 48px;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: 2px solid rgba(107,43,58,.25); border-color: var(--maroon);
+  }
+  .field input:disabled, .field select:disabled { background: #F0EAE4; color: var(--muted); }
+  .two-col { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media(min-width: 560px) { .two-col { grid-template-columns: 1fr 1fr; } }
+  
+  .submit-row { margin-top: 24px; }
+  .submit-row .btn { width: 100%; min-height: 54px; font-size: 16px; }
+  .submit-row .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  
+  .error-state { text-align: center; padding: 40px 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+  .error-state h2 { color: #B23A48; margin-bottom: 12px; }
+</style>
+<script src="js/config.js"></script>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.webp" alt="Ghazia Creatives" class="logo-img">
+    </a>
+    <a href="index.html#designs" class="btn btn-primary btn-sm">Order</a>
+  </div>
+</header>
+
+<main class="edit-main">
+  <div class="wrap">
+    
+    <div id="loadingState" style="text-align:center; padding: 60px;">Loading your order...</div>
+
+    <div id="errorState" class="error-state" style="display:none;">
+      <h2>Cannot Edit</h2>
+      <p id="errorMsg" style="color: var(--muted); margin-bottom: 20px;"></p>
+      <a href="https://wa.me/923183040506" target="_blank" class="btn btn-primary">WhatsApp Us</a>
+    </div>
+
+    <div id="editContent" style="display:none;">
+      <div class="edit-header">
+        <h1>Edit Invitation</h1>
+        <p>Make changes below. Your invite will update instantly.</p>
+      </div>
+
+      <div id="editBanner" class="banner">
+        Edits left: X of 3
+      </div>
+
+      <form id="editForm" novalidate>
+        
+        <!-- COUPLE -->
+        <section class="form-card">
+          <h2>Bride &amp; Groom</h2>
+          <label class="field">
+            <span>Bride's name *</span>
+            <input type="text" id="bride_name" maxlength="60">
+          </label>
+          <label class="field">
+            <span>Bride's father's name *</span>
+            <input type="text" id="bride_father" maxlength="60">
+          </label>
+          <label class="field">
+            <span>Groom's name *</span>
+            <input type="text" id="groom_name" maxlength="60">
+          </label>
+          <label class="field">
+            <span>Groom's father's name *</span>
+            <input type="text" id="groom_father" maxlength="60">
+          </label>
+        </section>
+
+        <!-- EVENT SLOTS -->
+      <div id="eventSlots"></div>
+
+        <!-- RSVP -->
+        <section class="form-card">
+          <h2>RSVP &amp; guests</h2>
+          <label class="field">
+            <span>RSVP WhatsApp number *</span>
+            <input type="tel" id="rsvp_whatsapp" placeholder="03XXXXXXXXX or +923XXXXXXXXX">
+          </label>
+          <label class="field">
+            <span>RSVP deadline (optional)</span>
+            <input type="date" id="rsvp_deadline">
+          </label>
+          <label class="field">
+            <span>Special note for guests (optional)</span>
+            <textarea id="note" maxlength="400"></textarea>
+          </label>
+        </section>
+
+        <div class="submit-row">
+          <button type="button" class="btn btn-primary" id="saveBtn">Save Changes</button>
+          <p id="saveMsg" style="text-align:center; margin-top: 12px; font-weight:500; font-size: 14px;"></p>
+        </div>
+
+        <div style="text-align: center; margin-top: 24px;">
+          <a href="#" id="openInviteLink" target="_blank" style="color: var(--maroon); font-weight: 500; text-decoration: underline;">Open my invitation</a>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</main>
+
+<script src="js/edit.js"></script>
+</body>
+</html>

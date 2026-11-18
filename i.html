@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Invitation</title>
+<meta name="robots" content="noindex, nofollow">
+<!-- Fallback OG Tags (Jab tak dynamic load na ho) -->
+<meta property="og:title" content="Wedding Invitation">
+<meta property="og:description" content="You are cordially invited to our wedding celebration.">
+<meta property="og:type" content="website">
+<style>
+  :root { --maroon: #6B2B3A; --cream: #F6F0E9; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--cream); color: var(--maroon); height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; overflow: hidden; }
+  .loader { border: 4px solid rgba(107, 43, 58, 0.2); border-top: 4px solid var(--maroon); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin-bottom: 20px; }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  h1 { font-size: 24px; margin-bottom: 12px; }
+  p { font-size: 16px; opacity: 0.8; margin-bottom: 24px; max-width: 300px; line-height: 1.5; }
+  .btn { display: inline-block; background: var(--maroon); color: var(--cream); padding: 12px 24px; border-radius: 4px; text-decoration: none; font-weight: 500; transition: opacity 0.2s; }
+  .btn:hover { opacity: 0.9; }
+  iframe { width: 100%; height: 100dvh; border: none; display: block; position: fixed; top: 0; left: 0; z-index: 10; }
+  .error-state { display: none; }
+</style>
+<script src="js/config.js"></script>
+</head>
+<body>
+  <div id="loadingState"><div class="loader"></div><p>Loading your invitation...</p></div>
+  <div id="notReadyState" class="error-state"><h1>Not ready yet</h1><p>This invitation is not ready yet. Please check back later.</p><a href="#" id="statusLink" class="btn">View Order Status</a></div>
+  <div id="notFoundState" class="error-state"><h1>Not found</h1><p>We couldn't find an invitation with this link. Please check the URL or contact the sender.</p></div>
+  <div id="genericErrorState" class="error-state"><h1>Something went wrong</h1><p>Unable to load the invitation. Please try again later.</p></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  let identifier = urlParams.get('c'); // Local testing
+
+  if (!identifier) {
+    // Clean URL logic: /i/ayesha-weds-hamza-12ab
+    const pathParts = window.location.pathname.split('/');
+    identifier = pathParts[pathParts.length - 1];
+    if (identifier === 'i.html' || !identifier) identifier = '';
+  }
+
+  if (!identifier) { showNotFound(); return; }
+
+  try {
+    // We send 'public_code' or 'slug' as identifier
+    const res = await fetch(`${SUPABASE_FUNCTIONS_URL}/invite`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "apikey": SUPABASE_PUBLISHABLE_KEY, "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY}` },
+      body: JSON.stringify({ action: "get", identifier })
+    });
+
+    if (res.status === 404) { showNotFound(); return; }
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error || "Error loading");
+
+    if (json.status && json.status !== "paid") {
+      document.getElementById("loadingState").style.display = "none";
+      document.getElementById("notReadyState").style.display = "block";
+      document.getElementById("statusLink").href = `status.html?c=${encodeURIComponent(json.public_code)}`;
+      return;
+    }
+
+    if (json.design_id && json.data) {
+      document.getElementById("loadingState").style.display = "none";
+      
+      // Update OG title dynamically for real users (though bots won't run this)
+      document.title = json.data.bride.name + " weds " + json.data.groom.name;
+
+      const iframe = document.createElement("iframe");
+      iframe.src = `t/${json.design_id}/index.html`;
+      iframe.allow = "autoplay";
+      document.body.appendChild(iframe);
+
+      let attempts = 0;
+      const postData = () => {
+        if (iframe.contentWindow) iframe.contentWindow.postMessage({ type: "invite-data", data: json.data }, window.location.origin);
+        attempts++;
+        if (attempts < 30) setTimeout(postData, 100);
+      };
+      iframe.onload = () => postData();
+    } else { showNotFound(); }
+  } catch (err) {
+    console.error(err);
+    document.getElementById("loadingState").style.display = "none";
+    document.getElementById("genericErrorState").style.display = "block";
+  }
+});
+
+function showNotFound() {
+  document.getElementById("loadingState").style.display = "none";
+  document.getElementById("notFoundState").style.display = "block";
+}
+</script>
+</body>
+</html>

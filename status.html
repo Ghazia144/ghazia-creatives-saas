@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Order Status — Ghazia Creatives</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/webp" href="images/favicon.webp">
+<link rel="apple-touch-icon" href="images/favicon.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  html, body { overflow-x: hidden; max-width: 100vw; background: var(--cream); }
+  .status-main { padding: 60px 0 100px; min-height: 65vh; display: flex; align-items: center; }
+  .status-card {
+    max-width: 480px; margin: 0 auto; text-align: center;
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 4px; padding: 44px 28px;
+    box-shadow: 0 12px 40px rgba(76,31,42,.06); box-sizing: border-box; width: 100%;
+  }
+  .code-badge {
+    display: inline-block; padding: 6px 16px; background: var(--cream);
+    border: 1px solid var(--line); color: var(--muted); border-radius: 20px; 
+    font-family: monospace; font-size: 13px; margin-bottom: 24px; word-break: break-all;
+  }
+  .status-card h1 { font-size: clamp(24px, 4vw, 28px); margin-bottom: 12px; font-family: 'Playfair Display', serif; color: var(--maroon-dk); }
+  .status-card p { color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 12px; }
+  
+  .pulse-ring {
+    display: block; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--gold); box-shadow: 0 0 0 0 rgba(201, 161, 90, 0.4);
+    animation: pulse 2.5s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(201, 161, 90, 0.5); }
+    70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(201, 161, 90, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(201, 161, 90, 0); }
+  }
+
+  .copy-box {
+    display: flex; align-items: center; gap: 8px; margin: 24px 0;
+    background: #fff; border: 1px solid var(--line); padding: 6px 6px 6px 16px; border-radius: 4px;
+  }
+  .copy-box input {
+    flex: 1; border: none; background: transparent; font-family: monospace;
+    font-size: 13px; color: var(--maroon-dk); outline: none; width: 100%;
+  }
+  .copy-btn {
+    padding: 10px 16px; background: var(--maroon); color: var(--cream);
+    border: none; border-radius: 3px; font-size: 13px; font-weight: 500; cursor: pointer;
+  }
+
+  .btn-group { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+  .btn-group .btn { width: 100%; padding: 15px 20px; font-size: 14px; letter-spacing: 0.05em; }
+  
+  .help-link { display: inline-block; margin-top: 24px; font-size: 13.5px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+</style>
+<script src="js/config.js"></script>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.webp" alt="Ghazia Creatives" class="logo-img">
+    </a>
+    <a href="index.html#designs" class="btn btn-primary btn-sm">Order</a>
+  </div>
+</header>
+
+<main class="status-main">
+  <div class="wrap">
+    <div id="statusContainer" class="status-card">
+      <p>Loading status...</p>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-bottom" style="margin-top:0; border:none;">
+    © 2026 Ghazia Creatives. Premium Wedding Invitation Websites
+  </div>
+</footer>
+
+<script src="js/status.js"></script>
+</body>
+</html>

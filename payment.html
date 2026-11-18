@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Payment — Ghazia Creatives</title>
+<meta name="description" content="Complete your invitation order payment.">
+<link rel="icon" type="image/webp" href="images/favicon.webp">
+<link rel="apple-touch-icon" href="images/favicon.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  .pay-main { padding: 48px 0 90px; min-height: 60vh; }
+  .pay-card {
+    max-width: 640px; margin: 0 auto;
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 4px; padding: 26px 20px;
+  }
+  .pay-card h1 { font-size: clamp(22px, 4vw, 30px); margin-bottom: 6px; }
+  .pay-summary { margin: 16px 0 22px; padding: 14px 16px; background: var(--cream); border-radius: 4px; font-size: 14.5px; color: var(--muted); }
+  .pay-summary strong { color: var(--maroon-dk); }
+  .pay-amount { text-align: center; margin: 10px 0 24px; }
+  .pay-amount .label { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+  .pay-amount .value { font-family: 'Playfair Display', serif; font-size: clamp(32px, 6vw, 44px); font-weight: 700; color: var(--maroon-dk); line-height: 1.1; }
+  .pay-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+  .pay-tab {
+    flex: 1; min-width: 120px; padding: 12px 10px; text-align: center;
+    border: 1px solid var(--line); border-radius: 3px; background: #fff;
+    font-size: 14px; font-weight: 500; color: var(--muted); cursor: pointer;
+    transition: all .2s;
+  }
+  .pay-tab.active { border-color: var(--maroon); background: var(--maroon); color: var(--cream); }
+  .pay-details { padding: 14px 16px; border: 1px dashed var(--line); border-radius: 4px; margin-bottom: 18px; font-size: 14.5px; line-height: 1.7; }
+  .pay-details .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .pay-details .row span { color: var(--maroon-dk); font-weight: 500; word-break: break-all; }
+  .copy-btn {
+    font-size: 12px; padding: 4px 10px; border: 1px solid var(--line);
+    border-radius: 3px; background: var(--cream); color: var(--maroon-dk);
+    cursor: pointer; white-space: nowrap;
+  }
+  .copy-btn:active { background: var(--gold-soft); }
+  .pay-instruction { font-size: 14px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+  .field { display: block; margin-bottom: 16px; }
+  .field > span { display: block; font-size: 14px; font-weight: 500; color: var(--maroon-dk); margin-bottom: 6px; }
+  .field input {
+    width: 100%; font-family: 'Jost', sans-serif; font-size: 16px;
+    padding: 13px 14px; border: 1px solid var(--line); border-radius: 3px;
+    background: #fff; color: var(--ink); min-height: 48px;
+  }
+  .field input:focus { outline: 2px solid rgba(107,43,58,.25); border-color: var(--maroon); }
+  .field input.has-error { border-color: #B23A48; }
+  .err { display: block; min-height: 16px; margin-top: 5px; font-size: 12.5px; color: #B23A48; line-height: 1.35; }
+  .file-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .file-row input[type="file"] { flex: 1; font-size: 14px; }
+  .thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid var(--line); display: none; }
+  .progress-wrap { height: 8px; background: var(--cream); border-radius: 99px; overflow: hidden; margin: 10px 0; display: none; }
+  .progress-bar { height: 100%; width: 0; background: var(--maroon); transition: width .2s; }
+  .honeypot { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+  .submit-row { margin-top: 22px; }
+  .submit-row .btn { width: 100%; min-height: 54px; font-size: 16px; }
+  #err_submit { text-align: center; margin-top: 12px; }
+  .pay-note { font-size: 13px; color: var(--muted); text-align: center; margin-top: 14px; }
+  .pay-missing { text-align: center; padding: 40px 20px; }
+  .pay-missing h1 { margin-bottom: 12px; }
+  .pay-missing p { color: var(--muted); margin-bottom: 20px; }
+  .pay-missing .btn { min-width: 220px; }
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.webp" alt="Ghazia Creatives" class="logo-img">
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#designs">Designs</a>
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="index.html#designs" class="btn btn-primary btn-sm">Order</a>
+  </div>
+</header>
+
+<main class="pay-main">
+  <div class="wrap">
+    <div id="payContainer"></div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="images/logo.webp" alt="Ghazia Creatives" class="logo-img">
+      <p>Premium &amp; Luxury Wedding Invitation Websites</p>
+    </div>
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a href="index.html#designs">Designs</a>
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#faq">FAQ</a>
+    </div>
+    <div class="footer-links">
+      <h4>Contact</h4>
+      <a href="https://wa.me/923183040506" target="_blank">WhatsApp</a>
+      <a href="https://www.instagram.com/ghazia_creatives/" target="_blank">Instagram</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    © 2026 Ghazia Creatives. Premium Wedding Invitation Websites
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/payment-config.js"></script>
+<script src="js/payment.js"></script>
+</body>
+</html>

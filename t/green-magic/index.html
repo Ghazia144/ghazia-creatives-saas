@@ -1,0 +1,1353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>(function () {
+  if (window.self !== window.top) return;
+  if (/[?&](full|nomockup)\b/.test(location.search)) return;
+  var isDesktop = innerWidth > 820 && matchMedia('(pointer:fine)').matches;
+  if (!isDesktop) return;
+  try { window.stop(); } catch (e) {}
+  var SRC = location.href.split('#')[0];
+  var CSS =
+    'html,body{margin:0;height:100%;overflow:hidden}' +
+    'body{background:radial-gradient(ellipse at 50% 30%,#4a3a31 0%,#33281f 55%,#241b15 100%)}' +
+    '.stage{height:100%;display:flex;align-items:center;justify-content:center}' +
+    '.phone{position:relative;padding:12px;border-radius:58px;background:#0a0a0b;' +
+      'box-shadow:0 0 0 2px #2b2b2e,0 0 0 4px #111,inset 0 0 0 1.5px #3b3b3f,' +
+      '0 50px 90px -10px rgba(0,0,0,.65),0 18px 40px rgba(0,0,0,.45)}' +
+    '.screen{position:relative;width:var(--w);height:var(--h);border-radius:46px;overflow:hidden;' +
+      'background:#000;transform:translateZ(0)}' +
+    '.screen iframe{width:100%;height:100%;border:0;display:block;background:#000}' +
+    '.island{position:absolute;z-index:5;top:22px;left:50%;transform:translateX(-50%);' +
+      'width:96px;height:27px;border-radius:20px;background:#000;pointer-events:none}' +
+    '.sb{position:absolute;width:4px;background:#17171a;box-shadow:inset 0 0 0 1px #2e2e32}' +
+    '.sb.l1{left:-4px;top:110px;height:26px;border-radius:3px 0 0 3px}' +
+    '.sb.l2{left:-4px;top:160px;height:50px;border-radius:3px 0 0 3px}' +
+    '.sb.l3{left:-4px;top:222px;height:50px;border-radius:3px 0 0 3px}' +
+    '.sb.r1{right:-4px;top:190px;height:80px;border-radius:0 3px 3px 0}';
+  function fit() {
+    var H = Math.max(520, Math.min(844, innerHeight - 64));
+    var W = Math.round(H * 430 / 844);
+    var s = document.documentElement.style;
+    s.setProperty('--w', W + 'px');
+    s.setProperty('--h', H + 'px');
+  }
+  setTimeout(function () {
+    document.documentElement.innerHTML =
+      '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
+      '<title>Invitation</title><style>' + CSS + '</style></he' + 'ad>' +
+      '<body>' +
+        // Yahan ../../ laga hai taake root folder tak pohnch sake
+        '<a href="../../order.html?design=green-magic" class="floating-cta-btn" style="position:fixed; top:24px; right:24px; z-index:999999; background:#C9A15A; color:#2B1218; font-family:sans-serif; font-size:13px; font-weight:600; text-transform:uppercase; text-decoration:none; padding:12px 24px; border-radius:30px; border:1px solid rgba(255,255,255,0.3); box-shadow:0 4px 20px rgba(0,0,0,0.2); transition:all 0.3s ease;">Make This Invite Yours</a>' +
+        
+        '<div class="stage"><div class="phone">' +
+        '<i class="sb l1"></i><i class="sb l2"></i><i class="sb l3"></i><i class="sb r1"></i>' +
+        '<div class="island"></div>' +
+        '<div class="screen"><iframe id="inviteFrame" name="invite-phone" ' +
+          'allow="autoplay; fullscreen; clipboard-write" allowfullscreen></iframe></div>' +
+      '</div></div></bo' + 'dy>';
+    fit();
+    var f = document.getElementById('inviteFrame');
+    f.addEventListener('load', function () {
+      try { document.title = f.contentDocument.title || document.title; } catch (e) {}
+    });
+    f.src = SRC;
+    addEventListener('resize', function () {
+      if (innerWidth <= 820) location.reload(); else fit();
+    });
+  }, 0);
+})();</script>
+
+
+<title id="pg-title">Wedding Invitation</title>
+<meta name="description" id="pg-desc" content="You are cordially invited to our wedding celebrations">
+<meta name="theme-color" content="#3F5240">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%233F5240'/><text x='16' y='23' font-size='18' font-family='Georgia' text-anchor='middle' fill='%23DFC48D'>%E2%9C%A6</text></svg>">
+<script>
+/* ============ WEDDING DATA (demo) — the SaaS form overwrites this via postMessage ============ */
+var WEDDING = {
+  bride: "Zainab",
+  groom: "Daniyal",
+  tagline: "Wedding Celebrations",
+  brideParents: "Daughter of Mr. & Mrs. Qureshi",
+  groomParents: "Son of Mr. & Mrs. Mehmood",
+  rsvpDeadline: "February 1st, 2027",
+  whatsappNumber: "923001234567",
+  events: [
+    { type: "Mehndi", date: "2027-02-11", gatheringTime: "19:00", venueName: "Rose Garden Lawn", venueAddress: "Street 9, Phase 5, DHA, Karachi", mapsUrl: "https://maps.google.com/?q=Rose+Garden+Lawn+DHA+Karachi" },
+    { type: "Nikah", date: "2027-02-12", gatheringTime: "16:00", venueName: "Al-Noor Banquet", venueAddress: "Block 7, Gulshan-e-Iqbal, Karachi", mapsUrl: "https://maps.google.com/?q=Al+Noor+Banquet+Karachi" },
+    { type: "Baraat", date: "2027-02-12", gatheringTime: "20:30", venueName: "The Grand Pavilion", venueAddress: "Shahrah-e-Faisal, Karachi", mapsUrl: "https://maps.google.com/?q=Grand+Pavilion+Karachi" },
+    { type: "Walima", date: "2027-02-14", gatheringTime: "20:00", venueName: "Crescent Hall", venueAddress: "Clifton Block 4, Karachi", mapsUrl: "https://maps.google.com/?q=Crescent+Hall+Clifton+Karachi" }
+  ]
+};
+</script>
+<style>html{color-scheme:light}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+
+
+
+/* Local fonts: keep the "fonts" folder next to the html file (adjust path if needed) */
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/cinzel-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/cinzel-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/cormorant-garamond-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300;font-display:swap;src:url(fonts/cormorant-garamond-latin-300-italic.woff2) format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/cormorant-garamond-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/cormorant-garamond-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Great Vibes';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/great-vibes-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/jost-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/jost-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Jost';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/jost-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Amiri';font-style:normal;font-weight:400;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF;src:url(fonts/amiri-arabic-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Amiri';font-style:normal;font-weight:400;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;src:url(fonts/amiri-latin-400-normal.woff2) format('woff2');}
+
+
+
+
+  :root{
+    --paper:#FBFAF3;
+    --paper-2:#F3F1E6;
+    --wash:#E7EEE1;
+    --sage:#6E8266;
+    --sage-dp:#3F5240;
+    --forest:#2B3A2B;
+    --gold:#AF8945;
+    --gold-lt:#DFC48D;
+    --ink:#33402F;
+    --ink-soft:#65715D;
+    --card-w:480px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;min-height:100vh;
+    background:radial-gradient(130% 90% at 50% 0%, #4F6349 0%, #2B3A2B 55%, #16201A 100%);
+    color:var(--ink);
+    font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ===== shell ===== */
+  .stage{max-width:var(--card-w);margin:0 auto;padding:clamp(12px,3.5vw,30px) clamp(8px,3vw,20px) clamp(24px,6vw,44px);}
+  .card{
+    position:relative;overflow:hidden;background:var(--paper);
+    box-shadow:0 30px 70px -20px rgba(0,0,0,.7),
+               0 0 0 1px rgba(175,137,69,.4),
+               0 0 0 8px var(--sage-dp),
+               0 0 0 9px rgba(223,196,141,.5);
+  }
+  .flow{position:relative;z-index:2;}
+  section{position:relative;padding:clamp(26px,6.5vw,38px) clamp(20px,5.5vw,30px);}
+  .stack{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
+  #petals{position:absolute;inset:0;z-index:3;pointer-events:none;}
+
+  /* ===== type ===== */
+  p{margin:0;}
+  .label{font-family:"Jost",system-ui,sans-serif;font-size:.6rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);}
+  .name{
+    font-family:"Cinzel",Georgia,serif;font-weight:600;color:var(--sage-dp);
+    font-size:clamp(.88rem,3.5vw,1.1rem);line-height:1.58;letter-spacing:.09em;
+    text-transform:uppercase;text-wrap:balance;
+  }
+  .parent{font-style:italic;font-size:.86rem;color:var(--ink-soft);line-height:1.4;}
+  .amp{font-family:"Jost",sans-serif;font-size:.62rem;color:var(--gold);letter-spacing:.34em;text-transform:uppercase;}
+  .body{font-size:1.05rem;line-height:1.72;color:var(--ink-soft);max-width:33ch;}
+  .sheen{
+    background-image:linear-gradient(100deg,#9B7838 0%,#E7D6A6 26%,#B98F45 44%,#F2E8CA 58%,#9B7838 84%);
+    background-size:220% 100%;-webkit-background-clip:text;background-clip:text;
+    color:#AF8945;-webkit-text-fill-color:transparent;animation:sheen 9s linear infinite;
+  }
+  .sheen svg{fill:#AF8945;}
+  @keyframes sheen{from{background-position:220% 0}to{background-position:-20% 0}}
+  .leaf-rule{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold);width:100%;}
+  .leaf-rule i{height:1px;flex:1;max-width:62px;background:currentColor;opacity:.45;}
+
+  /* ===== cover ===== */
+  #cover{
+    position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
+    background:#1A241B;
+    transition:opacity .9s ease 1.85s, visibility .9s ease 1.85s;
+  }
+  #cover.open,#openToggle:checked ~ #cover{opacity:0;visibility:hidden;}
+  .cover-art{
+    position:absolute;inset:0;
+    background-image:url("images/cover-bg.jpg");
+    background-size:cover;background-position:center;
+    animation:coverDrift 30s ease-in-out infinite alternate;
+  }
+  @keyframes coverDrift{from{transform:scale(1.06)}to{transform:scale(1.16) translateY(-1.5%)}}
+  .cover-veil{position:absolute;inset:0;background:radial-gradient(70% 55% at 50% 46%, rgba(20,28,20,.18) 0%, rgba(20,28,20,.55) 100%);}
+  /* --- book: the cover turns like a card being opened --- */
+  .book{
+    position:relative;z-index:2;width:min(340px,76vw);aspect-ratio:474/812;
+    perspective:1700px;
+    filter:drop-shadow(0 26px 55px rgba(0,0,0,.7));
+  }
+  .book::before{  /* spine */
+    content:"";position:absolute;left:-3px;top:0;bottom:0;width:7px;z-index:4;
+    background:linear-gradient(90deg, rgba(30,40,28,.55), rgba(30,40,28,.12) 60%, transparent);
+    opacity:0;transition:opacity .5s ease .2s;pointer-events:none;
+  }
+  #cover.open .book::before,#openToggle:checked ~ #cover .book::before{opacity:1;}
+
+  .book-inner{
+    position:absolute;inset:0;overflow:hidden;
+    background-image:url("images/paper-texture.jpg");
+    background-size:cover;background-position:center;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+    padding:18% 14%;text-align:center;
+    box-shadow:inset 14px 0 34px -18px rgba(60,70,50,.6);
+  }
+  .book-inner::after{   /* light sweeping across the page as the cover lifts */
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(100deg, rgba(40,52,38,.5) 0%, rgba(40,52,38,.16) 42%, transparent 70%);
+    opacity:1;transition:opacity 1.3s ease .25s;
+  }
+  #cover.open .book-inner::after,#openToggle:checked ~ #cover .book-inner::after{opacity:0;}
+  .inner-script{
+    font-family:"Cinzel",Georgia,serif;font-weight:600;font-size:1.02rem;letter-spacing:.22em;
+    text-transform:uppercase;line-height:1.9;color:var(--sage-dp);
+  }
+  .inner-label{
+    font-family:"Jost",sans-serif;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--gold);line-height:2.1;
+  }
+
+  .book-cover{
+    position:absolute;inset:0;z-index:3;
+    transform-style:preserve-3d;transform-origin:left center;
+    transition:transform 1.55s cubic-bezier(.52,.02,.24,1);
+    cursor:pointer;
+  }
+  #cover.open .book-cover,#openToggle:checked ~ #cover .book-cover{transform:rotateY(-172deg);}
+  .face{
+    position:absolute;inset:0;backface-visibility:hidden;
+    background-size:cover;background-position:center;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+    padding:16% 14%;
+  }
+  .face.front{background-image:url("images/cover-front.jpg");}
+  .face.back{
+    background-image:url("images/paper-texture.jpg");
+    transform:rotateY(180deg);
+    box-shadow:inset -16px 0 40px -18px rgba(60,70,50,.55);
+  }
+  .cover-mono{
+    display:inline-flex;align-items:center;gap:14px;
+    font-family:"Cinzel",Georgia,serif;font-weight:600;font-size:2.6rem;letter-spacing:.14em;
+    line-height:1;
+  }
+  .cover-mono svg{width:14px;height:14px;flex:0 0 auto;}
+  .cover-name{
+    font-family:"Jost",sans-serif;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--sage-dp);text-align:center;line-height:2;
+  }
+  .cover-tap{
+    position:absolute;left:0;right:0;bottom:-44px;text-align:center;z-index:5;
+    font-family:"Jost",sans-serif;font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;
+    color:var(--gold-lt);animation:pulse 2.6s ease-in-out infinite;transition:opacity .4s ease;
+  }
+  #cover.open .cover-tap,#openToggle:checked ~ #cover .cover-tap{opacity:0;animation:none;}
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+  .cover-btn{position:absolute;inset:0;width:100%;background:none;border:0;cursor:pointer;z-index:6;}
+  #cover.open .cover-btn,#openToggle:checked ~ #cover .cover-btn{pointer-events:none;}
+  .cover-btn:focus-visible{outline:2px solid var(--gold-lt);outline-offset:10px;}
+  .skip{
+    position:fixed;top:16px;right:16px;z-index:60;background:rgba(255,255,255,.08);
+    border:1px solid rgba(223,196,141,.4);color:var(--gold-lt);
+    font-family:"Jost",sans-serif;font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;
+    padding:9px 15px;cursor:pointer;transition:background .25s ease,opacity .4s ease;
+  }
+  .skip:hover{background:rgba(255,255,255,.16);}
+  #openToggle{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
+  #openToggle:checked ~ .skip{opacity:0;visibility:hidden;}
+  label.cover-btn,label.skip{display:block;}
+  .skip.gone{opacity:0;visibility:hidden;}
+
+  /* ===== hero (eucalyptus, text to the right) ===== */
+  .hero{padding:0;position:relative;overflow:hidden;}
+  .hero-art{
+    position:relative;width:100%;aspect-ratio:736/981;overflow:hidden;
+    background:#FCFCF8;
+  }
+  .hero-art::before{
+    content:"";position:absolute;inset:-4%;
+    background-image:url("images/hero-eucalyptus.jpg");
+    background-size:cover;background-position:left center;
+    animation:heroDrift 32s ease-in-out infinite alternate;
+  }
+  @keyframes heroDrift{from{transform:scale(1.02)}to{transform:scale(1.1) translate(-1%,-1.5%)}}
+  .hero-text{
+    position:absolute;z-index:2;right:6%;top:50%;transform:translateY(-50%);
+    width:60%;display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:13px;
+    padding-right:4px;
+  }
+  .hero-text::after{
+    content:"";position:absolute;left:-22px;top:6%;bottom:6%;width:1px;
+    background:linear-gradient(to bottom, transparent, rgba(175,137,69,.6) 18%, rgba(175,137,69,.6) 82%, transparent);
+  }
+  .bismillah{font-family:"Amiri",serif;direction:rtl;font-size:clamp(1rem,4.3vw,1.24rem);line-height:1.9;color:var(--sage-dp);}
+  .hosts{
+    font-family:"Cinzel",Georgia,serif;font-weight:600;
+    font-size:clamp(.98rem,4vw,1.26rem);line-height:1.7;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--sage-dp);
+  }
+  .hero-sub{font-style:italic;font-size:.96rem;line-height:1.6;color:var(--ink-soft);max-width:22ch;}
+  .hero-date{
+    font-family:"Jost",sans-serif;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--gold);padding-top:8px;border-top:1px solid rgba(175,137,69,.45);
+  }
+  .scroll-cue{
+    position:absolute;left:0;right:0;bottom:4%;z-index:2;text-align:center;
+    font-family:"Jost",sans-serif;font-size:.53rem;letter-spacing:.34em;text-transform:uppercase;color:var(--sage-dp);
+    text-shadow:0 0 8px rgba(255,255,255,.95);
+  }
+  .scroll-cue svg{display:block;margin:7px auto 0;animation:nudge 2.4s ease-in-out infinite;}
+  @keyframes nudge{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(5px);opacity:1}}
+
+  /* ===== ayah ===== */
+  .paper-sec{
+    background-image:linear-gradient(180deg, rgba(251,250,243,.86) 0%, rgba(251,250,243,.7) 50%, rgba(243,241,230,.86) 100%), url("images/paper-texture.jpg");
+    background-size:cover;background-position:center;
+  }
+  .ayah{font-family:"Amiri",serif;direction:rtl;font-size:1.2rem;line-height:2.1;color:var(--sage-dp);max-width:29ch;}
+  .ayah-tr{font-style:italic;font-size:1rem;line-height:1.72;color:var(--ink-soft);max-width:32ch;}
+
+  /* ===== events (gold double-frame cards) ===== */
+  .events-sec{
+    background:linear-gradient(180deg, #FCFCF7 0%, #F4F5EC 55%, #FBFAF3 100%);
+    padding:clamp(22px,5.5vw,32px) clamp(10px,3vw,16px) clamp(12px,3.4vw,18px);
+  }
+  .events-sec .label{display:block;text-align:center;margin-bottom:clamp(14px,3.5vw,20px);}
+  .events{display:flex;flex-direction:column;gap:clamp(10px,3vw,16px);width:100%;}
+  .gframe{
+    position:relative;width:100%;aspect-ratio:590/700;
+    background-image:url("images/event-frame.jpg");
+    background-size:100% 100%;background-position:center;
+    box-shadow:0 10px 26px -18px rgba(50,64,46,.5);
+  }
+  .gframe-in{
+    position:absolute;left:11%;right:11%;top:11%;bottom:9%;z-index:1;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .fit{
+    width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;gap:clamp(3px,1vw,7px);transform-origin:center center;
+  }
+  .ribbon{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:"Cinzel",serif;font-weight:600;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  }
+  .couple{display:block;height:clamp(104px,27vw,138px);width:auto;max-width:60%;margin:0 auto;
+          filter:drop-shadow(0 10px 18px rgba(45,58,42,.2));}
+
+  /* ===== venue ===== */
+  .venue-sec{
+    background-image:linear-gradient(180deg, rgba(252,252,247,.62) 0%, rgba(252,252,247,.4) 45%, rgba(250,250,244,.7) 100%), url("images/venue-bg.jpg");
+    background-size:cover;background-position:center;
+  }
+  .plaque{
+    position:relative;z-index:2;width:min(96%,410px);margin:0 auto;
+    padding:24px 20px 20px;text-align:center;
+    background:rgba(253,252,248,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+    border:1px solid rgba(175,137,69,.55);
+    box-shadow:0 16px 36px -20px rgba(40,55,38,.45);
+  }
+  .plaque::before{content:"";position:absolute;inset:6px;border:1px solid rgba(175,137,69,.22);pointer-events:none;}
+  .venue-name{font-family:"Cinzel",serif;font-weight:600;font-size:1.08rem;letter-spacing:.06em;color:var(--sage-dp);line-height:1.5;}
+  .venue-addr{
+    font-family:"Jost",sans-serif;font-size:.61rem;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--ink-soft);line-height:1.85;max-width:36ch;margin:0 auto;
+  }
+  .times{display:grid;grid-template-columns:1fr 1fr;width:100%;margin-top:14px;border:1px solid rgba(175,137,69,.45);}
+  .times > div{padding:12px 10px;text-align:center;}
+  .times > div + div{border-left:1px solid rgba(175,137,69,.45);}
+
+  /* ==== FIX: 3rd/4th time cell borders ==== */
+  .times > div:nth-child(3),
+  .times > div:nth-child(4){ border-top:1px solid rgba(175,137,69,.45); }
+  .times > div:nth-child(3){ border-left:none; }
+
+  .times > div:last-child:nth-child(odd){ grid-column:1 / -1; border-left:none; }
+
+  /* ==== FIX: single venue centered ==== */
+  .vcar.single{
+    justify-content:center;
+    margin:12px 0 0;
+    width:100%;
+    padding:6px 0 18px;
+    scroll-snap-type:none;
+  }
+  .vcar.single .vslide{
+    flex:0 0 92%;
+    max-width:400px;
+    margin:0 auto;
+    scroll-snap-align:none;
+  }
+
+  /* ==== FIX: custom guest note ==== */
+  .rsvp-custom-note{
+    font-size:1rem;line-height:1.65;color:var(--sage-dp);
+    max-width:30ch;font-style:italic;
+    padding:10px 14px;border-left:2px solid var(--gold);
+    background:rgba(223,196,141,.08);
+    text-align:left;
+  }
+
+  .times b{display:block;font-family:"Cinzel",serif;font-weight:600;font-size:1.16rem;letter-spacing:.02em;color:var(--sage-dp);font-variant-numeric:lining-nums tabular-nums;}
+  .times small{font-family:"Jost",sans-serif;font-weight:500;font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;max-width:268px;padding:11px 18px;text-decoration:none;
+    color:var(--sage-dp);background:rgba(255,255,255,.6);border:1px solid rgba(63,82,64,.35);
+    font-family:"Jost",sans-serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+    transition:background .25s ease,color .25s ease,border-color .25s ease;
+  }
+  .btn:hover{background:var(--sage-dp);border-color:var(--sage-dp);color:var(--paper);}
+  .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+  /* ===== countdown tiles ===== */
+  .count{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;margin-top:6px;}
+  .count > div{
+    border:1px solid rgba(175,137,69,.5);background:rgba(252,251,245,.8);
+    padding:16px 4px 12px;text-align:center;
+  }
+  .count b{display:block;font-family:"Cormorant Garamond",serif;font-weight:400;
+           font-size:clamp(1.35rem,6.4vw,1.8rem);color:var(--sage-dp);
+           font-variant-numeric:lining-nums tabular-nums;line-height:1.1;margin-bottom:5px;}
+  .count small{font-family:"Jost",sans-serif;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);}
+
+  .date-strong{
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    width:100%;margin-top:18px;color:var(--gold);
+  }
+  .date-strong i{height:1px;flex:1;max-width:46px;background:currentColor;opacity:.5;}
+  .date-strong span{
+    font-family:"Cinzel",Georgia,serif;font-weight:600;
+    font-size:clamp(.9rem,3.7vw,1.14rem);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--sage-dp);white-space:nowrap;
+  }
+
+  /* ===== closing ===== */
+  .closing{
+    position:relative;padding:clamp(56px,13vw,78px) clamp(24px,7vw,40px) clamp(60px,14vw,84px);
+    text-align:center;overflow:hidden;
+  }
+  .closing-art{
+    position:absolute;inset:0;
+    background-image:url("images/cover-bg.jpg");
+    background-size:cover;background-position:center 70%;
+    transform:scaleY(-1);
+  }
+  .closing-veil{position:absolute;inset:0;background:linear-gradient(180deg, rgba(30,42,30,.72), rgba(22,32,22,.88));}
+  .closing-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:20px;}
+  .closing .body{color:rgba(251,250,243,.84);}
+  .crest{
+    font-family:"Cinzel",Georgia,serif;font-weight:600;font-size:1.16rem;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--gold-lt);line-height:1.9;
+  }
+  .footnote{text-align:center;font-family:"Jost",sans-serif;font-size:.55rem;letter-spacing:.22em;
+            text-transform:uppercase;color:rgba(251,250,243,.3);padding:4px 0 26px;}
+
+
+  body.sealed .rv{opacity:0;transform:translateY(16px);}
+  body.unsealed .rv{animation:rise 1s cubic-bezier(.2,.7,.2,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){
+    .sheen,.scroll-cue svg,.cover-tap,.cover-art,.hero-art::before{animation:none !important;}
+    body.sealed .rv{opacity:1;transform:none;}
+    body.unsealed .rv{animation:none;}
+  }
+
+  /* ===================== added for SaaS version ===================== */
+  body.sealed{overflow:hidden;}
+  .h2{font-family:"Cinzel",Georgia,serif;font-weight:600;font-size:1.12rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sage-dp);}
+  .light-sec{background:linear-gradient(180deg,#FCFCF7 0%,#F4F5EC 60%,#FBFAF3 100%);}
+  .hero-names{font-family:"Cinzel",Georgia,serif;font-weight:600;font-size:clamp(1.05rem,4.4vw,1.34rem);line-height:1.7;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-dp);overflow-wrap:anywhere;}
+  .couple.big{height:clamp(120px,32vw,160px);max-width:70%;}
+
+  /* event cards (inside the gold frame) */
+  .ev-day{font-family:"Jost",sans-serif;font-size:.58rem;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-soft);}
+  .ev-date{font-family:"Cinzel",Georgia,serif;font-weight:600;font-size:clamp(2.4rem,11vw,3.2rem);line-height:1;}
+  .ev-month{font-family:"Cinzel",Georgia,serif;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-dp);}
+  .ev-time{font-family:"Jost",sans-serif;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);}
+  .fit .venue-name{font-size:.98rem;overflow-wrap:anywhere;}
+  .fit .venue-addr{font-size:.56rem;}
+  .fit .btn{max-width:200px;padding:8px 14px;font-size:.58rem;margin-top:2px;}
+
+  /* scratch card */
+  .scratch-wrap{position:relative;width:100%;max-width:340px;aspect-ratio:16/10;margin:4px auto 0;overflow:hidden;
+    border:1px solid rgba(175,137,69,.55);box-shadow:0 14px 30px -18px rgba(40,55,38,.55);background:var(--paper-2);}
+  .scratch-wrap::after{content:"";position:absolute;inset:6px;border:1px solid rgba(175,137,69,.25);pointer-events:none;z-index:1;}
+  .scratch-reveal{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px;gap:4px;}
+  .sr-day{font-family:"Jost",sans-serif;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-soft);}
+  .sr-date{font-family:"Cinzel",Georgia,serif;font-weight:600;font-size:clamp(1.05rem,5vw,1.4rem);letter-spacing:.1em;text-transform:uppercase;color:var(--sage-dp);line-height:1.3;}
+  .sr-sub{font-family:"Jost",sans-serif;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);}
+  .scratch-canvas{position:absolute;inset:0;width:100%;height:100%;cursor:pointer;touch-action:none;z-index:2;}
+  .scratch-wrap.done .scratch-canvas{opacity:0;transition:opacity .8s ease;pointer-events:none;}
+  .scratch-note{font-family:"Jost",sans-serif;font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);}
+  #confetti-canvas{position:fixed;inset:0;z-index:9500;pointer-events:none;}
+
+  /* timeline */
+  .timeline{width:100%;max-width:340px;margin:8px auto 0;text-align:left;position:relative;padding-left:28px;}
+  .timeline::before{content:"";position:absolute;left:5px;top:8px;bottom:14px;width:1px;background:linear-gradient(to bottom,transparent,rgba(175,137,69,.7) 8%,rgba(175,137,69,.7) 92%,transparent);}
+  .t-item{position:relative;padding-bottom:22px;}
+  .t-item:last-child{padding-bottom:4px;}
+  .t-item::before{content:"";position:absolute;left:-28px;top:5px;width:11px;height:11px;transform:rotate(45deg);background:var(--paper);border:1px solid var(--gold);box-shadow:0 0 0 3px rgba(223,196,141,.25);}
+  .t-title{font-family:"Cinzel",Georgia,serif;font-weight:600;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sage-dp);}
+  .t-when{font-family:"Jost",sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:5px;}
+  .t-venue{font-style:italic;font-size:.96rem;color:var(--ink-soft);margin-top:3px;}
+
+  /* venue carousel */
+  .venue-sec{--sp:clamp(20px,5.5vw,30px);}
+  .vcar{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    margin:12px calc(var(--sp) * -1) 0;padding:6px var(--sp) 18px;scroll-padding:0 var(--sp);scrollbar-width:none;width:calc(100% + var(--sp) * 2);}
+  .vcar::-webkit-scrollbar{display:none;}
+  .vslide{flex:0 0 84%;scroll-snap-align:start;display:flex;}
+  .vslide .plaque{width:100%;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;}
+  .vslide .times b{font-size:.98rem;}
+  .vslide .btn{margin-top:10px;max-width:none;}
+  .vslide .btn-row{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;margin-top:12px;}
+  .vslide .btn-row .btn{margin-top:0;}
+  .vdots{display:flex;justify-content:center;gap:7px;margin-top:2px;}
+  .vdots i{width:6px;height:6px;border-radius:50%;background:rgba(63,82,64,.25);transition:background .25s ease,transform .25s ease;}
+  .vdots i.on{background:var(--gold);transform:scale(1.25);}
+  .swipe-hint{font-family:"Jost",sans-serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px;text-align:center;}
+
+  /* countdown extras */
+  .cd-done{font-style:italic;font-size:1.05rem;color:var(--sage-dp);text-align:center;margin-top:12px;}
+
+  /* rsvp form */
+  .rsvp-note{font-size:1.02rem;line-height:1.6;color:var(--ink-soft);max-width:30ch;}
+  .rsvp-date{font-family:"Jost",sans-serif;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);}
+  .rsvp-panel{width:100%;max-width:360px;text-align:left;background:rgba(252,251,245,.88);border:1px solid rgba(175,137,69,.45);padding:20px 18px 18px;}
+  .f-row{margin-bottom:14px;}
+  .f-row:last-child{margin-bottom:0;}
+  .f-lbl{display:block;font-family:"Jost",sans-serif;font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .f-in{width:100%;background:#fff;border:1px solid rgba(63,82,64,.3);border-radius:0;padding:10px 12px;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.05rem;color:var(--ink);outline:none;transition:border-color .2s;}
+  .f-in:focus{border-color:var(--gold);}
+  textarea.f-in{resize:none;min-height:64px;}
+  .f-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .f-choice{padding:10px 6px;background:#fff;border:1px solid rgba(63,82,64,.3);color:var(--ink-soft);font-family:"Jost",sans-serif;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;line-height:1.6;cursor:pointer;transition:all .2s;}
+  .f-choice.on{background:var(--sage-dp);color:var(--paper);border-color:var(--sage-dp);}
+  .f-err{color:#9a3b3b;font-style:italic;font-size:.95rem;text-align:center;min-height:20px;}
+  .btn.solid{background:var(--sage-dp);color:var(--paper);border-color:var(--sage-dp);cursor:pointer;}
+  .btn.solid:hover{background:var(--forest);}
+  .rsvp-small{font-family:"Jost",sans-serif;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);}
+
+  /* footer */
+  .footnote a{color:var(--gold-lt);text-decoration:none;font-weight:500;border-bottom:1px solid rgba(223,196,141,.5);padding-bottom:2px;}
+  .footnote a:hover{color:#fff;border-color:#fff;}
+  .footnote{color:rgba(251,250,243,.5);line-height:2.2;}
+
+  /* floating controls */
+  .float-ctrls{position:fixed;z-index:45;right:14px;bottom:14px;display:flex;flex-direction:column;gap:10px;opacity:0;pointer-events:none;transition:opacity .6s ease;}
+  .float-ctrls.show{opacity:1;pointer-events:auto;}
+  .float-ctrls button{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--paper);color:var(--sage-dp);
+    border:1px solid rgba(175,137,69,.6);box-shadow:0 8px 22px -6px rgba(0,0,0,.5);cursor:pointer;transition:transform .2s ease;-webkit-tap-highlight-color:transparent;}
+  .float-ctrls button:hover{transform:scale(1.06);}
+  .float-ctrls button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+  .float-ctrls svg{width:20px;height:20px;}
+  #muteBtn .ic-off{display:none;}
+  #muteBtn.is-muted .ic-on{display:none;}
+  #muteBtn.is-muted .ic-off{display:block;}
+  #scrollBtn svg{transition:transform .35s ease;}
+  #scrollBtn.is-up svg{transform:rotate(180deg);}
+
+  /* preview 2 (order preview): watermark + disabled */
+  body.is-preview-2::after{content:"PREVIEW";position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-30deg);
+    font-family:Georgia,serif;font-size:clamp(56px,16vw,120px);font-weight:700;letter-spacing:.18em;color:rgba(175,137,69,.2);
+    white-space:nowrap;pointer-events:none;user-select:none;z-index:99999;}
+  .is-disabled{opacity:.45;pointer-events:none;cursor:not-allowed;filter:grayscale(.6);}
+  @media (prefers-reduced-motion: reduce){ .swipe-hint{animation:none;} }
+</style>
+
+<noscript><style>.js-only{display:none!important}#petals{display:none!important}</style></noscript>
+
+
+<!-- ===== COVER ===== -->
+<input type="checkbox" id="openToggle" aria-label="Open the invitation">
+<div id="cover">
+  <div class="cover-art"></div>
+  <div class="cover-veil"></div>
+  <div class="book">
+    <div class="book-inner">
+      <div class="leaf-rule" style="max-width:110px"><i></i><svg width="10" height="10" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M10 1l2.6 6.4L19 10l-6.4 2.6L10 19l-2.6-6.4L1 10l6.4-2.6z"/></svg><i></i></div>
+      <p class="inner-script" id="cv-tagline">Wedding<br>Celebrations</p>
+      <p class="inner-label" id="cv-dates"></p>
+    </div>
+
+    <div class="book-cover" id="coverCard">
+      <div class="face front">
+        <p class="cover-mono sheen"><span id="mono-a">Z</span><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0l2.4 7.6L20 10l-7.6 2.4L10 20l-2.4-7.6L0 10l7.6-2.4z"/></svg><span id="mono-b">D</span></p>
+        <div class="leaf-rule" style="max-width:120px"><i></i><svg width="11" height="11" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M10 1l2.6 6.4L19 10l-6.4 2.6L10 19l-2.6-6.4L1 10l6.4-2.6z"/></svg><i></i></div>
+        <p class="cover-name" id="cv-names"></p>
+      </div>
+      <div class="face back"></div>
+    </div>
+
+    <label class="cover-btn" id="openBtn" for="openToggle" aria-label="Open the invitation"></label>
+    <div class="cover-tap">Tap to open</div>
+  </div>
+</div>
+<label class="skip" id="skipBtn" for="openToggle">Skip</label>
+<canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+<!-- ===== CARD ===== -->
+<div class="stage">
+  <div class="card">
+    <canvas id="petals" aria-hidden="true"></canvas>
+    <div class="flow">
+
+      <!-- HERO -->
+      <section class="hero rv">
+        <div class="hero-art">
+          <div class="hero-text">
+            <p class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+            <p class="label">With the blessings of Allah</p>
+            <p class="hero-names" id="hero-names"></p>
+            <p class="hero-sub">together with their families, joyfully invite you to celebrate their wedding</p>
+            <p class="hero-date" id="hero-date"></p>
+          </div>
+          <div class="scroll-cue">
+            Keep scrolling
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 1l7 7 7-7"/></svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- AYAH -->
+      <section class="paper-sec rv">
+        <div class="stack">
+          <p class="ayah">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+          <div class="leaf-rule"><i></i><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M10 1l2.6 6.4L19 10l-6.4 2.6L10 19l-2.6-6.4L1 10l6.4-2.6z"/></svg><i></i></div>
+          <p class="ayah-tr">“And of His signs is that He created for you from yourselves mates that you may find tranquillity in them; and He placed between you affection and mercy.”</p>
+          <p class="label">Surah Ar-Rum · 30:21</p>
+        </div>
+      </section>
+
+      <!-- COUPLE -->
+      <section class="light-sec rv">
+        <div class="stack">
+          <p class="label">The Couple</p>
+          <img class="couple big" src="images/couple.png" alt="Illustration of a bride and groom">
+          <p class="name" id="c-bride"></p>
+          <p class="parent" id="c-bride-par"></p>
+          <p class="amp">and</p>
+          <p class="name" id="c-groom"></p>
+          <p class="parent" id="c-groom-par"></p>
+        </div>
+      </section>
+
+      <!-- SCRATCH CARD -->
+      <section class="paper-sec rv">
+        <div class="stack">
+          <p class="label">Save The Date</p>
+          <p class="ayah-tr" style="font-size:.98rem">Scratch the card to reveal the date</p>
+          <div class="scratch-wrap" id="scratch-wrap">
+            <div class="scratch-reveal">
+              <p class="label" id="sr-label">The celebration takes place on</p>
+              <p class="sr-day" id="sr-day"></p>
+              <p class="sr-date" id="sr-date"></p>
+              <p class="sr-sub" id="sr-sub"></p>
+            </div>
+            <canvas class="scratch-canvas" id="scratch-canvas"></canvas>
+          </div>
+          <p class="scratch-note">Use your finger or mouse</p>
+        </div>
+      </section>
+
+      <!-- EVENTS -->
+      <section class="events-sec rv">
+        <div class="stack" style="gap:0">
+          <p class="label">Our Timeline</p>
+          <div class="events" id="event-list"></div>
+        </div>
+      </section>
+
+      <!-- VENUES (carousel) -->
+      <section class="venue-sec rv">
+        <div class="stack" style="gap:0">
+          <p class="label">The Venues</p>
+          <div class="vcar" id="vcar"></div>
+          <div class="vdots" id="vdots"></div>
+          <p class="swipe-hint" id="swipe-hint">Swipe to see all venues</p>
+        </div>
+      </section>
+
+      <!-- COUNTDOWN + RSVP -->
+      <section class="paper-sec rv">
+        <div class="stack" style="gap:22px">
+          <div class="js-only" style="width:100%">
+            <p class="label" id="cd-label" style="display:block;text-align:center;margin-bottom:14px">Counting down</p>
+            <div class="count" id="count" role="timer">
+              <div><b id="d">—</b><small>Days</small></div>
+              <div><b id="h">—</b><small>Hours</small></div>
+              <div><b id="m">—</b><small>Mins</small></div>
+              <div><b id="s">—</b><small>Secs</small></div>
+            </div>
+            <p class="cd-done" id="cd-done" hidden>The celebrations have begun, Alhamdulillah</p>
+          </div>
+          <div style="width:100%">
+            <div class="date-strong" style="margin-top:0">
+              <i></i><span id="cd-date"></span><i></i>
+            </div>
+          </div>
+
+          <div class="stack" id="rsvp" style="width:100%;gap:12px">
+            <p class="label">Kindly RSVP</p>
+            <p class="rsvp-note">We would be honoured by your presence.</p>
+            <p class="rsvp-custom-note" id="rsvp-custom-note" hidden></p>
+            <p class="rsvp-date" id="rsvp-deadline-label"></p>
+            <div class="rsvp-panel">
+              <div class="f-row">
+                <label class="f-lbl" for="f-name">Your Name</label>
+                <input class="f-in" id="f-name" type="text" placeholder="Your name" autocomplete="name">
+              </div>
+              <div class="f-row">
+                <span class="f-lbl">Will You Attend?</span>
+                <div class="f-choices">
+                  <button type="button" class="f-choice" data-val="yes">Yes, I’ll be there</button>
+                  <button type="button" class="f-choice" data-val="no">Sorry, can’t make it</button>
+                </div>
+              </div>
+              <div class="f-row" id="row-guests">
+                <label class="f-lbl" for="f-guests">Number Of Guests</label>
+                <select class="f-in" id="f-guests">
+                  <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+                </select>
+              </div>
+              <div class="f-row">
+                <label class="f-lbl" for="f-msg">Message (Optional)</label>
+                <textarea class="f-in" id="f-msg" placeholder="Wishes and prayers for the couple…"></textarea>
+              </div>
+            </div>
+            <div class="f-err" id="f-err" role="alert"></div>
+            <button type="button" class="btn solid" id="rsvp-send">Confirm Attendance</button>
+            <p class="rsvp-small">Opens WhatsApp with your reply ready to send</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLOSING -->
+      <div class="closing rv">
+        <div class="closing-art"></div>
+        <div class="closing-veil"></div>
+        <div class="closing-in">
+          <div class="leaf-rule" style="color:var(--gold-lt)"><i></i><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M10 1l2.6 6.4L19 10l-6.4 2.6L10 19l-2.6-6.4L1 10l6.4-2.6z"/></svg><i></i></div>
+          <p class="body">Your presence and blessings would make these joyous celebrations truly special.</p>
+          <p class="crest" id="closing-names"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<p class="footnote">
+  Made by <a href="https://ghaziacreatives.com" target="_blank" rel="noopener">GhaziaCreatives</a>
+</p>
+
+<div class="float-ctrls" id="floatCtrls">
+  <button type="button" id="muteBtn" class="is-muted" aria-label="Play music" aria-pressed="true">
+    <svg class="ic-on" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+    <svg class="ic-off" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.8 8.8 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+  </button>
+  <button type="button" id="scrollBtn" aria-label="Go to next section">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+  </button>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var W = window.WEDDING;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var state = { preview2:false, scratchRevealed:false };
+  var $ = function(id){ return document.getElementById(id); };
+  var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var SPARK = '<svg width="10" height="10" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0l2.4 7.6L20 10l-7.6 2.4L10 20l-2.4-7.6L0 10l7.6-2.4z"/></svg>';
+  var PIN = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 22s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>';
+  var CAL = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>';
+  var DEFAULT_TRACK = '../audio/nasheed-1.mp3';
+  var playing = false;
+
+  /* ---------- helpers ---------- */
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function fmt12(t){
+    if(!t) return '';
+    var p = String(t).split(':'), h = +p[0], m = +(p[1] || 0);
+    if(isNaN(h)) return t;
+    return (h % 12 || 12) + ':' + pad(m) + ' ' + (h >= 12 ? 'PM' : 'AM');
+  }
+  function parseDate(ds){
+    if(!ds || typeof ds !== 'string') return null;
+    ds = ds.trim();
+    let m = /^(\d{4})-(\d{1,2})-(\d{1,2})/.exec(ds);
+    if(m){
+      const y = +m[1], mo = +m[2], d = +m[3];
+      const dt = new Date(y, mo-1, d);
+      if(!isNaN(dt.getTime())) return { y:y, m:mo, d:d, dow:dt.getDay() };
+    }
+    m = /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/.exec(ds);
+    if(m){
+      const d = +m[1], mo = +m[2], y = +m[3];
+      const dt = new Date(y, mo-1, d);
+      if(!isNaN(dt.getTime())) return { y:y, m:mo, d:d, dow:dt.getDay() };
+    }
+    return null;
+  }
+  function getEventDate(ev){
+    if(!ev || typeof ev !== 'object') return '';
+    return ev.date || ev.eventDate || ev.event_date || ev.day || '';
+  }
+
+  function parseEventDT(ev){
+    if(!ev || typeof ev !== 'object') return null;
+    const p = parseDate(getEventDate(ev));
+    if(!p) return null;
+    const t = (ev.gatheringTime || ev.startTime || ev.time || '00:00').split(':').map(Number);
+    return new Date(p.y, p.m-1, p.d, t[0]||0, t[1]||0);
+  }
+  function getSortedEvents(){
+    return (W.events||[]).filter(function(e){ return e && typeof e === 'object'; }).slice().sort(function(a,b){
+      const da = parseEventDT(a), db = parseEventDT(b);
+      if(!da && !db) return 0;
+      if(!da) return 1;
+      if(!db) return -1;
+      return da.getTime() - db.getTime();
+    });
+  }
+  function getNextEvent(){
+    const sorted = getSortedEvents();
+    if(!sorted.length) return null;
+    const now = Date.now();
+    const next = sorted.find(function(e){
+      const dt = parseEventDT(e);
+      return dt && dt.getTime() > now;
+    });
+    return next || sorted[sorted.length-1];
+  }
+  function mapsUrl(ev){
+    if(ev.mapsUrl && /^https?:\/\//i.test(ev.mapsUrl)) return ev.mapsUrl;
+    var q = [ev.venueName, ev.venueAddress].filter(Boolean).join(', ');
+    return q ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q) : '';
+  }
+  function gcal(d){ return d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate()) + 'T' + pad(d.getHours()) + pad(d.getMinutes()) + '00'; }
+  function calUrl(ev){
+    var s = parseEventDT(ev); if(!s) return '';
+    var e = new Date(s.getTime() + 3*3600000);
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text=' + encodeURIComponent(W.bride + ' & ' + W.groom + ' — ' + (ev.type || 'Celebration'))
+      + '&dates=' + gcal(s) + '/' + gcal(e)
+      + '&details=' + encodeURIComponent('Gathering at ' + fmt12(ev.gatheringTime))
+      + '&location=' + encodeURIComponent([ev.venueName, ev.venueAddress].filter(Boolean).join(', '));
+  }
+  function dateRange(){
+    var s = getSortedEvents(); if(!s.length) return '';
+    var a = parseDate(getEventDate(s[0])), b = parseDate(getEventDate(s[s.length-1]));
+    if(!a || !b) return '';
+    function sh(p){ return p.d + ' ' + MONTHS[p.m-1].slice(0,3); }
+    if(a.y === b.y && a.m === b.m && a.d === b.d) return a.d + ' ' + MONTHS[a.m-1] + ' ' + a.y;
+    if(a.y === b.y) return sh(a) + ' \u2013 ' + sh(b) + ' ' + a.y;
+    return sh(a) + ' ' + a.y + ' \u2013 ' + sh(b) + ' ' + b.y;
+  }
+
+  /* ---------- music helpers (defined early, used by openCard) ---------- */
+  var muteBtn = $('muteBtn'), scrollBtn = $('scrollBtn');
+  function setMuteUI(){
+    muteBtn.classList.toggle('is-muted', !playing);
+    muteBtn.setAttribute('aria-pressed', playing ? 'false' : 'true');
+    muteBtn.setAttribute('aria-label', playing ? 'Mute music' : 'Play music');
+  }
+  function startMusic(){
+    if(playing || window.__audioEnabled === false) return;
+    var bgMusic = document.getElementById('bgMusic');
+    if(!bgMusic) return;
+    if(!bgMusic.getAttribute('src')) bgMusic.src = DEFAULT_TRACK;
+    bgMusic.volume = 1;
+    var p = bgMusic.play();
+    if(p && p.then){
+      p.then(function(){ playing = true; setMuteUI(); })
+       .catch(function(err){ console.warn('[audio] play blocked:', err); playing = false; setMuteUI(); });
+    } else { playing = true; setMuteUI(); }
+  }
+  function stopMusic(){
+    if(!playing) return;
+    var bgMusic = document.getElementById('bgMusic');
+    if(bgMusic) bgMusic.pause();
+    playing = false; setMuteUI();
+  }
+
+  /* ---------- cover / open ---------- */
+  var cover = $('cover'), body = document.body;
+  body.classList.add('sealed');
+  function openCard(){
+    if(!cover || cover.classList.contains('open')) return;
+    cover.classList.add('open');
+    body.classList.remove('sealed'); body.classList.add('unsealed');
+    var sk = $('skipBtn'); if(sk) sk.classList.add('gone');
+    $('floatCtrls').classList.add('show');
+
+    if(!state.preview2){
+      try { startMusic(); } catch(err){ console.error('[openCard audio]', err); }
+    }
+
+    setTimeout(function(){ if(cover.parentNode) cover.parentNode.removeChild(cover); }, 3300);
+  }
+  var toggle = $('openToggle');
+  if(toggle) toggle.addEventListener('change', function(){ if(toggle.checked) openCard(); });
+  $('coverCard').addEventListener('click', function(){ if(toggle) toggle.checked = true; openCard(); });
+
+  /* ---------- drifting leaves ---------- */
+  var petalsSize = (function(){
+    var cv = $('petals'); if(!cv) return function(){};
+    var host = cv.parentNode, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var ctx, w, h, items = [], sd = 99173;
+    function rand(){ sd = sd + 0x6D2B79F5 | 0; var t = Math.imul(sd ^ sd >>> 15, 1 | sd); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
+    function size(){
+      var b = host.getBoundingClientRect(); w = b.width; h = b.height;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      cv.style.width = w + 'px'; cv.style.height = h + 'px';
+      ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    size();
+    for(var i = 0; i < 17; i++){
+      items.push({ x:rand()*w, y:rand()*h, r:2.4+rand()*3.6, vy:7+rand()*12, sway:12+rand()*24, ph:rand()*6.28, rot:rand()*6.28, spin:(rand()-.5)*1, a:0.16+rand()*0.26, c:i%3 });
+    }
+    var last = performance.now();
+    function frame(now){
+      var dt = Math.min((now - last)/1000, 0.05); last = now;
+      ctx.clearRect(0, 0, w, h);
+      for(var i = 0; i < items.length; i++){
+        var q = items[i];
+        q.y += q.vy*dt; q.ph += dt*0.7; q.rot += q.spin*dt;
+        if(q.y - 20 > h){ q.y = -20; q.x = rand()*w; }
+        ctx.save(); ctx.translate(q.x + Math.sin(q.ph)*q.sway, q.y); ctx.rotate(q.rot);
+        ctx.globalAlpha = q.a;
+        ctx.beginPath(); ctx.ellipse(0, 0, q.r, q.r*0.5, 0, 0, 6.2832);
+        ctx.fillStyle = q.c === 0 ? '#DFC48D' : (q.c === 1 ? '#9FB294' : '#FFFFFF');
+        ctx.fill(); ctx.restore();
+      }
+      requestAnimationFrame(frame);
+    }
+    if(!reduce) requestAnimationFrame(frame);
+    var t; window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(size, 200); });
+    return size;
+  })();
+
+  /* ---------- keep each event inside its painted gold frame ---------- */
+  function fitFrames(){
+    var fits = document.querySelectorAll('.fit');
+    for(var i = 0; i < fits.length; i++){
+      var el = fits[i], box = el.parentNode;
+      el.style.transform = 'none';
+      var need = el.offsetHeight, have = box.clientHeight;
+      if(need > have && need > 0) el.style.transform = 'scale(' + (have/need).toFixed(4) + ')';
+    }
+  }
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ fitFrames(); petalsSize(); }, fitFrames);
+  else window.addEventListener('load', fitFrames);
+  var ft; window.addEventListener('resize', function(){ clearTimeout(ft); ft = setTimeout(fitFrames, 180); });
+
+  /* ---------- renderers ---------- */
+  function renderMeta(){
+    document.title = W.bride + ' & ' + W.groom + ' — ' + W.tagline;
+    $('pg-title').textContent = document.title;
+    $('pg-desc').setAttribute('content', 'You are cordially invited to the ' + W.tagline + ' of ' + W.bride + ' & ' + W.groom);
+  }
+  function renderCover(){
+    $('mono-a').textContent = (W.bride || '?').trim().charAt(0).toUpperCase();
+    $('mono-b').textContent = (W.groom || '?').trim().charAt(0).toUpperCase();
+    $('cv-names').innerHTML = esc(W.bride) + '<br>&amp; ' + esc(W.groom);
+    $('cv-tagline').textContent = W.tagline || 'Wedding Celebrations';
+    $('cv-dates').textContent = dateRange();
+  }
+  function renderHero(){
+    $('hero-names').innerHTML = esc(W.bride) + '<br>&amp; ' + esc(W.groom);
+    $('hero-date').textContent = dateRange();
+  }
+  function renderCouple(){
+    $('c-bride').textContent = W.bride || '';
+    $('c-bride-par').textContent = W.brideParents || '';
+    $('c-groom').textContent = W.groom || '';
+    $('c-groom-par').textContent = W.groomParents || '';
+    $('c-bride-par').hidden = !W.brideParents;
+    $('c-groom-par').hidden = !W.groomParents;
+  }
+  function renderClosing(){
+    $('closing-names').innerHTML = esc(W.bride) + '<br>&amp; ' + esc(W.groom);
+  }
+  function renderScratch(){
+    const next = getNextEvent();
+    if(!next) return;
+    const p = parseDate(getEventDate(next));
+    $('sr-day').textContent = p ? DAYS[p.dow] : '';
+    $('sr-date').textContent = p ? (p.d + ' ' + MONTHS[p.m-1] + ' ' + p.y) : (getEventDate(next) || '');
+    $('sr-sub').textContent = [
+      next.type,
+      next.gatheringTime ? fmt12(next.gatheringTime) : '',
+      next.dinnerTime ? 'Dinner ' + fmt12(next.dinnerTime) : '',
+      next.rukhsatiTime ? 'Rukhsati ' + fmt12(next.rukhsatiTime) : ''
+    ].filter(Boolean).join(' \u00b7 ');
+  }
+  function renderEvents(){
+    var list = $('event-list'); list.innerHTML = '';
+    getSortedEvents().forEach(function(ev){
+      var p = parseDate(getEventDate(ev));
+      var dayName = p ? DAYS[p.dow] : '';
+      var dateNum = p ? String(p.d) : (getEventDate(ev) || '—');
+      var monthLine = p ? (MONTHS[p.m-1] + ' ' + p.y) : 'Date TBA';
+      var card = document.createElement('div');
+      card.className = 'gframe';
+      card.innerHTML =
+        '<div class="gframe-in"><div class="fit">' +
+          '<div class="ribbon sheen">' + SPARK + esc(ev.type || 'Event') + SPARK + '</div>' +
+          (dayName ? '<p class="ev-day">' + dayName + '</p>' : '') +
+          '<p class="ev-date sheen">' + dateNum + '</p>' +
+          '<p class="ev-month">' + monthLine + '</p>' +
+          '<p class="ev-time">' + esc(fmt12(ev.gatheringTime)) + '</p>' +
+          '<div class="leaf-rule" style="max-width:110px"><i></i>' + SPARK + '<i></i></div>' +
+        '</div></div>';
+      list.appendChild(card);
+    });
+  }
+  function renderVenues(){
+    var c = $('vcar'), dots = $('vdots'); c.innerHTML = ''; dots.innerHTML = '';
+    var evs = getSortedEvents();
+    evs.forEach(function(ev, i){
+      var p = parseDate(getEventDate(ev)), url = mapsUrl(ev), cu = calUrl(ev);
+      var s = document.createElement('div'); s.className = 'vslide';
+
+      var timesHtml =
+        '<div><b>' + (p ? DAYS[p.dow].slice(0,3) + ', ' + p.d + ' ' + MONTHS[p.m-1].slice(0,3) : (getEventDate(ev) || '—')) + '</b><small>Date</small></div>' +
+        '<div><b>' + esc(fmt12(ev.gatheringTime)) + '</b><small>Gathering</small></div>' +
+        (ev.dinnerTime ? '<div><b>' + esc(fmt12(ev.dinnerTime)) + '</b><small>Dinner</small></div>' : '') +
+        (ev.rukhsatiTime ? '<div><b>' + esc(fmt12(ev.rukhsatiTime)) + '</b><small>Rukhsati</small></div>' : '');
+
+      s.innerHTML =
+        '<div class="plaque">' +
+          '<div style="width:100%">' +
+            '<p class="label">' + esc(ev.type || 'Venue') + '</p>' +
+            '<p class="venue-name" style="margin-top:11px">' + esc(ev.venueName) + '</p>' +
+            '<p class="venue-addr" style="margin-top:8px">' + esc(ev.venueAddress) + '</p>' +
+            '<div class="times">' + timesHtml + '</div>' +
+          '</div>' +
+          '<div class="btn-row">' +
+            (url ? '<a class="btn plink" href="' + esc(url) + '" target="_blank" rel="noopener">' + PIN + 'Open in Maps</a>' : '') +
+            (cu ? '<a class="btn plink" href="' + esc(cu) + '" target="_blank" rel="noopener">' + CAL + 'Add to Calendar</a>' : '') +
+          '</div>' +
+        '</div>';
+      c.appendChild(s);
+      var d = document.createElement('i'); if(i === 0) d.className = 'on'; dots.appendChild(d);
+    });
+    c.scrollLeft = 0;
+
+    c.classList.toggle('single', evs.length === 1);
+
+    var many = evs.length > 1;
+    dots.style.display = many ? 'flex' : 'none';
+    $('swipe-hint').style.display = many ? '' : 'none';
+  }
+  (function(){
+    var c = $('vcar'), tk = false;
+    c.addEventListener('scroll', function(){
+      if(tk) return; tk = true;
+      requestAnimationFrame(function(){
+        tk = false;
+        var first = c.firstElementChild; if(!first) return;
+        var idx = Math.round(c.scrollLeft / (first.offsetWidth + 14));
+        var ds = $('vdots').children;
+        for(var i = 0; i < ds.length; i++) ds[i].className = (i === idx ? 'on' : '');
+      });
+    }, { passive:true });
+  })();
+  function renderRsvp(){
+  
+  var rsvpLabel = $('rsvp-deadline-label');
+  if (rsvpLabel) {
+    if (W.rsvpDeadline && W.rsvpDeadline.trim() !== '') {
+      rsvpLabel.textContent = 'Kindly reply by ' + W.rsvpDeadline;
+      rsvpLabel.style.display = ''; // Show
+    } else {
+      rsvpLabel.textContent = '';
+      rsvpLabel.style.display = 'none'; // ✅ HIDE
+    }
+  }
+  // ... (baqi code agar hai toh same rahega)
+
+    var n = $('rsvp-custom-note');
+    if(n){
+      if(W.note){ n.textContent = W.note; n.hidden = false; }
+      else { n.hidden = true; n.textContent = ''; }
+    }
+  }
+
+  /* ---------- countdown (next event) ---------- */
+  var cdTimer = null, cdTarget = null;
+  function tickCountdown(){
+    clearTimeout(cdTimer);
+    var diff = cdTarget ? cdTarget.getTime() - Date.now() : 0;
+    var done = !cdTarget || diff <= 0;
+    $('cd-done').hidden = !(cdTarget && diff <= 0);
+    if(done){ $('d').textContent = '0'; $('h').textContent = $('m').textContent = $('s').textContent = '00'; return; }
+    var s = Math.floor(diff/1000);
+    $('d').textContent = Math.floor(s/86400);
+    $('h').textContent = pad(Math.floor(s%86400/3600));
+    $('m').textContent = pad(Math.floor(s%3600/60));
+    $('s').textContent = pad(s%60);
+    cdTimer = setTimeout(tickCountdown, 1000);
+  }
+  function renderCountdown(){
+    var n = getNextEvent();
+    cdTarget = n ? parseEventDT(n) : null;
+    $('cd-label').textContent = n ? 'Counting down to the ' + (n.type || 'celebration') : 'Counting down';
+    var p = n ? parseDate(getEventDate(n)) : null;
+    $('cd-date').textContent = p ? DAYS[p.dow] + ' · ' + p.d + ' ' + MONTHS[p.m-1] + ' ' + p.y : '';
+    tickCountdown();
+  }
+
+  /* ---------- confetti ---------- */
+  function launchConfetti(ox, oy){
+    var cv = $('confetti-canvas'), ctx = cv.getContext('2d'), dpr = window.devicePixelRatio || 1;
+    cv.width = innerWidth*dpr; cv.height = innerHeight*dpr;
+    cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var cols = ['#AF8945','#DFC48D','#6E8266','#3F5240','#9FB294','#FBFAF3'];
+    var ps = [];
+    for(var i = 0; i < 60; i++){
+      var a = Math.random()*Math.PI + Math.PI, sp = 6 + Math.random()*9;
+      ps.push({ x:ox, y:oy, vx:Math.cos(a)*sp, vy:Math.sin(a)*sp - 4, sz:6 + Math.random()*7, c:cols[Math.floor(Math.random()*cols.length)], sh:Math.floor(Math.random()*3), r:Math.random()*6, rs:(Math.random()-.5)*.35, w:Math.random()*6, ws:.08 + Math.random()*.08, life:1, dec:.012 + Math.random()*.008 });
+    }
+    var f = 0;
+    (function tk(){
+      f++; ctx.clearRect(0, 0, cv.width, cv.height);
+      var alive = false;
+      ps.forEach(function(p){
+        if(p.life <= 0) return; alive = true;
+        p.vy += .45; p.vx *= .99; p.vy *= .99;
+        p.w += p.ws; p.x += p.vx + Math.sin(p.w)*.6; p.y += p.vy; p.r += p.rs; p.life -= p.dec;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r);
+        ctx.globalAlpha = Math.max(p.life, 0); ctx.fillStyle = p.c;
+        if(p.sh === 0){ ctx.beginPath(); ctx.arc(0, 0, p.sz/2, 0, 6.283); ctx.fill(); }
+        else if(p.sh === 1){ ctx.fillRect(-p.sz*.18, -p.sz*.7, p.sz*.36, p.sz*1.4); }
+        else { ctx.fillRect(-p.sz/2, -p.sz/2, p.sz, p.sz*.62); }
+        ctx.restore();
+      });
+      if(alive && f < 150 && !reduce) requestAnimationFrame(tk); else ctx.clearRect(0, 0, cv.width, cv.height);
+    })();
+  }
+
+  /* ---------- scratch card ---------- */
+  (function(){
+    var wrap = $('scratch-wrap'), cv = $('scratch-canvas'), ctx = cv.getContext('2d');
+    var drawing = false, lastW = 0, last = null, chkT = 0;
+    function foil(){
+      var w = cv.width, h = cv.height;
+      var g = ctx.createLinearGradient(0, 0, w, h);
+      g.addColorStop(0, '#6E8266'); g.addColorStop(.5, '#DFC48D'); g.addColorStop(1, '#6E8266');
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      ctx.strokeStyle = 'rgba(255,255,255,0.14)'; ctx.lineWidth = 2;
+      for(var x = -h; x < w; x += 10){ ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x + h, h); ctx.stroke(); }
+      ctx.fillStyle = 'rgba(43,58,43,0.85)';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = '600 15px "Cinzel", Georgia, serif';
+      ctx.fillText('✦ SCRATCH HERE ✦', w/2, h/2);
+    }
+    function size(){
+      if(state.scratchRevealed) return;
+      var r = wrap.getBoundingClientRect();
+      if(r.width < 2 || Math.abs(r.width - lastW) < 2) return;
+      lastW = r.width; cv.width = r.width; cv.height = r.height; foil();
+    }
+    function pos(e){ var r = cv.getBoundingClientRect(), t = e.touches ? e.touches[0] : e; return { x:t.clientX - r.left, y:t.clientY - r.top }; }
+    function dig(x, y){
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.lineWidth = 48; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.beginPath();
+      if(last){ ctx.moveTo(last.x, last.y); ctx.lineTo(x, y); ctx.stroke(); }
+      ctx.arc(x, y, 24, 0, 6.283); ctx.fill();
+      last = { x:x, y:y };
+    }
+    function check(){
+      if(state.scratchRevealed) return;
+      var d = ctx.getImageData(0, 0, cv.width, cv.height).data, c = 0, n = 0;
+      for(var i = 3; i < d.length; i += 80){ n++; if(d[i] < 40) c++; }
+      if(c/n > 0.45){
+        state.scratchRevealed = true; wrap.classList.add('done');
+        var r = wrap.getBoundingClientRect(); launchConfetti(r.left + r.width/2, r.top + r.height*0.35);
+      }
+    }
+    function checkSoon(){ var n = Date.now(); if(n - chkT > 200){ chkT = n; check(); } }
+    function start(e){ if(state.scratchRevealed) return; drawing = true; last = null; var p = pos(e); dig(p.x, p.y); e.preventDefault(); }
+    function move(e){ if(!drawing) return; var p = pos(e); dig(p.x, p.y); checkSoon(); e.preventDefault(); }
+    function end(){ if(!drawing) return; drawing = false; last = null; check(); }
+    cv.addEventListener('mousedown', start); cv.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    cv.addEventListener('touchstart', start, { passive:false });
+    cv.addEventListener('touchmove', move, { passive:false });
+    cv.addEventListener('touchend', end);
+    window.addEventListener('resize', size);
+    setTimeout(size, 80); setTimeout(size, 600);
+  })();
+
+  /* ---------- RSVP → WhatsApp ---------- */
+  (function(){
+    var attend = '', btns = document.querySelectorAll('.f-choice'), err = $('f-err');
+    for(var i = 0; i < btns.length; i++){
+      btns[i].addEventListener('click', function(){
+        if(state.preview2) return;
+        for(var j = 0; j < btns.length; j++) btns[j].classList.remove('on');
+        this.classList.add('on'); attend = this.getAttribute('data-val');
+        $('row-guests').style.display = attend === 'no' ? 'none' : '';
+        err.textContent = '';
+      });
+    }
+    $('rsvp-send').addEventListener('click', function(){
+      if(state.preview2) return;
+      var name = $('f-name').value.trim(), msg = $('f-msg').value.trim(), g = $('f-guests').value;
+      var num = String(W.whatsappNumber || '').replace(/\D/g, '');
+      if(!name){ err.textContent = 'Please enter your name.'; $('f-name').focus(); return; }
+      if(!attend){ err.textContent = 'Please tell us if you can attend.'; return; }
+      if(!num){ err.textContent = 'RSVP number is not set yet.'; return; }
+      var text = 'Assalamu Alaikum! 🌸\n*RSVP — ' + W.bride + ' & ' + W.groom + '*\n\n*Name:* ' + name +
+                 '\n*Attending:* ' + (attend === 'yes' ? 'Yes, InshaAllah ✨' : 'Sorry, unable to attend');
+      if(attend === 'yes') text += '\n*Guests:* ' + g;
+      if(msg) text += '\n*Message:* ' + msg;
+      window.open('https://wa.me/' + num + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    });
+  })();
+
+  /* ---------- floating controls ---------- */
+  muteBtn.addEventListener('click', function(){ if(playing) stopMusic(); else startMusic(); });
+
+  function atBottom(){ return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8; }
+  window.addEventListener('scroll', function(){ scrollBtn.classList.toggle('is-up', atBottom()); }, { passive:true });
+  scrollBtn.addEventListener('click', function(){
+    if(atBottom()){ window.scrollTo({ top:0, behavior:'smooth' }); return; }
+    var secs = Array.prototype.slice.call(document.querySelectorAll('.flow > *, .footnote'));
+    var next = null;
+    for(var i = 0; i < secs.length; i++){ if(secs[i].getBoundingClientRect().top > 8){ next = secs[i]; break; } }
+    if(next) next.scrollIntoView({ behavior:'smooth', block:'start' }); else window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  /* ---------- main render (initial + live sync) ---------- */
+  function renderInvite(data, opts){
+    data = data || {}; opts = opts || {};
+    var pm = new URLSearchParams(location.search).get('preview');
+    var isPreview2 = (opts.preview === true) || (opts.mode === 'order') || pm === '2' || pm === 'order';
+
+    function pick(o, keys){ for(var i = 0; i < keys.length; i++){ var v = o[keys[i]]; if(v !== undefined && v !== null && v !== '') return v; } }
+    var bn = typeof data.bride === 'string' ? data.bride : pick(data, ['brideName','bride_name','bridename']);
+    var gn = typeof data.groom === 'string' ? data.groom : pick(data, ['groomName','groom_name','groomname']);
+    if(bn) W.bride = String(bn).trim();
+    if(gn) W.groom = String(gn).trim();
+    var bp = pick(data, ['brideParents','bride_parents','brideFather','bride_father']);
+    var gp = pick(data, ['groomParents','groom_parents','groomFather','groom_father']);
+    if(bp !== undefined) W.brideParents = /^(daughter|d\/o)/i.test(bp) ? bp : 'Daughter of ' + bp;
+    if(gp !== undefined) W.groomParents = /^(son|s\/o)/i.test(gp) ? gp : 'Son of ' + gp;
+    var wa = pick(data, ['rsvpWhatsapp','whatsappNumber','whatsapp','rsvp_whatsapp']);
+    if(wa) W.whatsappNumber = wa;
+    var dl = pick(data, ['rsvpDeadline','rsvp_deadline']);
+    if(dl) W.rsvpDeadline = dl;
+    if(data.bride && typeof data.bride === 'object'){
+      if(data.bride.name) W.bride = data.bride.name;
+      if(data.bride.father !== undefined) W.brideParents = data.bride.father ? 'Daughter of ' + data.bride.father : '';
+    }
+    if(data.groom && typeof data.groom === 'object'){
+      if(data.groom.name) W.groom = data.groom.name;
+      if(data.groom.father !== undefined) W.groomParents = data.groom.father ? 'Son of ' + data.groom.father : '';
+    }
+    if(data.tagline) W.tagline = data.tagline;
+    // guest note (clears when emptied in builder)
+    if(data.note !== undefined) W.note = String(data.note || '').trim();
+    if(Array.isArray(data.events) && data.events.length) W.events = data.events.slice(0, 7).map(function(ev){
+      if(!ev || typeof ev !== 'object') return ev;
+      var e = Object.assign({}, ev);
+      e.type = e.type || e.name || e.title || e.eventName || e.event_type;
+      e.venueName = e.venueName || e.venue_name || e.venue;
+      e.venueAddress = e.venueAddress || e.venue_address || e.address;
+      e.gatheringTime = e.gatheringTime || e.gathering_time || e.startTime || e.time;
+      e.mapsUrl = e.mapsUrl || e.maps_url || e.mapLink;
+      return e;
+    });
+    if(data.rsvpWhatsapp) W.whatsappNumber = data.rsvpWhatsapp;
+    if(data.rsvpDeadline) W.rsvpDeadline = data.rsvpDeadline;
+
+    state.preview2 = isPreview2;
+    document.body.classList.toggle('is-preview-2', isPreview2);
+
+    var safe = function(fn){ try { fn(); } catch(err){ console.error('[' + (fn.name || 'render') + ']', err); } };
+    safe(renderMeta); safe(renderCover); safe(renderHero); safe(renderCouple); safe(renderClosing); safe(renderScratch);
+    safe(renderEvents); safe(renderVenues); safe(renderRsvp); safe(renderCountdown);
+
+    Array.prototype.forEach.call(document.querySelectorAll('.f-in, .f-choice, #rsvp-send'), function(el){
+      el.disabled = isPreview2; el.classList.toggle('is-disabled', isPreview2);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.plink'), function(el){
+      el.classList.toggle('is-disabled', isPreview2);
+      if(isPreview2){ el.setAttribute('tabindex', '-1'); el.setAttribute('aria-disabled', 'true'); }
+    });
+    if(isPreview2 && playing) stopMusic();
+
+    fitFrames(); petalsSize();
+  }
+  window.renderInvite = renderInvite;
+
+  /* form sync from the SaaS builder: window.postMessage({type:'invite-data', data:{...}, preview:true}) */
+  window.addEventListener('message', function(e){
+    if(e.origin !== location.origin && e.source !== window.parent) return;
+    var msg = e.data;
+    if(!msg || typeof msg !== 'object' || msg.type !== 'invite-data' || !msg.data) return;
+    renderInvite(msg.data, { preview: msg.preview, mode: msg.mode });
+  });
+
+  renderInvite(W, { preview:false });
+  setTimeout(fitFrames, 600);
+
+  /* ---------- audio track switching from builder ---------- */
+  window.addEventListener('message', function(e) {
+    if (e.origin !== location.origin) return;
+    try {
+      var msg = e.data;
+      if (msg && msg.type === 'invite-data' && msg.data) {
+        var audioTrack = msg.data.audio_track || 'nasheed-1';
+        var bgMusic = document.getElementById('bgMusic');
+        if (!bgMusic) return;
+
+        if (audioTrack === 'none') {
+          bgMusic.pause();
+          window.__audioEnabled = false;
+          playing = false; setMuteUI();
+        } else {
+          var newSrc = '../audio/' + audioTrack + '.mp3';
+          if (bgMusic.getAttribute('src') !== newSrc) bgMusic.src = newSrc;
+          window.__audioEnabled = true;
+
+          var isOpen = document.body.classList.contains('unsealed');
+          if (isOpen && !state.preview2) {
+            bgMusic.play().then(function(){
+              playing = true; setMuteUI();
+            }).catch(function(){ /* blocked without user gesture, ignore */ });
+          }
+        }
+      }
+    } catch(err) {
+      console.error('[audio handler]', err);
+    }
+  });
+
+})();
+</script>
+<audio id="bgMusic" loop preload="none" style="display:none;"></audio>
+<script src="../audio-fix.js"></script>
+</body>
+
+</html>

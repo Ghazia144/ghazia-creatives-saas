@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script>(function () {
+  if (window.self !== window.top) return;
+  if (/[?&](full|nomockup)\b/.test(location.search)) return;
+  var isDesktop = innerWidth > 820 && matchMedia('(pointer:fine)').matches;
+  if (!isDesktop) return;
+  try { window.stop(); } catch (e) {}
+  var SRC = location.href.split('#')[0];
+  var CSS =
+    'html,body{margin:0;height:100%;overflow:hidden}' +
+    'body{background:radial-gradient(ellipse at 50% 30%,#4a3a31 0%,#33281f 55%,#241b15 100%)}' +
+    '.stage{height:100%;display:flex;align-items:center;justify-content:center}' +
+    '.phone{position:relative;padding:12px;border-radius:58px;background:#0a0a0b;' +
+      'box-shadow:0 0 0 2px #2b2b2e,0 0 0 4px #111,inset 0 0 0 1.5px #3b3b3f,' +
+      '0 50px 90px -10px rgba(0,0,0,.65),0 18px 40px rgba(0,0,0,.45)}' +
+    '.screen{position:relative;width:var(--w);height:var(--h);border-radius:46px;overflow:hidden;' +
+      'background:#000;transform:translateZ(0)}' +
+    '.screen iframe{width:100%;height:100%;border:0;display:block;background:#000}' +
+    '.island{position:absolute;z-index:5;top:22px;left:50%;transform:translateX(-50%);' +
+      'width:96px;height:27px;border-radius:20px;background:#000;pointer-events:none}' +
+    '.sb{position:absolute;width:4px;background:#17171a;box-shadow:inset 0 0 0 1px #2e2e32}' +
+    '.sb.l1{left:-4px;top:110px;height:26px;border-radius:3px 0 0 3px}' +
+    '.sb.l2{left:-4px;top:160px;height:50px;border-radius:3px 0 0 3px}' +
+    '.sb.l3{left:-4px;top:222px;height:50px;border-radius:3px 0 0 3px}' +
+    '.sb.r1{right:-4px;top:190px;height:80px;border-radius:0 3px 3px 0}';
+  function fit() {
+    var H = Math.max(520, Math.min(844, innerHeight - 64));
+    var W = Math.round(H * 430 / 844);
+    var s = document.documentElement.style;
+    s.setProperty('--w', W + 'px');
+    s.setProperty('--h', H + 'px');
+  }
+   setTimeout(function () {
+    document.documentElement.innerHTML =
+      '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
+      '<title>Invitation</title><style>' + CSS + '</style></he' + 'ad>' +
+      '<body>' +
+        '<a href="../../order.html?design=shaadi-festivities" class="floating-cta-btn" style="position:fixed; top:24px; right:24px; z-index:999999; background:#C9A15A; color:#2B1218; font-family:sans-serif; font-size:13px; font-weight:600; text-transform:uppercase; text-decoration:none; padding:12px 24px; border-radius:30px; border:1px solid rgba(255,255,255,0.3); box-shadow:0 4px 20px rgba(0,0,0,0.2); transition:all 0.3s ease;">Make This Invite Yours</a>' +
+        '<div class="stage"><div class="phone">' +
+        '<i class="sb l1"></i><i class="sb l2"></i><i class="sb l3"></i><i class="sb r1"></i>' +
+        '<div class="island"></div>' +
+        '<div class="screen"><iframe id="inviteFrame" name="invite-phone" ' +
+          'allow="autoplay; fullscreen; clipboard-write" allowfullscreen></iframe></div>' +
+      '</div></div></bo' + 'dy>';
+    fit();
+    var f = document.getElementById('inviteFrame');
+    f.addEventListener('load', function () {
+      try { document.title = f.contentDocument.title || document.title; } catch (e) {}
+    });
+    f.src = SRC;
+    addEventListener('resize', function () {
+      if (innerWidth <= 820) location.reload(); else fit();
+    });
+  }, 0);
+})();</script>
+<meta name="theme-color" content="#171029">
+<meta name="description" content="Wedding invitation.">
+<meta property="og:title" content="Wedding Invitation">
+<meta property="og:description" content="Together with our families, we invite you to celebrate our wedding.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link id="favicon" rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27/%3E">
+<script>
+const WEDDING = {
+  bride: "Noor", groom: "Zayan", tagline: "Together With Our Families",
+  brideParents: "Daughter of Mr. & Mrs. Imran Sheikh", groomParents: "Son of Mr. & Mrs. Ahmed Raza",
+  day: "Saturday", dateNum: "30", dateOrdinal: "30th", month: "January", year: "2027",
+  startTime: "4:00 PM", endTime: "11:00 PM", startISO: "2027-01-30T16:00:00", endISO: "2027-01-30T23:00:00",
+  timezone: "Asia/Karachi", whatsappNumber: "923183040506", rsvpDeadline: "1st January",
+  venueName: "Pearl Continental Banquet", venueAddress: "Shahrah-e-Faisal, Karachi, Sindh",
+  venueMap: "https://www.google.com/maps/search/?api=1&query=Pearl%20Continental%20Banquet",
+  program: [
+    { time: "4:00 PM", label: "Guest Arrival", sub: "We warmly welcome you as our celebration begins." },
+    { time: "4:30 PM", label: "Nikkah Ceremony", sub: "Your gracious presence is requested for the ceremony." },
+    { time: "7:30 PM", label: "Reception", sub: "Dinner, dancing, and celebration to follow." }
+  ],
+  access: { main: "k7m2", full: "p9x4" },
+  events: [
+    {
+      id:"mehendi", amb:"#FFFFFF", tier:"extra", mood:"Dholki beats, henna-stained hands and endless laughter — come dance with us!",
+      theme:{ pat:"paisley", v:["#F7FBEF","#EAF3D8","#FBE7C2","#2F6B3A","#1F4A2A","#17331F","#E39A1B","#F5C85A","#2B3A2C","#5E6E5F"], mood:{en:"Hands painted, hearts full — the dholki is waiting for you!", ur:"ہاتھوں پر مہندی، دلوں میں خوشی — ڈھولکی آپ کی منتظر ہے!"} },
+      name:"Mehendi", note:"An evening of colour, music and henna", date:"Wednesday, 27th January 2027", startISO:"2027-01-27T18:00:00", endISO:"2027-01-27T23:00:00",
+      venueName:"Mövenpick Hotel Karachi", venueAddress:"Club Road, Karachi", venueMap:"https://www.google.com/maps/search/?api=1&query=Mövenpick",
+      program:[{time:"6:00 PM",label:"Guest Arrival",sub:"Join us as the henna celebrations begin."},{time:"8:00 PM",label:"Dholki & Dinner",sub:"Music, dance and a festive dinner."}],
+      ur:{ mood:"ڈھولکی کی تھاپ، ہاتھوں پر رچتی مہندی اور ڈھیر ساری ہنسی — آئیے ہمارے ساتھ جھومیں!", name:"مہندی", note:"رنگوں، موسیقی اور مہندی کی ایک شام", date:"بدھ، ۲۷ جنوری ۲۰۲۷", venueName:"موونپک ہوٹل کراچی", venueAddress:"کلب روڈ، کراچی", program:[{time:"شام ۶:۰۰ بجے",label:"مہمانوں کی آمد",sub:"مہندی کی تقریب کے آغاز پر تشریف لائیں۔"},{time:"رات ۸:۰۰ بجے",label:"ڈھولکی اور عشائیہ",sub:"موسیقی، رقص اور پرتکلف عشائیہ۔"}] }
+    },
+    {
+      id:"qawali", amb:"#F0E4CF", tier:"extra", mood:"Lanterns glow, the harmonium sighs — an evening where every verse finds its way to the heart.",
+      theme:{ pat:"star", dark:true, v:["#231B45","#2B2150","#362A63","#F0D08A","#F6E3B4","#120D2A","#E0B25C","#F0D08A","#EDE6FA","#B9AEDB"], mood:{en:"Lanterns glow, and the night hums with verse and rhythm.", ur:"فانوس روشن ہیں، اور رات کلام و سُر میں ڈوبی ہے۔"} },
+      name:"Qawali Night", note:"A soulful night of qawali", date:"Thursday, 28th January 2027", startISO:"2027-01-28T20:00:00", endISO:"2027-01-28T23:59:00",
+      venueName:"Avari Towers Karachi", venueAddress:"Fatima Jinnah Road, Karachi", venueMap:"https://www.google.com/maps/search/?api=1&query=Avari",
+      program:[{time:"8:00 PM",label:"Guest Arrival",sub:"Take your seats as the evening begins."},{time:"9:00 PM",label:"Qawali Performance",sub:"Live qawali followed by dinner."}],
+      ur:{ mood:"چراغ روشن ہیں، ہارمونیم کی تان اٹھتی ہے — ایک ایسی شب جہاں ہر شعر دل میں اتر جائے۔", name:"قوالی نائٹ", note:"قوالی کی ایک روح پرور رات", date:"جمعرات، ۲۸ جنوری ۲۰۲۷", venueName:"آوری ٹاورز کراچی", venueAddress:"فاطمہ جناح روڈ، کراچی", program:[{time:"رات ۸:۰۰ بجے",label:"مہمانوں کی آمد",sub:"شام کے آغاز پر اپنی نشستیں سنبھالیں۔"},{time:"رات ۹:۰۰ بجے",label:"قوالی",sub:"لائیو قوالی کے بعد عشائیہ۔"}] }
+    },
+    {
+      id:"nikkah", amb:"#FFFFFF", tier:"main", mood:"Two families, one promise — witness our forever, then celebrate with the grandest barat.",
+      theme:{ pat:"lattice", v:["#FBF5EC","#F6E6DA","#F0D5CB","#8E1B2E","#5E0F1D","#2A0A10","#B98A3E","#E6C98A","#3A1F24","#7A5A5F"], mood:{en:"With the blessings of Allah, two families become one.", ur:"اللہ کی رحمتوں کے سائے میں دو خاندان ایک ہو رہے ہیں۔"} },
+      name:"Nikkah / Barat", note:"The ceremony of our union", date:"Saturday, 30th January 2027", startISO:"2027-01-30T16:00:00", endISO:"2027-01-30T23:00:00",
+      venueName:"Pearl Continental Karachi", venueAddress:"Club Road, Karachi", venueMap:"https://www.google.com/maps/search/?api=1&query=Pearl",
+      program:[{time:"4:00 PM",label:"Guest Arrival",sub:"We warmly welcome you as our celebration begins."},{time:"4:30 PM",label:"Nikkah Ceremony",sub:"Your gracious presence is requested for the ceremony."},{time:"7:30 PM",label:"Barat & Dinner",sub:"Dinner, dancing, and celebration to follow."}],
+      ur:{ mood:"دو خاندان، ایک عہد — ہمارے ابدی سفر کے گواہ بنیں، پھر شاندار بارات کا جشن منائیں۔", name:"نکاح / بارات", note:"ہمارے بندھن کی تقریب", date:"ہفتہ، ۳۰ جنوری ۲۰۲۷", venueName:"پرل کانٹینینٹل کراچی", venueAddress:"کلب روڈ، کراچی", program:[{time:"شام ۴:۰۰ بجے",label:"مہمانوں کی آمد",sub:"ہماری تقریب کے آغاز پر ہم آپ کا پرتپاک خیرمقدم کرتے ہیں۔"},{time:"شام ۴:۳۰ بجے",label:"تقریبِ نکاح",sub:"تقریب میں آپ کی گرانقدر شرکت درکار ہے۔"},{time:"شام ۷:۳۰ بجے",label:"بارات اور عشائیہ",sub:"عشائیہ، رقص اور جشن کے ساتھ۔"}] }
+    },
+    {
+      id:"walima", amb:"#4A3A35", tier:"main", mood:"With gratitude in our hearts and blessings on our new home, be our guest of honour.",
+      theme:{ pat:"lights", v:["#FDF8F4","#FBEBE4","#E3EBDD","#5F7F62","#3E5A42","#22302A","#D4A08A","#EBCBBE","#34413A","#6F7C74"], mood:{en:"A gentle evening of gratitude, dua and togetherness.", ur:"شکرگزاری، دعاؤں اور اپنائیت سے بھری ایک نرم شام۔"} },
+      name:"Walima", note:"A reception in your honour", date:"Sunday, 31st January 2027", startISO:"2027-01-31T19:00:00", endISO:"2027-01-31T23:00:00",
+      venueName:"Karachi Marriott Hotel", venueAddress:"Abdullah Haroon Road, Karachi", venueMap:"https://www.google.com/maps/search/?api=1&query=Marriott",
+      program:[{time:"7:00 PM",label:"Guest Arrival",sub:"Join us as we celebrate our new beginning."},{time:"8:00 PM",label:"Walima Dinner",sub:"An evening of dinner and blessings."}],
+      ur:{ mood:"دل میں شکر اور نئے آشیانے کے لیے دعاؤں کے ساتھ، ہمارے مہمانِ خصوصی بنیں۔", name:"ولیمہ", note:"آپ کے اعزاز میں استقبالیہ", date:"اتوار، ۳۱ جنوری ۲۰۲۷", venueName:"کراچی میریٹ ہوٹل", venueAddress:"عبداللہ ہارون روڈ، کراچی", program:[{time:"شام ۷:۰۰ بجے",label:"مہمانوں کی آمد",sub:"ہماری نئی زندگی کے جشن میں شریک ہوں۔"},{time:"رات ۸:۰۰ بجے",label:"دعوتِ ولیمہ",sub:"عشائیہ اور دعاؤں کی ایک شام۔"}] }
+    }
+  ],
+  welcomeMessage: "We would be honoured to have you join us as we begin our life together, surrounded by the people we love most.",
+  welcomeNote: "Thank you for being part of this blessed occasion.",
+  closingMessage: "We can't wait to celebrate this magical evening with you",
+  gallery: [
+    { src: "gallery/gallery-01.jpg", alt: "Romantic wedding venue" },
+    { src: "gallery/gallery-02.webp", alt: "Romantic wedding venue" },
+    { src: "gallery/gallery-03.webp", alt: "Elegant floral aisle" },
+    { src: "gallery/gallery-04.jpg", alt: "Soft lavender setting" }
+  ],
+  ur: {
+    bride: "زیان", groom: "نور", brideParents: "صاحبزادی جناب و محترمہ عمران شیخ", groomParents: "صاحبزادہ جناب و محترمہ احمد رضا",
+    dateNum: "۳۰", monthYear: "جنوری ۲۰۲۷", timelineDate: "۳۰ جنوری ۲۰۲۷", rsvpDeadline: "یکم جنوری",
+    venueName: "پرل کانٹینینٹل بینکوئٹ", venueAddress: "شاہراہِ فیصل، کراچی، سندھ",
+    program: [
+      { time: "شام ۴:۰۰ بجے", label: "مہمانوں کی آمد", sub: "ہماری تقریب کے آغاز پر ہم آپ کا پرتپاک خیرمقدم کرتے ہیں۔" },
+      { time: "شام ۴:۳۰ بجے", label: "تقریبِ نکاح", sub: "تقریب میں آپ کی گرانقدر شرکت درکار ہے۔" },
+      { time: "شام ۷:۳۰ بجے", label: "استقبالیہ", sub: "عشائیہ، رقص اور جشن کے ساتھ۔" }
+    ],
+    welcomeMessage: "اپنی زندگی کے نئے سفر کے آغاز پر ہم آپ کی موجودگی کو اپنے لیے باعثِ عزت سمجھیں گے، ان سب پیاروں کے درمیان جنہیں ہم سب سے زیادہ چاہتے ہیں۔",
+    welcomeNote: "اس بابرکت موقع کا حصہ بننے کا بے حد شکریہ۔",
+    closingMessage: "ہم اس جادوئی شام کو آپ کے ساتھ منانے کے لیے بے تاب ہیں"
+  }
+};
+
+const TEMPLATE_BASE_EVENTS = JSON.parse(JSON.stringify(WEDDING.events));
+</script>
+<title id="pageTitle">Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FAF7FD; --blush:#F1EAFA; --lilac:#E6DBF4; --plum:#5E4391; --plum-deep:#3B2A66;
+    --near-black:#21173A; --gold:#C49A66; --gold-soft:#E4C9A6; --ink:#33294A; --ink-soft:#6B6180;
+    --gold-foil:linear-gradient(135deg,#F8EAD0 0%,#E7CEAA 18%,#C49A66 46%,#A47745 64%,#EAD7B2 86%,#C49A66 100%);
+    --paper:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.36'/%3E%3C/svg%3E");
+    --shadow-soft:0 24px 60px -36px rgba(33,23,58,.55);
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --page-bg: var(--near-black); } }
+  :root[data-theme="dark"]{ --page-bg: var(--near-black); }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--page-bg, var(--ivory)); color:var(--ink); font-family:'Cormorant Garamond', serif; font-weight:400; overflow-x:hidden; }
+  img,video{max-width:100%;}
+  .wrap{max-width:640px;margin:0 auto;padding:0 28px;}
+  .script{font-family:'Tangerine', cursive;}
+  .divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px auto 30px;color:var(--gold);}
+  .divider .line{width:44px;height:1px;background:var(--gold-soft);}
+  .divider .mark{font-size:15px;letter-spacing:2px;}
+  .eyebrow{font-size:14px;color:var(--plum);font-style:italic;letter-spacing:.5px;}
+
+  #envelopeIntro{position:fixed;inset:0;z-index:9999;background:#171029;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;}
+  .envelope-video{width:100%;height:100%;object-fit:cover;object-position:center;display:block;-webkit-tap-highlight-color:transparent;}
+  #envelopeIntro.is-leaving{opacity:0;transition:opacity 1.4s ease;pointer-events:none;}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;background:#B9D8E6;}
+  body.envelope-locked{overflow:hidden;height:100vh;}
+  .invite-content{opacity:0;transition:opacity 1.4s ease;}
+  .invite-content.is-revealed{opacity:1;}
+
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;background:radial-gradient(120% 85% at 50% 12%, #5A4390 0%, var(--near-black) 55%, #171029 100%);}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(28,18,50,.30) 0%, rgba(28,18,50,.12) 30%, rgba(28,18,50,.55) 78%, rgba(28,18,50,.88) 100%);}
+  .hero-content{position:relative;z-index:2;text-align:center;color:var(--ivory);padding:60px 24px 56px;width:100%;align-self:center;}
+  .hero-content::before{content:"";position:absolute;z-index:-1;left:50%;top:50%;width:130%;height:115%;transform:translate(-50%,-50%);background:radial-gradient(closest-side, rgba(20,12,38,.55) 0%, rgba(20,12,38,.32) 55%, rgba(20,12,38,0) 100%);pointer-events:none;}
+  .hero-welcome{font-style:italic;font-weight:600;font-size:16px;letter-spacing:1.5px;color:var(--ink);margin-bottom:18px;text-shadow:0 1px 2px rgba(0,0,0,.7), 0 3px 14px rgba(0,0,0,.6), 0 0 22px rgba(196,154,102,.45);}
+  .hero-names{font-family:'Tangerine', cursive;font-weight:700;font-size:clamp(76px, 22vw, 118px);line-height:.95;color:#fff;-webkit-text-stroke:.6px rgba(255,255,255,.55);text-shadow:0 0 1px rgba(255,255,255,.9),0 2px 3px rgba(0,0,0,.65),0 6px 16px rgba(0,0,0,.6),0 12px 36px rgba(0,0,0,.55),0 0 34px rgba(228,201,166,.55),0 0 70px rgba(196,154,102,.35);}
+  .hero-amp{font-family:'Tangerine', cursive;font-weight:700;font-size:clamp(34px, 8vw, 46px);color:var(--gold-soft);margin:2px 0;display:flex;align-items:center;justify-content:center;gap:14px;text-shadow:0 1px 2px rgba(0,0,0,.7), 0 4px 14px rgba(0,0,0,.6), 0 0 26px rgba(228,201,166,.6);}
+  .hero-amp::before,.hero-amp::after{content:"";width:clamp(30px,10vw,54px);height:1px;background:linear-gradient(90deg, transparent, var(--gold-soft));box-shadow:0 0 8px rgba(228,201,166,.7);}
+  .hero-amp::after{transform:scaleX(-1);}
+  .hero-sub{font-weight:600;font-size:15px;letter-spacing:1.4px;color:#FFFFFF;margin-top:10px;line-height:1.9;text-shadow:0 1px 2px rgba(0,0,0,.75), 0 3px 12px rgba(0,0,0,.65);}
+  .scroll-cue{position:absolute;z-index:2;left:50%;bottom:18px;transform:translateX(-50%);width:1px;height:44px;background:linear-gradient(180deg, transparent, var(--gold-soft) 60%, transparent);}
+
+  .welcome-band{background:linear-gradient(180deg, var(--near-black), #3B2C63 55%, var(--blush));color:var(--gold-soft);text-align:center;padding:72px 28px 60px;}
+  .welcome-band p{font-size:19px;font-style:italic;line-height:1.85;max-width:480px;margin:0 auto;color:#EEE7F9;}
+
+  section{padding:64px 0;text-align:center;}
+  .section-title{font-family:'Tangerine', cursive;font-size:52px;color:var(--plum);line-height:1;}
+  .bg-blush{background:var(--blush);}
+  .bg-ivory{background:var(--ivory);}
+  .bg-lilac{background:var(--lilac);}
+
+  .reveal-box{display:flex;flex-direction:column;align-items:center;gap:22px;}
+  .heart-mask{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 91 C43 84 8 60 8 34 C8 17 20 8 34 8 C42 8 48 12 50 20 C52 12 58 8 66 8 C80 8 92 17 92 34 C92 60 57 84 50 91 Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 91 C43 84 8 60 8 34 C8 17 20 8 34 8 C42 8 48 12 50 20 C52 12 58 8 66 8 C80 8 92 17 92 34 C92 60 57 84 50 91 Z'/%3E%3C/svg%3E");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-position:center;mask-position:center;}
+  .scratch-card{position:relative;width:min(300px,78vw);height:min(300px,78vw);max-height:300px;}
+  .scratch-corner{position:absolute;width:20px;height:20px;pointer-events:none;}
+  .scratch-corner--tl{top:-10px;left:-10px;border-top:1.4px solid var(--gold);border-left:1.4px solid var(--gold);}
+  .scratch-corner--tr{top:-10px;right:-10px;border-top:1.4px solid var(--gold);border-right:1.4px solid var(--gold);}
+  .scratch-corner--bl{bottom:-10px;left:-10px;border-bottom:1.4px solid var(--gold);border-left:1.4px solid var(--gold);}
+  .scratch-corner--br{bottom:-10px;right:-10px;border-bottom:1.4px solid var(--gold);border-right:1.4px solid var(--gold);}
+  .scratch-reveal{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 32%, #FFFEFF 0%, #DCCCF1 68%, #B99CDB 100%);text-align:center;padding:34px 34px 24px;}
+  .scratch-reveal .rv-eyebrow{font-size:11px;letter-spacing:1.5px;color:var(--plum);font-style:italic;opacity:.85;}
+  .reveal-date{font-family:'Tangerine', cursive;font-size:42px;line-height:1.0;color:var(--plum);margin-top:7px;width:100%;max-width:180px;padding:0;white-space:normal;overflow-wrap:normal;}
+  #revealMonthYear{display:block;font-size:22px;line-height:1.05;white-space:normal;letter-spacing:.02em;}
+  .scratch-canvas{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:none;transition:opacity .7s ease;}
+  .scratch-canvas:active{cursor:grabbing;}
+  .scratch-shimmer{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+  .scratch-shimmer::after{content:"";position:absolute;top:-20%;left:-60%;width:40%;height:140%;background:linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent);transform:skewX(-18deg);animation:shimmer 3.2s ease-in-out infinite;}
+  @keyframes shimmer{0%{left:-60%;}45%,100%{left:130%;}}
+  .scratch-label{display:none!important;}
+  .reveal-hint{font-size:14px;color:var(--ink-soft);font-style:italic;}
+  .btn{display:inline-block;padding:13px 34px;background:var(--plum);color:var(--ivory);text-decoration:none;font-size:14px;letter-spacing:1px;border:none;border-radius:2px;cursor:pointer;font-family:'Cormorant Garamond', serif;transition:background .3s;}
+  .btn:hover{background:var(--plum-deep);}
+  .btn:focus-visible,.reveal-heart:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--plum);outline-offset:3px;}
+
+  .carousel{position:relative;width:100%;max-width:420px;margin:6px auto 0;padding:0 28px;}
+  .carousel-frame{position:relative;width:100%;aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:var(--blush);border:1px solid var(--gold-soft);}
+  .carousel-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease, transform 3s ease;transform:scale(1.03);}
+  .carousel-frame img.is-active{opacity:1;transform:scale(1);}
+  .carousel-dots{display:flex;justify-content:center;gap:9px;margin-top:16px;}
+  .carousel-dots button{width:7px;height:7px;border-radius:50%;border:none;padding:0;background:var(--gold-soft);cursor:pointer;transition:background .3s, transform .3s;}
+  .carousel-dots button.is-active{background:var(--plum);transform:scale(1.3);}
+  .carousel-dots button:focus-visible{outline:2px solid var(--plum);outline-offset:2px;}
+
+  .countdown{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:36px;}
+  .countdown .unit{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .countdown .num{font-size:34px;color:var(--plum);font-weight:500;min-width:64px;padding:10px 6px;border-top:1px solid var(--gold-soft);border-bottom:1px solid var(--gold-soft);}
+  .countdown .label{font-size:11px;letter-spacing:1.5px;color:var(--ink-soft);font-style:italic;}
+
+  .timeline{text-align:left;max-width:440px;margin:36px auto 0;position:relative;padding-left:26px;border-left:1px solid var(--gold-soft);}
+  .t-item{position:relative;padding-bottom:38px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{content:"";position:absolute;left:-31px;top:4px;width:9px;height:9px;border-radius:50%;background:var(--plum);border:2px solid var(--blush);}
+  .t-item .t-title{font-size:20px;color:var(--plum);}
+  .t-item .t-time{font-size:13px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+  .t-item .t-desc{font-size:15px;color:var(--ink);margin-top:6px;line-height:1.6;}
+
+  .venue-name{font-family:'Tangerine', cursive;font-size:40px;color:var(--plum);margin-top:6px;}
+  .venue-addr{font-size:15px;color:var(--ink-soft);margin-top:6px;font-style:italic;}
+  .venue-art{margin:26px auto;width:120px;color:var(--gold);}
+
+  .rsvp-form{max-width:380px;margin:34px auto 0;display:flex;flex-direction:column;gap:18px;text-align:left;}
+  .field label{font-size:13px;letter-spacing:.5px;color:var(--plum);font-style:italic;display:block;margin-bottom:6px;}
+  .field input,.field select,.field textarea{width:100%;border:none;border-bottom:1px solid var(--gold-soft);background:transparent;font-family:'Cormorant Garamond', serif;font-size:16px;padding:8px 2px;color:var(--ink);}
+  .field textarea{resize:vertical;min-height:70px;}
+  .field input::placeholder,.field textarea::placeholder{color:#A99CC0;}
+  .rsvp-thanks{display:none;text-align:center;font-style:italic;color:var(--plum);font-size:17px;margin-top:20px;}
+  .rsvp-thanks.show{display:block;}
+
+  footer{background:var(--near-black);color:var(--gold-soft);text-align:center;padding:56px 28px 34px;}
+  footer .foot-names{font-family:'Tangerine', cursive;font-size:46px;color:#fff;}
+  footer .foot-msg{font-size:14px;color:#D0C5E6;margin-top:10px;font-style:italic;}
+  footer .foot-fine{font-size:11px;color:#8C80A6;margin-top:34px;letter-spacing:.5px;}
+
+  #menuBtn{position:fixed;z-index:10000;top:calc(env(safe-area-inset-top,0px) + 12px);left:14px;width:42px;height:38px;border-radius:999px;cursor:pointer;background:rgba(23,16,41,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(228,201,166,.55);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;padding:0}
+  #menuBtn span{width:18px;height:2px;background:var(--gold-soft);border-radius:2px}
+  body.envelope-locked #menuBtn{display:none}
+  #menuOverlay{position:fixed;inset:0;z-index:10001;background:rgba(23,16,41,.55);opacity:0;pointer-events:none;transition:opacity .3s}
+  #menuDrawer{position:fixed;z-index:10002;top:0;bottom:0;left:0;width:min(300px,82vw);background:var(--near-black);color:var(--gold-soft);padding:calc(env(safe-area-inset-top,0px) + 70px) 26px 30px;transform:translateX(-105%);transition:transform .35s;direction:ltr;overflow:auto}
+  body.menu-open #menuOverlay{opacity:1;pointer-events:auto} body.menu-open #menuDrawer{transform:none}
+  #menuDrawer a{display:block;padding:14px 4px;border-bottom:1px solid rgba(228,201,166,.2);color:var(--gold-soft);text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:22px}
+  #menuDrawer a.on{color:#fff;font-weight:600} html[lang="ur"] #menuDrawer a{font-family:'Noto Nastaliq Urdu',serif;font-size:19px;direction:rtl;text-align:right}
+  .ev-card{display:block;margin:14px 0;padding:18px;border:1px solid var(--gold-soft);border-radius:14px;background:#fff8;text-decoration:none;color:var(--plum-deep)}
+  .ev-card b{display:block;font-family:'Tangerine',cursive;font-size:38px;font-weight:700;line-height:1.1} .ev-card small{color:var(--ink-soft);font-size:16px}
+  #evHead{padding-top:96px;background-size:60px} .ev-mood{font-style:italic;font-size:21px;line-height:1.5;color:var(--plum-deep);max-width:480px;margin:0 auto 20px}
+  html[lang="ur"] .ev-mood{font-family:'Noto Nastaliq Urdu',serif;font-style:normal;line-height:2.1;font-size:18px}
+  #fx{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50} #fx i{position:absolute;top:-6vh;font-style:normal;animation:fxFall linear infinite}
+  #fx i.tw{top:auto;animation-name:fxTw;animation-timing-function:ease-in-out} #fx i.up{top:auto;bottom:-6vh;animation-name:fxUp}
+  @keyframes fxFall{to{transform:translateY(112vh) rotate(360deg)}} @keyframes fxUp{to{transform:translateY(-112vh) rotate(90deg)}}
+  @keyframes fxTw{0%,100%{opacity:.1;transform:scale(.6)}50%{opacity:1;transform:scale(1.25)}}
+  #eventSections.enter{animation:evIn .8s ease} @keyframes evIn{from{opacity:0;transform:translateY(16px)}}
+  html.ev-dark input,html.ev-dark select,html.ev-dark textarea{color:#21173A;background:#fff} html.ev-dark .ev-card{background:#ffffff14} .ev-date{font-size:20px;color:var(--ink-soft);margin:6px 0 18px}
+  #adminBox{position:fixed;z-index:20000;inset:auto 12px 12px 12px;background:#fff;color:#21173A;border:2px solid var(--gold);border-radius:14px;padding:14px;font:14px/1.5 sans-serif;word-break:break-all;direction:ltr}
+
+  body{transition:background .6s} #eventSections.anim{animation:evIn .8s ease both} @keyframes evIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  #evHead{background-image:var(--pat);background-size:var(--sz,auto);text-align:center;overflow:hidden}
+  #evOrn{font-size:26px;letter-spacing:6px;margin-bottom:10px;direction:ltr} .ev-mood{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.5;color:var(--ink);max-width:460px;margin:0 auto 22px}
+  html[lang="ur"] .ev-mood{font-family:'Noto Nastaliq Urdu',serif;font-style:normal;font-size:18px;line-height:2.3}
+  #fx{position:fixed;inset:0;z-index:5;pointer-events:none;overflow:hidden} #fx i{position:absolute;top:-40px;font-style:normal;animation:fall linear infinite;opacity:.85}
+  @keyframes fall{to{transform:translate3d(var(--dx),110vh,0) rotate(360deg)}}
+  body.th-mehendi{--ivory:#F7FBEF;--blush:#EAF5DA;--lilac:#FFF1C9;--plum:#2F7D4A;--plum-deep:#1F5A36;--gold:#E8A317;--gold-soft:#F5C96A;--near-black:#16361F;--ink:#2A3A2A;--pat:radial-gradient(circle at 20% 30%,rgba(232,163,23,.3) 0 7px,transparent 8px),radial-gradient(circle at 75% 70%,rgba(47,125,74,.22) 0 11px,transparent 12px);--sz:80px 80px;background:#F7FBEF;}
+  body.th-qawali{--ivory:#1D1233;--blush:#2A1A47;--lilac:#231540;--plum:#E4C9A6;--plum-deep:#F3DFBD;--gold:#C49A66;--gold-soft:#E4C9A6;--near-black:#0F0820;--ink:#F0E4CF;--pat:radial-gradient(ellipse at 50% 0,rgba(228,201,166,.35),transparent 65%),radial-gradient(circle at 15% 60%,rgba(255,230,170,.5) 0 1.5px,transparent 2px),radial-gradient(circle at 70% 35%,rgba(255,230,170,.5) 0 1.5px,transparent 2px);--sz:auto,60px 60px,90px 90px;background:#1D1233;}
+  body.th-qawali .btn{color:#21173A!important}
+  body.th-qawali input,body.th-qawali select,body.th-qawali textarea{background:#2A1A47!important;color:#F0E4CF!important;border-color:#C49A66!important}
+  body.th-qawali .ev-date{color:#C9B79A}
+  body.th-nikkah{--ivory:#FFF9F1;--blush:#FBE9E4;--lilac:#F6D9D3;--plum:#9B1B30;--plum-deep:#6B0F1F;--gold:#C9A24B;--gold-soft:#E6CC8C;--near-black:#2A0A10;--ink:#3A1D22;--pat:repeating-linear-gradient(45deg,rgba(201,162,75,.16) 0 2px,transparent 2px 20px),repeating-linear-gradient(-45deg,rgba(201,162,75,.16) 0 2px,transparent 2px 20px);--sz:auto;background:#FFF9F1;}
+  body.th-walima{--ivory:#FFFBF8;--blush:#FDEFEA;--lilac:#E6F0E2;--plum:#5E7F62;--plum-deep:#3F5A43;--gold:#D9A58A;--gold-soft:#F0CDBB;--near-black:#2B3A2E;--ink:#34443A;--pat:radial-gradient(circle at 12% 25%,rgba(240,205,187,.9) 0 3px,transparent 4px),radial-gradient(circle at 55% 65%,rgba(255,214,170,.9) 0 3px,transparent 4px),radial-gradient(circle at 88% 30%,rgba(240,205,187,.9) 0 3px,transparent 4px);--sz:110px 70px;background:#FFFBF8;}
+  #evHead{min-height:100svh;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center}
+  .ev-photo{background-size:cover;background-position:center;min-height:88svh;display:flex;flex-direction:column;align-items:center;padding:96px 28px 0;text-align:center}
+  .lang-toggle{position:fixed;z-index:10000;top:calc(env(safe-area-inset-top, 0px) + 12px);right:14px;direction:ltr;display:flex;padding:3px;gap:2px;background:rgba(23,16,41,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(228,201,166,.55);border-radius:999px;}
+  .lang-toggle button{border:none;background:transparent;cursor:pointer;color:#EADFF7;font-size:13px;line-height:1;padding:7px 13px;border-radius:999px;font-family:'Cormorant Garamond', serif;font-weight:600;letter-spacing:.5px;transition:background .25s, color .25s;}
+  .lang-toggle button[data-lang="ur"]{font-family:'Noto Nastaliq Urdu', serif;letter-spacing:0;padding:9px 13px 5px;}
+  .lang-toggle button.is-active{background:var(--gold-soft);color:var(--near-black);}
+  .lang-toggle button:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px;}
+
+  html[lang="ur"] *{letter-spacing:0 !important;font-style:normal !important;}
+  html[lang="ur"] body,html[lang="ur"] .btn,html[lang="ur"] .field input,html[lang="ur"] .field select,html[lang="ur"] .field textarea,html[lang="ur"] .hero-names,html[lang="ur"] .hero-amp,html[lang="ur"] .section-title,html[lang="ur"] .venue-name,html[lang="ur"] .reveal-date,html[lang="ur"] footer .foot-names{font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq','Noto Naskh Arabic',serif;}
+  html[lang="ur"] body{line-height:2.1;}
+  html[lang="ur"] .hero-names{font-size:clamp(58px, 17vw, 96px);line-height:1.6;-webkit-text-stroke:0;}
+  html[lang="ur"] .hero-amp{font-size:clamp(28px, 7vw, 38px);line-height:1.6;}
+  html[lang="ur"] .hero-welcome{font-size:16px;line-height:2.2;}
+  html[lang="ur"] .hero-sub{line-height:2.5;font-size:15px;}
+  html[lang="ur"] .hero-sub .role{font-size:14px;}
+  html[lang="ur"] .section-title{font-size:38px;line-height:1.9;}
+  html[lang="ur"] .eyebrow{font-size:16px;}
+  html[lang="ur"] .welcome-band p{line-height:2.4;}
+  html[lang="ur"] .venue-name{font-size:30px;line-height:1.9;}
+  html[lang="ur"] .reveal-date{font-size:34px;line-height:1.7;}
+  html[lang="ur"] #revealMonthYear{font-size:18px;line-height:1.8;}
+  html[lang="ur"] .scratch-reveal .rv-eyebrow{font-size:13px;}
+  html[lang="ur"] .countdown .num{line-height:1.5;font-size:30px;}
+  html[lang="ur"] .btn{line-height:2;padding:9px 30px 6px;}
+  html[lang="ur"] footer .foot-names{font-size:34px;line-height:1.8;}
+  html[lang="ur"] .t-item .t-title{font-size:19px;}
+  html[dir="rtl"] .timeline{text-align:right;padding-left:0;border-left:none;padding-right:26px;border-right:1px solid var(--gold-soft);}
+  html[dir="rtl"] .t-item::before{left:auto;right:-31px;}
+  html[dir="rtl"] .rsvp-form{text-align:right;}
+
+  @media (max-width:480px){ .two-col{gap:34px;} section{padding:52px 0;} }
+
+  .wrap{max-width:720px;}
+  section{padding:clamp(64px,9vw,96px) 0;}
+  .eyebrow{font-size:15px;letter-spacing:1.8px;text-transform:uppercase;font-style:normal;font-weight:600;color:var(--plum);line-height:1.6;}
+  .section-title{font-size:clamp(48px,10vw,68px);letter-spacing:.01em;}
+  .divider{margin:26px auto 36px;}
+  .divider .line{width:56px;height:1px;background:var(--gold-foil);border:0;}
+  .divider .mark{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;color:var(--gold);font-size:0;}
+  .ornament{width:1em;height:1em;fill:currentColor;display:inline-block;vertical-align:-.12em;}
+  .btn{background:linear-gradient(135deg,var(--plum-deep),var(--plum));border:1px solid var(--gold-soft);border-radius:1px;padding:15px 34px;font-size:15px;letter-spacing:1.4px;box-shadow:0 12px 30px -22px rgba(0,0,0,.55);}
+  .btn-ghost{background:transparent;color:var(--plum);border:1px solid var(--gold);box-shadow:none;}
+  .btn-ghost:hover{background:rgba(196,154,102,.1);}
+  .btn:hover{background:linear-gradient(135deg,var(--plum),var(--plum-deep));}
+  .reveal-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+  .bg-blush,.bg-ivory,.bg-lilac{position:relative;background-image:var(--paper);background-size:180px 180px;background-blend-mode:multiply;}
+
+  .hero{background:#171029;}
+  .hero::after{ background: radial-gradient(ellipse at 50% 54%, rgba(20,12,38,.34) 0%, rgba(20,12,38,.10) 40%, transparent 70%), linear-gradient(180deg, rgba(20,12,38,.14) 0%, rgba(20,12,38,.04) 28%, rgba(20,12,38,.10) 58%, rgba(20,12,38,.40) 100%); }
+  .hero-content::before{display:none!important;}
+  .hero-video{filter:none;transform-origin:center;animation:heroKen 36s ease-in-out infinite alternate;}
+  @keyframes heroKen{from{transform:scale(1.01)}to{transform:scale(1.035)}}
+  .hero-content{padding:80px 24px 72px;}
+  .hero-welcome{font-size:17px;letter-spacing:2px;}
+  .hero-names{font-size:clamp(82px,24vw,132px);letter-spacing:.01em;padding-block:.06em;}
+  .hero-amp{background:var(--gold-foil);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 14px rgba(0,0,0,.55));animation:goldShimmer 7s linear infinite;}
+  @keyframes goldShimmer{to{background-position:200% center;}}
+  .hero-sub{font-size:16px;letter-spacing:1.6px;}
+
+  #evHead,.ev-photo{position:relative;isolation:isolate;}
+  body.th-qawali .btn-ghost{color:#F6E3B4!important;border-color:#E4C9A6;background:rgba(18,13,42,.35);}
+  body.th-qawali .btn{box-shadow:0 14px 34px -18px rgba(0,0,0,.8);}
+
+  #evCardList{display:grid;gap:20px;}
+  .ev-card{ position:relative;display:block;margin:0;padding:26px 26px 22px; border:1px solid var(--gold);outline:1px solid var(--gold-soft);outline-offset:5px; border-radius:1px;background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(255,255,255,.38)); text-decoration:none;color:var(--ink);overflow:hidden; transition:transform .45s ease,box-shadow .45s ease,background .45s ease; box-shadow:0 18px 48px -44px rgba(33,23,58,.75); }
+  .ev-card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,var(--ev-tint,transparent),transparent 62%);opacity:.16;pointer-events:none;}
+  .ev-card:hover,.ev-card:focus-visible{transform:translateY(-4px);box-shadow:0 26px 64px -40px rgba(33,23,58,.75);}
+  .ev-card .ev-num{display:block;font-size:11px;letter-spacing:2.5px;color:var(--gold);margin-bottom:8px;}
+  .ev-card b{display:block;font-family:'Tangerine',cursive;font-size:48px;font-weight:700;line-height:1;color:var(--plum-deep);}
+  .ev-card small{display:block;color:var(--ink-soft);font-size:16px;font-style:italic;margin-top:8px;}
+  .ev-card .ev-detail{display:inline-block;margin-top:16px;font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--plum);border-bottom:1px solid var(--gold-soft);padding-bottom:4px;}
+
+  .carousel{max-width:760px;padding:0;position:relative;}
+  .carousel-frame{aspect-ratio:16/10;border-radius:1px;border:1px solid var(--gold-soft);box-shadow:var(--shadow-soft);touch-action:pan-y;background:var(--blush);}
+  .carousel-frame img{filter:saturate(.92) contrast(1.03) sepia(.04);}
+  .carousel-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(196,154,102,.10),rgba(23,16,41,.10));mix-blend-mode:soft-light;pointer-events:none;}
+  .carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid var(--gold-soft);background:rgba(23,16,41,.55);color:var(--gold-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .carousel-arrow.prev{left:12px}.carousel-arrow.next{right:12px}
+  .carousel-arrow:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px;}
+  .carousel-dots button{width:8px;height:8px;background:var(--gold-soft);}
+  .carousel-dots button.is-active{background:var(--gold);}
+
+  .reveal-date{font-size:48px;}
+  .reveal-hint{font-size:15px;}
+  .swatches span{width:22px;height:22px;border:1px solid rgba(0,0,0,.12);box-shadow:0 2px 6px rgba(0,0,0,.08);}
+
+  #musicBtn{position:fixed;z-index:10000;right:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);width:44px;height:44px;border-radius:50%;border:1px solid rgba(228,201,166,.55);background:rgba(23,16,41,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--gold-soft);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  #musicBtn .sound-wave{display:none;}
+  #musicBtn[aria-pressed="true"] .mute-line{display:none;}
+  #musicBtn[aria-pressed="true"] .sound-wave{display:inline;}
+  body.envelope-locked #musicBtn{display:none;}
+  #musicBtn:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px;}
+
+  .envelope-crest{position:absolute;z-index:2;top:clamp(24px,7vh,80px);left:50%;transform:translateX(-50%);width:110px;color:var(--gold-soft);opacity:.95;filter:drop-shadow(0 6px 18px rgba(0,0,0,.6));transition:opacity .6s ease, transform .6s ease;pointer-events:none;}
+  .envelope-hint{position:absolute;z-index:2;bottom:calc(env(safe-area-inset-bottom,0px) + 34px);left:50%;transform:translateX(-50%);color:#F6E9D2;font-size:14px;letter-spacing:2px;text-transform:uppercase;text-shadow:0 2px 12px rgba(0,0,0,.8);animation:hintPulse 2.8s ease-in-out infinite;pointer-events:none;white-space:nowrap;}
+  #envelopeIntro.is-playing .envelope-crest,#envelopeIntro.is-playing .envelope-hint{opacity:0;transform:translate(-50%,-8px);}
+  @keyframes hintPulse{0%,100%{opacity:.55}50%{opacity:1}}
+  .monogram-svg{width:100%;height:auto;display:block;}
+
+  .drawer-crest{width:92px;margin:0 auto 26px;color:var(--gold-soft);}
+  .foot-crest{width:86px;margin:0 auto 16px;color:var(--gold-soft);}
+  .foot-fine{display:flex;align-items:center;justify-content:center;gap:12px;color:#B9AECF;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;}
+  .foot-fine .ornament{width:13px;height:13px;color:var(--gold-soft);}
+
+  .rsvp-thanks{display:none;text-align:center;color:var(--plum);font-size:17px;margin-top:24px;font-style:normal;}
+  .rsvp-thanks.show{display:block;}
+  .thanks-title{font-family:'Tangerine',cursive;font-size:46px;color:var(--plum);line-height:1;}
+  .thanks-body{font-style:italic;color:var(--ink-soft);line-height:1.8;margin-top:10px;max-width:360px;margin-inline:auto;}
+  .rsvp-thanks .ornament{width:22px;height:22px;color:var(--gold);margin-bottom:10px;}
+
+  .reveal-item{opacity:0;transform:translateY(18px);transition:opacity .8s ease-out,transform .8s cubic-bezier(.16,1,.3,1);}
+  .reveal-item.is-visible{opacity:1;transform:none;}
+
+  html[lang="ur"] body{line-height:2.25;}
+  html[lang="ur"] .section-title,html[lang="ur"] .hero-names,html[lang="ur"] .venue-name,html[lang="ur"] .reveal-date,html[lang="ur"] .ev-card b{padding-block:.18em;line-height:1.9;}
+  html[lang="ur"] .eyebrow{letter-spacing:0;text-transform:none;font-size:16px;line-height:2;}
+  html[lang="ur"] .thanks-title{line-height:1.9;font-size:36px;}
+  html[lang="ur"] .envelope-hint{letter-spacing:0;font-family:'Noto Nastaliq Urdu',serif;font-size:16px;padding-bottom:4px;}
+
+  @media (max-width:640px){
+    .wrap{padding:0 22px;}
+    .btn{width:100%;max-width:340px;}
+    .btn + .btn{margin-left:0;}
+    .carousel-arrow{display:none;}
+    .hero-content{padding:72px 20px 64px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
+    .reveal-item{opacity:1!important;transform:none!important;}
+    .hero-video{animation:none!important;}
+    .hero-amp{animation:none!important;}
+  }
+
+  :root{
+    --lux-card:linear-gradient(145deg,color-mix(in srgb,var(--ivory) 84%,transparent),color-mix(in srgb,var(--ivory) 46%,transparent));
+    --lux-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 2px 4px rgba(33,23,58,.05),0 12px 26px rgba(33,23,58,.09),0 32px 60px -8px rgba(33,23,58,.14);
+    --lux-foil:linear-gradient(105deg,var(--plum-deep) 0%,var(--gold) 26%,var(--plum) 48%,var(--gold-soft) 68%,var(--plum-deep) 100%);
+  }
+  @keyframes luxFoil{from{background-position:0% 0}to{background-position:200% 0}}
+  @keyframes luxDrift{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(2%,3%,0) scale(1.06)}}
+  @keyframes luxDot{0%,100%{box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 22%,transparent),0 0 12px 3px color-mix(in srgb,var(--gold) 55%,transparent)}
+                    50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--gold) 14%,transparent),0 0 22px 7px color-mix(in srgb,var(--gold) 85%,transparent)}}
+
+  .bg-blush,.bg-ivory,.bg-lilac{overflow:hidden;isolation:isolate;}
+  .bg-blush:not(#evHead)::before,.bg-ivory::before,.bg-lilac:not(#evHead)::before{
+    content:"";position:absolute;inset:-10%;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(45% 38% at 12% 8%,color-mix(in srgb,var(--gold-soft) 55%,transparent),transparent 70%),
+      radial-gradient(50% 42% at 92% 96%,color-mix(in srgb,var(--plum) 16%,transparent),transparent 70%);
+    animation:luxDrift 18s ease-in-out infinite;
+  }
+  section.bg-blush>*,section.bg-ivory>*,section.bg-lilac>*{position:relative;z-index:1;}
+
+  .section-title:not(#evTitle):not(#evAmbName){
+    background:var(--lux-foil);background-size:200% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+    animation:luxFoil 10s linear infinite;padding-inline:.06em;padding-bottom:.08em;
+  }
+  .eyebrow{letter-spacing:3px;}
+  .divider .line{height:1.5px;width:64px;}
+  .divider .line:first-child{transform:scaleX(-1);}
+
+  section#countdown-section.bg-lilac{
+    color:#EFE7FA;
+    background:
+      radial-gradient(70% 55% at 15% 0%,rgba(196,154,102,.28),transparent 62%),
+      radial-gradient(70% 60% at 100% 100%,rgba(140,110,215,.26),transparent 60%),
+      linear-gradient(160deg,#3B2A66 0%,#2A1D4D 48%,#171029 100%);
+  }
+  #countdown-section::before{display:none!important;}
+  #countdown-section .eyebrow{color:var(--gold-soft);}
+  #countdown-section .section-title{--lux-foil:linear-gradient(105deg,#F8EAD0 0%,#E7CEAA 22%,#C49A66 46%,#F3E2C2 70%,#E7CEAA 100%);}
+  #countdown-section .countdown{gap:clamp(8px,2.4vw,16px);flex-wrap:nowrap;}
+  #countdown-section .unit{
+    flex:1 1 0;max-width:110px;padding:clamp(14px,4vw,22px) 4px 12px;border-radius:18px;
+    background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.04));
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    border:1px solid rgba(228,201,166,.45);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 18px 40px rgba(10,5,25,.4);
+  }
+  #countdown-section .num{
+    min-width:0;border:0;padding:0;font-size:clamp(28px,8.5vw,46px);font-weight:700;
+    background:var(--gold-foil);background-size:200% auto;-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;animation:luxFoil 8s linear infinite;
+  }
+  #countdown-section .label{color:var(--gold-soft);text-transform:uppercase;font-size:10px;letter-spacing:2px;font-style:normal;}
+
+  .lux-card,.rsvp-form,.two-col,.t-item{
+    position:relative;background:var(--lux-card);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+    border:1px solid color-mix(in srgb,var(--gold) 60%,transparent);border-radius:20px;box-shadow:var(--lux-shadow);
+  }
+  .lux-card::after,.rsvp-form::after,.two-col::after,.t-item::after{
+    content:"";position:absolute;inset:5px;border-radius:15px;pointer-events:none;
+    border:1px solid color-mix(in srgb,var(--gold) 26%,transparent);
+  }
+  .lux-card{max-width:460px;margin:0 auto;padding:34px 22px 30px;}
+
+  .timeline{border-left:0!important;border-right:0!important;max-width:460px;}
+  .timeline::before{content:"";position:absolute;left:-1px;top:6px;bottom:6px;width:2px;border-radius:2px;
+    background:linear-gradient(180deg,transparent,var(--gold) 12%,var(--gold-soft) 50%,var(--gold) 88%,transparent);
+    box-shadow:0 0 10px color-mix(in srgb,var(--gold) 55%,transparent);}
+  html[dir="rtl"] .timeline::before{left:auto;right:-1px;}
+  .t-item,.t-item:last-child{padding:18px 20px;}
+  .t-item{margin-bottom:22px;}
+  .t-item:last-child{margin-bottom:0;}
+  .t-item::before{left:-33px;top:24px;width:14px;height:14px;
+    background:radial-gradient(circle at 35% 30%,#fff6e6,var(--gold) 60%,var(--plum));border:2px solid #fff;
+    animation:luxDot 3s ease-in-out infinite;}
+  html[dir="rtl"] .t-item::before{right:-33px;left:auto;}
+  .t-item:nth-child(2)::before{animation-delay:-1s}.t-item:nth-child(3)::before{animation-delay:-2s}
+  .t-item .t-title{font-family:'Tangerine',cursive;font-size:34px;font-weight:700;line-height:1.05;color:var(--plum-deep);}
+  html[lang="ur"] .t-item .t-title{font-family:'Noto Nastaliq Urdu',serif;font-size:19px;}
+  .t-item .t-time{letter-spacing:1.4px;text-transform:uppercase;font-style:normal;font-size:12px;color:var(--plum);}
+
+  .rsvp-form{max-width:440px;padding:32px 24px 28px;gap:20px;}
+  .field label{font-style:normal;text-transform:uppercase;letter-spacing:1.4px;font-size:12px;font-weight:600;margin-bottom:8px;}
+  .field input,.field select,.field textarea{
+    border:1px solid color-mix(in srgb,var(--gold) 50%,transparent);border-radius:14px;
+    background:color-mix(in srgb,var(--blush) 90%,transparent);padding:14px 16px;font-size:17px;
+    -webkit-appearance:none;appearance:none;transition:border-color .3s,box-shadow .3s,background .3s;}
+  .field select{padding-right:42px;background-repeat:no-repeat;background-position:right 16px center;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%235E4391' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");}
+  html[dir="rtl"] .field select{padding-right:16px;padding-left:42px;background-position:left 16px center;}
+  .field input:hover,.field select:hover,.field textarea:hover{background-color:#fff;}
+  .field input:focus,.field select:focus,.field textarea:focus{background-color:#fff;border-color:var(--plum);
+    box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 30%,transparent);outline:none;}
+  .rsvp-form .btn{width:100%;max-width:none;margin-top:6px;}
+
+  .btn{border-radius:999px;box-shadow:0 8px 20px rgba(59,42,102,.28),inset 0 1px 0 rgba(255,255,255,.28);
+    transition:transform .35s ease,box-shadow .35s ease,filter .35s ease;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(59,42,102,.38),0 0 0 5px color-mix(in srgb,var(--gold) 28%,transparent),0 0 30px color-mix(in srgb,var(--gold) 50%,transparent);}
+  .btn-ghost{box-shadow:none;}
+  .carousel-frame{border-radius:20px;box-shadow:0 0 0 6px rgba(255,255,255,.55),0 12px 26px rgba(33,23,58,.12),0 30px 60px rgba(33,23,58,.18);}
+  .ev-card{border-radius:20px;}
+
+  .hero-person .hero-sub{margin-top:8px;line-height:1.75;font-size:15px;}
+  .hero-amp{margin:16px 0 12px;}
+  .pad-x{padding-left:clamp(22px,7vw,44px);padding-right:clamp(22px,7vw,44px);}
+  #evHead .eyebrow{color:var(--plum);}
+  #evHead #evTitle{color:var(--plum-deep);}
+  #evHead .ev-date{color:var(--ink-soft);}
+  #evHead .ev-mood{color:var(--ink);}
+  .ev-glass{max-width:460px;margin:0 auto;padding:24px 28px;border-radius:20px;color:var(--plum-deep);
+    background:color-mix(in srgb,var(--ivory) 74%,transparent);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+    border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);box-shadow:var(--lux-shadow);}
+  .ev-glass .ev-mood{margin:0 auto;color:var(--plum-deep);}
+  .ev-glass .ev-date{margin:6px 0 0;color:var(--ink-soft);}
+  #evAmbName{color:var(--plum-deep);}
+
+  .events-strip,#eventsStrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:14px;margin-top:30px;}
+  .cal-tile{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:var(--ink);
+    background:var(--ivory);border-radius:14px;overflow:hidden;
+    border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);
+    box-shadow:0 14px 30px -18px rgba(33,23,58,.55);transition:transform .35s ease,box-shadow .35s ease;}
+  .cal-tile:hover{transform:translateY(-4px);box-shadow:0 20px 38px -18px rgba(33,23,58,.6);}
+  .cal-top{width:100%;padding:8px 0 7px;background:var(--c);color:#F6E9D2;font-size:12px;font-weight:600;letter-spacing:3px;}
+  .cal-day{font-size:54px;line-height:1;font-weight:600;color:var(--plum-deep);margin-top:12px;}
+  .cal-name{font-family:'Tangerine',cursive;font-size:32px;font-weight:700;line-height:1.05;color:var(--plum);margin-top:4px;padding:0 8px;}
+  .cal-wd{font-size:13px;font-style:italic;color:var(--ink-soft);margin:2px 0 16px;}
+  html[lang="ur"] .cal-top{letter-spacing:0!important;font-size:14px;}
+  html[lang="ur"] .cal-name{font-family:'Noto Nastaliq Urdu',serif;font-size:20px;line-height:1.9;}
+  html[lang="ur"] .cal-day{line-height:1.5;}
+
+  #evCardList{display:grid;gap:22px;max-width:460px;margin:0 auto;}
+  .celeb{position:relative;display:block;aspect-ratio:4/3.3;border-radius:22px;overflow:hidden;text-decoration:none;
+    background-color:var(--blush);background-size:cover;background-position:center;
+    border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);box-shadow:var(--lux-shadow);
+    transition:transform .5s ease,box-shadow .5s ease;}
+  .celeb:hover,.celeb:focus-visible{transform:translateY(-5px);}
+  .celeb-info{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:12px 14px 12px 20px;border-radius:16px;text-align:left;
+    background:color-mix(in srgb,var(--ivory) 80%,transparent);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+    border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);}
+  html[dir="rtl"] .celeb-info{text-align:right;padding:12px 20px 12px 14px;}
+  .celeb-txt b{display:block;font-family:'Tangerine',cursive;font-size:40px;font-weight:700;line-height:1;color:var(--plum-deep);}
+  .celeb-txt small{display:block;font-size:14px;font-style:italic;color:var(--ink-soft);margin-top:3px;}
+  .celeb-go{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:var(--ivory);
+    background:linear-gradient(135deg,var(--plum-deep),var(--plum));border:1px solid var(--gold-soft);transition:transform .35s ease;}
+  .celeb:hover .celeb-go{transform:translateX(3px);}
+  .celeb-go svg{width:18px;height:18px;}
+  html[dir="rtl"] .celeb-go svg{transform:scaleX(-1);}
+  html[lang="ur"] .celeb-txt b{font-family:'Noto Nastaliq Urdu',serif;font-size:24px;line-height:1.9;}
+
+  .foot-fine{gap:6px;text-transform:none;letter-spacing:1px;font-size:13px;}
+  .foot-fine a{color:var(--gold-soft);text-decoration:none;border-bottom:1px solid rgba(228,201,166,.5);padding-bottom:1px;transition:color .3s,border-color .3s;}
+  .foot-fine a:hover{color:#fff;border-color:#fff;}
+
+  #evHead,#evDetail,#evAmb{background-blend-mode:normal!important;}
+  #evHead::before,#evHead::after,#evDetail::before,#evDetail::after,#evAmb::before,#evAmb::after{content:none!important;display:none!important;}
+
+  #scrollBtn{position:fixed;z-index:10000;right:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 74px);width:44px;height:44px;border-radius:50%;
+    border:1px solid rgba(228,201,166,.55);background:rgba(23,16,41,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    color:var(--gold-soft);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;}
+  #scrollBtn svg{transition:transform .4s ease;animation:scrollNudge 1.8s ease-in-out infinite;}
+  #scrollBtn[data-state="up"] svg{transform:rotate(180deg);animation:none;}
+  @keyframes scrollNudge{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+  body.envelope-locked #scrollBtn{display:none;}
+  #scrollBtn:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px;}
+
+  .is-disabled{opacity:.42;pointer-events:none;cursor:not-allowed;filter:grayscale(.6);}
+  
+  body.is-preview-2::after {
+    content: "PREVIEW";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(56px, 14vw, 180px);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: rgba(180, 100, 80, 0.20);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.35), 0 0 20px rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 99999;
+  }
+  @media (max-width: 600px) {
+    body.is-preview-2::after { font-size: 18vw; letter-spacing: 0.12em; color: rgba(180, 100, 80, 0.18); }
+  }
+
+  /* DESKTOP SCROLL & FULL SCREEN */
+  @media (min-width: 768px) {
+      html, body {
+          background: #111111 !important; 
+          height: auto !important;
+          min-height: 100vh;
+          margin: 0;
+          display: block !important;
+          overflow-x: hidden;
+          overflow-y: auto;
+      }
+      main, footer {
+          max-width: 640px;
+          margin: 0 auto;
+          background: var(--near-black);
+          box-shadow: 0 0 50px rgba(0,0,0,0.5);
+          position: relative;
+          z-index: 2;
+      }
+      .float-ctrls { right: calc(50% - 320px + 14px) !important; }
+      @media (max-width: 680px) { .float-ctrls { right: 14px !important; } }
+      .venue-carousel { justify-content: center; }
+  }
+</style>
+</head>
+<body class="envelope-locked">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="orn-star" viewBox="0 0 24 24"><path d="M12 2l2.3 7.7L22 12l-7.7 2.3L12 22l-2.3-7.7L2 12l7.7-2.3z"/></symbol>
+  <symbol id="orn-leaf" viewBox="0 0 24 24"><path d="M12 3c5 3 7 7 7 11 0 4-3 7-7 7s-7-3-7-7c0-4 2-8 7-11zm0 4c-2 3-3 5-3 7 0 2 1 3 3 3s3-1 3-3c0-2-1-4-3-7z"/></symbol>
+</svg>
+
+<div class="lang-toggle" role="group" aria-label="Language">
+  <button type="button" data-lang="en" class="is-active" aria-pressed="true">EN</button>
+  <button type="button" data-lang="ur" aria-pressed="false">اردو</button>
+</div>
+
+<button id="musicBtn" type="button" aria-label="Toggle background music" aria-pressed="false">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 9v6h4l5 4V5L8 9H4z"/>
+    <path class="sound-wave" d="M16 9c1 1 1 5 0 6M19 7c2 2 2 8 0 10"/>
+    <path class="mute-line" d="M16 9l5 6M21 9l-5 6"/>
+  </svg>
+</button>
+<button id="scrollBtn" type="button" aria-label="Scroll to next section" data-state="down">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7l6 6 6-6M6 13l6 6 6-6"/></svg>
+</button>
+<audio id="bgMusic" loop preload="none"></audio>
+
+<div id="envelopeIntro" role="button" tabindex="0" data-i18n-aria="envAria" aria-label="Tap the seal to open your invitation">
+  <video id="envelopeVideo" class="envelope-video" playsinline webkit-playsinline="true" muted preload="auto" poster="images/envelope-poster.jpg">
+    <source src="videos/envelope.mp4" type="video/mp4">
+  </video>
+  <div class="envelope-hint" data-i18n="envHint">Tap the seal</div>
+</div>
+<noscript><style>#envelopeIntro{display:none!important;} .invite-content{opacity:1!important;}</style></noscript>
+
+<div id="inviteContent" class="invite-content">
+
+<div id="homeTop">
+<section class="hero">
+  <video id="swanVideo" class="hero-video" playsinline webkit-playsinline="true" muted preload="metadata" poster="images/hero-poster.jpg">
+    <source src="videos/swan.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <div class="hero-welcome" data-i18n="heroWelcome">You are lovingly invited to the wedding of</div>
+    <div class="hero-person">
+      <div class="hero-names" id="heroBride"></div>
+      <div class="hero-sub"><span id="brideParents"></span><br></div>
+    </div>
+    <div class="hero-amp" id="heroAmp">&amp;</div>
+    <div class="hero-person">
+      <div class="hero-names" id="heroGroom"></div>
+      <div class="hero-sub"><span id="groomParents"></span><br></div>
+    </div>
+  </div>
+  <div class="scroll-cue"></div>
+</section>
+
+<section class="welcome-band">
+  <div class="wrap">
+    <p><span id="welcomeMessage"></span></p>
+    <div class="divider" style="color:var(--gold-soft)">
+      <span class="line" style="background:var(--gold-foil)"></span>
+      <span class="mark"><svg class="ornament" aria-hidden="true"><use href="#orn-star"/></svg></span>
+      <span class="line" style="background:var(--gold-foil)"></span>
+    </div>
+    <p style="font-size:15px;"><span id="welcomeNote"></span></p>
+    <!-- Guest Note (buyer's special note) -->
+<p id="guestNoteWrap" hidden style="font-size:15px; color:#EEE7F9; margin-top:14px; font-style:italic; line-height:1.8;">
+  <span id="guestNote"></span>
+</p>
+  </div>
+</section>
+
+<section class="bg-blush">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="touch">Touch to reveal</div>
+    <div class="section-title" data-i18n="saveDate">Save the Date</div>
+    <div class="divider">
+      <span class="line"></span>
+      <span class="mark"><svg class="ornament" aria-hidden="true"><use href="#orn-star"/></svg></span>
+      <span class="line"></span>
+    </div>
+    <div class="reveal-box">
+      <div class="scratch-card">
+        <span class="scratch-corner scratch-corner--tl"></span>
+        <span class="scratch-corner scratch-corner--tr"></span>
+        <span class="scratch-corner scratch-corner--bl"></span>
+        <span class="scratch-corner scratch-corner--br"></span>
+        <div class="scratch-reveal heart-mask">
+          <div class="rv-eyebrow" id="scratchEventName" data-i18n="dateIs">the date is</div>
+          <div class="reveal-date"><span id="revealDateNum"></span><br><span id="revealMonthYear"></span></div>
+        </div>
+        <canvas class="scratch-canvas heart-mask" id="scratchCanvas" width="300" height="300" aria-label="Scratch card"></canvas>
+        <div class="scratch-shimmer heart-mask" id="scratchShimmer"></div>
+      </div>
+      <div class="reveal-hint" id="revealHint" data-i18n="hint">drag your finger across the heart</div>
+      <div class="reveal-actions">
+        <a class="btn" id="saveDateBtn" href="#" target="_blank" rel="noopener" data-i18n="addCal">Add to Google Calendar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-ivory pad-x">
+  <div class="eyebrow" data-i18n="glimpse">A glimpse</div>
+  <div class="section-title" data-i18n="withYou">With You!</div>
+  <div class="divider">
+    <span class="line"></span>
+    <span class="mark"><svg class="ornament" aria-hidden="true"><use href="#orn-star"/></svg></span>
+    <span class="line"></span>
+  </div>
+  <div class="carousel" aria-roledescription="carousel" aria-label="Photo gallery">
+    <button class="carousel-arrow prev" id="carouselPrev" type="button" aria-label="Previous photo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <div class="carousel-frame" id="carouselFrame"></div>
+    <button class="carousel-arrow next" id="carouselNext" type="button" aria-label="Next photo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</section>
+
+<section class="bg-lilac pad-x" id="countdown-section">
+  <div class="eyebrow" data-i18n="counting">Counting down</div>
+  <div class="section-title" data-i18n="forever">To Forever</div>
+  <div class="divider">
+    <span class="line"></span>
+    <span class="mark"><svg class="ornament" aria-hidden="true"><use href="#orn-star"/></svg></span>
+    <span class="line"></span>
+  </div>
+  <div class="countdown" id="countdown">
+    <div class="unit"><div class="num" id="cd-days">00</div><div class="label" data-i18n="days">Days</div></div>
+    <div class="unit"><div class="num" id="cd-hours">00</div><div class="label" data-i18n="hours">Hours</div></div>
+    <div class="unit"><div class="num" id="cd-mins">00</div><div class="label" data-i18n="mins">Minutes</div></div>
+    <div class="unit"><div class="num" id="cd-secs">00</div><div class="label" data-i18n="secs">Seconds</div></div>
+  </div>
+</section>
+
+<section class="bg-ivory">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="ourEvents">Our Events</div>
+    <div class="section-title" data-i18n="datesGlance">Dates at a Glance</div>
+    <div class="divider">
+      <span class="line"></span>
+      <span class="mark"><svg class="ornament" aria-hidden="true"><use href="#orn-star"/></svg></span>
+      <span class="line"></span>
+    </div>
+    <div id="eventsStrip" class="events-strip"></div>
+  </div>
+</section>
+
+<section class="bg-blush">
+  <div class="wrap">
+    <div class="section-title" data-i18n="events">Celebrations</div>
+    <div class="divider">
+      <span class="line"></span>
+      <span class="mark"><svg class="ornament" aria-hidden="true"><use href="#orn-star"/></svg></span>
+      <span class="line"></span>
+    </div>
+    <div id="evCardList"></div>
+  </div>
+</section>
+</div>
+
+<div id="eventSections">
+<section class="bg-lilac" id="evHead">
+  <div class="wrap">
+    <div class="eyebrow" id="evEyebrow"></div>
+    <div class="section-title" id="evTitle" style="font-size:68px"></div>
+    <div class="ev-date" id="evDate"></div>
+    <div class="ev-mood" id="evMood"></div>
+    <div class="reveal-actions">
+      <a class="btn" id="evCalBtn" href="#" target="_blank" rel="noopener" data-i18n="addCal">Add to Google Calendar</a>
+    </div>
+  </div>
+</section>
+
+<section class="ev-photo" id="evDetail"><div class="ev-glass"><div class="ev-mood" id="evDetailMood"></div></div></section>
+
+<section class="bg-blush">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="dayOf">The day of</div>
+    <div class="section-title" data-i18n="timeline">Our Timeline</div>
+    <div class="divider">
+      <span class="line"></span>
+      <span class="mark"><svg class="ornament" aria-hidden="true"><use href="#orn-star"/></svg></span>
+      <span class="line"></span>
+    </div>
+    <div class="timeline" id="timelineList"></div>
+  </div>
+</section>
+
+<section class="bg-ivory">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="where">Where to find us</div>
+    <div class="section-title" data-i18n="venue">Venue</div>
+    <div class="divider">
+      <span class="line"></span>
+      <span class="mark"><svg class="ornament" aria-hidden="true"><use href="#orn-star"/></svg></span>
+      <span class="line"></span>
+    </div>
+    <div class="lux-card">
+    <div class="venue-name" id="venueName"></div>
+    <div class="venue-addr" id="venueAddress"></div>
+    <div class="reveal-actions">
+      <a class="btn" id="venueMapBtn" href="#" target="_blank" rel="noopener" data-i18n="viewMap">View on Google Maps</a>
+      <a class="btn btn-ghost" id="directionsBtn" href="#" target="_blank" rel="noopener" data-i18n="directions">Get directions</a>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="ev-photo" id="evAmb">
+  <div class="ev-glass">
+    <div class="section-title" id="evAmbName"></div>
+    <div class="ev-date" id="evAmbDate"></div>
+  </div>
+</section>
+</div>
+
+<section class="bg-ivory" id="rsvpSection">
+  <div class="wrap">
+    <div class="eyebrow" id="rsvpEyebrow"></div>
+    <div class="section-title" data-i18n="rsvp">RSVP</div>
+    <div class="divider">
+      <span class="line"></span>
+      <span class="mark"><svg class="ornament" aria-hidden="true"><use href="#orn-star"/></svg></span>
+      <span class="line"></span>
+    </div>
+    <form class="rsvp-form" id="rsvpForm">
+      <div class="field">
+        <label for="rname" data-i18n="fullName">Your full name</label>
+        <input id="rname" type="text" data-i18n-ph="namePh" placeholder="e.g. Sara Khan" required>
+      </div>
+      <div class="field">
+        <label for="rattend" data-i18n="attending">Will you be attending?</label>
+        <select id="rattend" required>
+          <option value="" disabled selected data-i18n="select">Select...</option>
+          <option data-i18n="accepts">Joyfully accepts</option>
+          <option data-i18n="declines">Regretfully declines</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="rguests" data-i18n="guestCount">Number of guests</label>
+        <input id="rguests" type="number" min="1" max="20" value="1" required>
+      </div>
+      <div class="field">
+        <label for="rmsg" data-i18n="yourMsg">Your message</label>
+        <textarea id="rmsg" data-i18n-ph="msgPh" placeholder="Write your wishes..."></textarea>
+      </div>
+      <button class="btn" type="submit" data-i18n="rsvpBtn">RSVP on WhatsApp</button>
+    </form>
+    <div class="rsvp-thanks" id="rsvpThanks" role="status" aria-live="polite">
+      <svg class="ornament" aria-hidden="true"><use href="#orn-star"/></svg>
+      <div class="thanks-title" id="thanksTitle"></div>
+      <p class="thanks-body" id="thanksBody"></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="eyebrow" style="color:var(--gold-soft)" data-i18n="footEye">With love and gratitude</div>
+  <div class="foot-names" id="footerNames"></div>
+  <div class="foot-msg" id="closingMessage">with you!</div>
+  <div class="foot-fine">Made by <a href="https://ghaziacreatives.com" target="_blank" rel="noopener">GhaziaCreatives</a></div>
+</footer>
+
+</div>
+
+<script>
+
+//* ---------- Shared helpers ---------- */
+function icsEscape(value){
+  return String(value || '').replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;');
+}
+function icsStamp(iso){
+  return String(iso).replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+}
+function downloadICS(data){
+  const W = WEDDING;
+  const tz = W.timezone || 'Asia/Karachi';
+  const lines = [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//ZN Wedding//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH',
+    'X-WR-TIMEZONE:' + tz,
+    'BEGIN:VEVENT',
+    'UID:' + (data.uid || Date.now()) + '@zn-wedding',
+    'DTSTAMP:' + icsStamp(new Date().toISOString()),
+    'DTSTART;TZID=' + tz + ':' + icsStamp(data.startISO),
+    'DTEND;TZID=' + tz + ':' + icsStamp(data.endISO),
+    'SUMMARY:' + icsEscape(data.title),
+    'LOCATION:' + icsEscape(data.location),
+    'DESCRIPTION:' + icsEscape(data.description),
+    'END:VEVENT','END:VCALENDAR'
+  ].join('\r\n');
+  const blob = new Blob([lines], { type:'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = (data.title || 'wedding').replace(/[^a-z0-9]+/gi,'-').toLowerCase() + '.ics';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+}
+function mapsDirections(name, address){
+  const dest = encodeURIComponent([name, address].filter(Boolean).join(', '));
+  const isApple = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent);
+  return isApple ? 'https://maps.apple.com/?daddr=' + dest : 'https://www.google.com/maps/dir/?api=1&destination=' + dest;
+}
+function getNextEvent() {
+  if (!WEDDING.events || !WEDDING.events.length) return null;
+  const now = new Date().getTime();
+  const sorted = [...WEDDING.events].sort((a, b) => new Date(a.startISO) - new Date(b.startISO));
+  const next = sorted.find(e => new Date(e.startISO).getTime() > now);
+  return next || sorted[sorted.length - 1];
+}
+/* NEW: 24hr -> 12hr formatter (19:00 -> 7:00 PM) */
+function fmtTime(t){
+  if (!t) return '';
+  const s = String(t).trim();
+  if (/am|pm/i.test(s)) return s;
+  const m = s.match(/^(\d{1,2}):(\d{2})/);
+  if (!m) return s;
+  let h = +m[1];
+  const min = m[2];
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  return `${h}:${min} ${ampm}`;
+}
+
+/* ---------- Envelope intro ---------- */
+(function(){
+  const intro = document.getElementById('envelopeIntro');
+  const video = document.getElementById('envelopeVideo');
+  const swan = document.getElementById('swanVideo');
+  const content = document.getElementById('inviteContent');
+  if(!intro || !video || !content){
+    document.body.classList.remove('envelope-locked');
+    if(content) content.classList.add('is-revealed');
+    if(swan) swan.play().catch(()=>{});
+    return;
+  }
+  const SWAN_SCENE_AT = 7.2;
+  let opened = false, finished = false, fallbackTimer = null;
+  function fadeOutAudio(){
+    let v = video.volume;
+    const t = setInterval(()=>{
+      v = Math.max(0, v - 0.07);
+      try{ video.volume = v; }catch(e){}
+      if(v <= 0){ clearInterval(t); video.pause(); }
+    }, 90);
+  }
+  function finishOpening(){
+    if(finished) return;
+    finished = true;
+    clearTimeout(fallbackTimer);
+    video.removeEventListener('timeupdate', maybeReveal);
+    if(swan){ swan.currentTime = 0; swan.play().catch(()=>{}); }
+    intro.style.background = 'transparent';
+    intro.classList.add('is-leaving');
+    document.body.classList.remove('envelope-locked');
+    content.classList.add('is-revealed');
+    fadeOutAudio();
+    // FIX: nasheed full volume
+    const bgm = document.getElementById('bgMusic');
+    if (bgm && window.__audioTrackEnabled !== false
+        && !document.body.classList.contains('is-preview-2')) {
+      try { bgm.volume = 0.6; } catch(e){}
+      if (bgm.paused) bgm.play().catch(()=>{});
+    }
+    setTimeout(()=>{ if(intro.parentNode) intro.remove(); }, 1600);
+  }
+  function maybeReveal(){ if(video.currentTime >= SWAN_SCENE_AT){ finishOpening(); } }
+  function openEnvelope(){
+    if(opened) return;
+    opened = true;
+    intro.classList.add('is-playing');
+    if(!document.body.classList.contains('is-preview-2')) video.muted = false;
+    // FIX: nasheed start on user click (browser gesture)
+    const bgm = document.getElementById('bgMusic');
+    if (bgm && window.__audioTrackEnabled !== false
+        && !document.body.classList.contains('is-preview-2')) {
+      try { bgm.volume = 0.15; } catch(e){}
+      bgm.play().catch(()=>{});
+    }
+    const playPromise = video.play();
+    if(playPromise && playPromise.catch){
+      playPromise.catch(()=>{ video.muted = true; video.play().catch(finishOpening); });
+    }
+    video.addEventListener('timeupdate', maybeReveal);
+    fallbackTimer = setTimeout(finishOpening, (SWAN_SCENE_AT * 1000) + 1500);
+  }
+  video.addEventListener('ended', function(){ if(!finished) finishOpening(); });
+  video.addEventListener('error', finishOpening);
+  intro.addEventListener('click', openEnvelope);
+  intro.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openEnvelope(); }
+  });
+})();
+
+/* ---------- Heart scratch card ---------- */
+(function(){
+  const canvas = document.getElementById('scratchCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d', { willReadFrequently:true });
+  const label = document.getElementById('scratchLabel');
+  const hint = document.getElementById('revealHint');
+  let touched = false, revealed = false, scratching = false, lastX = 0, lastY = 0, lastCheck = 0;
+  function paintCover(){
+    const w = canvas.width, h = canvas.height;
+    ctx.globalCompositeOperation = 'source-over';
+    const grad = ctx.createLinearGradient(0,0,w,h);
+    grad.addColorStop(0, '#EEE4FA'); grad.addColorStop(.45, '#B99CDB'); grad.addColorStop(1, '#6C4FA5');
+    ctx.fillStyle = grad; ctx.fillRect(0,0,w,h);
+    const shine = ctx.createRadialGradient(w*.35,h*.27,4,w*.35,h*.27,w*.55);
+    shine.addColorStop(0,'rgba(255,255,255,.72)'); shine.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle = shine; ctx.fillRect(0,0,w,h);
+    for(let i=0;i<180;i++){
+      const x=Math.random()*w,y=Math.random()*h,r=Math.random()*1.6+.25;
+      ctx.fillStyle = i%3===0 ? 'rgba(255,255,255,.82)' : 'rgba(59,42,102,.28)';
+      ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+    }
+    ctx.font = window.LANG==='ur' ? '500 13px "Noto Nastaliq Urdu", serif' : '600 12px Cormorant Garamond, serif';
+    ctx.fillStyle='rgba(255,255,255,.78)'; ctx.textAlign='center';
+    ctx.fillText(window.UI_SCRATCH || '', w/2, h*.80);
+  }
+  paintCover();
+  window.__repaintScratch = function(){ if(!touched && !revealed) paintCover(); };
+  function pos(e){
+    const r=canvas.getBoundingClientRect();
+    return { x:(e.clientX-r.left)*(canvas.width/r.width), y:(e.clientY-r.top)*(canvas.height/r.height) };
+  }
+  function erase(x,y){
+    ctx.globalCompositeOperation='destination-out';
+    ctx.lineCap='round'; ctx.lineJoin='round'; ctx.lineWidth=42;
+    ctx.beginPath(); ctx.moveTo(lastX,lastY); ctx.lineTo(x,y); ctx.stroke();
+    ctx.beginPath(); ctx.arc(x,y,21,0,Math.PI*2); ctx.fill();
+    lastX=x; lastY=y;
+  }
+  function scratchedPercent(){
+    const data=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+    let transparent=0,total=0;
+    for(let y=0;y<canvas.height;y+=7) for(let x=0;x<canvas.width;x+=7){
+      total++; if(data[(y*canvas.width+x)*4+3]<25) transparent++;
+    }
+    return transparent/total;
+  }
+  function lavenderConfetti(){
+    const pieces=[]; const start=performance.now();
+    const colors=['#CDB8EC','#B79ADB','#9C7BC9','#7E5CB3','#E7DCF7','#F8F3FF','#E4C9A6'];
+    const rect=canvas.getBoundingClientRect();
+    const ox=rect.left+rect.width/2, oy=rect.top+rect.height*.42;
+    for(let i=0;i<120;i++){
+      const a=Math.random()*Math.PI*2, speed=2+Math.random()*6;
+      pieces.push({x:ox,y:oy,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed-3-Math.random()*3,
+        r:3+Math.random()*5,rot:Math.random()*6.28,vr:(Math.random()-.5)*.3,
+        color:colors[i%colors.length],heart:Math.random()<.28});
+    }
+    const c=document.createElement('canvas');
+    c.style.cssText='position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:99999';
+    c.width=innerWidth*devicePixelRatio; c.height=innerHeight*devicePixelRatio;
+    document.body.appendChild(c);
+    const x=c.getContext('2d'); x.scale(devicePixelRatio,devicePixelRatio);
+    function frame(now){
+      x.clearRect(0,0,innerWidth,innerHeight);
+      for(const p of pieces){
+        p.vy+=.11; p.vx*=.992; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr;
+        x.save(); x.translate(p.x,p.y); x.rotate(p.rot); x.fillStyle=p.color;
+        if(p.heart){ x.beginPath(); x.moveTo(0,3); x.bezierCurveTo(-7,-2,-5,-7,0,-4); x.bezierCurveTo(5,-7,7,-2,0,3); x.fill(); }
+        else{ x.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.55); }
+        x.restore();
+      }
+      if(now-start<2600) requestAnimationFrame(frame); else c.remove();
+    }
+    requestAnimationFrame(frame);
+  }
+  function completeReveal(){
+    if(revealed) return;
+    revealed=true;
+    canvas.style.opacity='0';
+    if(label) label.style.opacity='0';
+    if(hint) hint.style.opacity='0';
+    const shimmer=document.getElementById('scratchShimmer');
+    if(shimmer){ shimmer.style.opacity='0'; }
+    lavenderConfetti();
+    setTimeout(()=>{ canvas.style.display='none'; if(shimmer) shimmer.style.display='none'; },700);
+  }
+  function move(e){
+    if(!scratching||revealed) return;
+    e.preventDefault();
+    const p=pos(e); erase(p.x,p.y);
+    if(Date.now()-lastCheck>100){
+      lastCheck=Date.now();
+      if(scratchedPercent()>.26) completeReveal();
+    }
+  }
+  canvas.addEventListener('pointerdown',e=>{
+    if(revealed) return;
+    touched=true; scratching=true;
+    canvas.setPointerCapture?.(e.pointerId);
+    const p=pos(e); lastX=p.x; lastY=p.y; erase(p.x,p.y);
+    e.preventDefault();
+  });
+  canvas.addEventListener('pointermove',move);
+  canvas.addEventListener('pointerup',()=>scratching=false);
+  canvas.addEventListener('pointercancel',()=>scratching=false);
+  canvas.addEventListener('pointerleave',()=>scratching=false);
+  canvas.setAttribute('tabindex','0');
+  canvas.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); completeReveal(); }
+  });
+})();
+
+/* ---------- Language, content + RSVP ---------- */
+(function(){
+  const W = WEDDING;
+  const $ = id => document.getElementById(id);
+  const UI = {
+    en:{
+      envAria:"Tap the seal to open your invitation", envHint:"Tap the seal",
+      heroWelcome:"You are lovingly invited to the wedding of",
+      touch:"Touch to reveal", saveDate:"Save the Date", dateIs:"the date is", scratchHere:"scratch here",
+      hint:"drag your finger across the heart",
+      addCal:"Add to Google Calendar", ics:"Add to Apple / ICS", directions:"Get directions",
+      glimpse:"A glimpse", withYou:"With You!",
+      counting:"Counting down", forever:"To Forever", days:"Days", hours:"Hours", mins:"Minutes", secs:"Seconds",
+      events:"Celebrations", ourEvents:"Our Events", datesGlance:"Dates at a Glance",
+      home:"Home", details:"View details", dayOf:"The day of", timeline:"Our Timeline",
+      where:"Where to find us", venue:"Venue", viewMap:"View on Google Maps",
+      rsvp:"RSVP", fullName:"Your full name", namePh:"e.g. Sara Khan", attending:"Will you be attending?",
+      select:"Select...", accepts:"Joyfully accepts", declines:"Regretfully declines",
+      guestCount:"Number of guests", yourMsg:"Your message", msgPh:"Write your wishes...",
+      rsvpBtn:"RSVP on WhatsApp", thanksTitle:"Thank you",
+      thanksBody:"Your RSVP is ready in WhatsApp. We can’t wait to celebrate with you.",
+      footEye:"With love and gratitude", amp:"&", respond:d=>`Kindly respond by ${d}`
+    },
+    ur:{
+      envAria:"دعوت نامہ کھولنے کے لیے مہر پر ٹیپ کریں", envHint:"مہر پر ٹیپ کریں",
+      heroWelcome:"آپ کو نہایت محبت سے شادی کی تقریب میں مدعو کیا جاتا ہے",
+      touch:"دیکھنے کے لیے چھوئیں", saveDate:"تاریخ محفوظ کریں", dateIs:"تاریخ ہے", scratchHere:"یہاں سکریچ کریں",
+      scratchCanvas:"تاریخ دیکھنے کے لیے سکریچ کریں", hint:"دل پر انگلی پھیریں",
+      addCal:"گوگل کیلنڈر میں شامل کریں", ics:"ایپل / ICS میں شامل کریں", directions:"راستہ دیکھیں",
+      glimpse:"ایک جھلک", withYou:"آپ کے ساتھ!",
+      counting:"الٹی گنتی", forever:"ہمیشہ تک", days:"دن", hours:"گھنٹے", mins:"منٹ", secs:"سیکنڈ",
+      events:"تقریبات", ourEvents:"ہماری تقریبات", datesGlance:"ایک نظر میں تاریخیں",
+      home:"ہوم", details:"تفصیل دیکھیں", dayOf:"اس دن کا پروگرام", timeline:"ہمارا پروگرام",
+      where:"ہم سے کہاں ملیں", venue:"مقامِ تقریب", viewMap:"گوگل میپس پر دیکھیں",
+      rsvp:"تصدیقِ شرکت", fullName:"آپ کا پورا نام", namePh:"مثلاً سارہ خان", attending:"کیا آپ شرکت کریں گے؟",
+      select:"منتخب کریں...", accepts:"خوشی سے قبول ہے", declines:"معذرت، شرکت نہیں کر سکیں گے",
+      guestCount:"مہمانوں کی تعداد", yourMsg:"آپ کا پیغام", msgPh:"اپنی نیک خواہشات لکھیں...",
+      rsvpBtn:"واٹس ایپ پر جواب دیں", thanksTitle:"شکریہ",
+      thanksBody:"آپ کا جواب واٹس ایپ میں تیار ہے۔ ہم آپ کے ساتھ جشن منانے کے منتظر ہیں۔",
+      footEye:"محبت اور شکرگزاری کے ساتھ", amp:"اور", respond:d=>`براہِ کرم ${d} تک جواب دیجیے`
+    }
+  };
+
+  $('carouselFrame').innerHTML = W.gallery.map((item, i) => {
+    const src = item.src;
+    const alt = (item.alt || '').replace(/"/g,'&quot;');
+    return `<img src="${src}" alt="${alt}" loading="${i===0?'eager':'lazy'}" decoding="async" class="${i===0?'is-active':''}">`;
+  }).join('');
+  $('carouselDots').innerHTML = W.gallery.map((_,i) =>
+    `<button type="button" class="${i===0?'is-active':''}" aria-label="Show image ${i+1}"></button>`
+  ).join('');
+
+  let calendarURL = '#';
+  window.LANG = 'en';
+  window.UI_SCRATCH = UI.en.scratchCanvas;
+
+  function setLang(lang){
+    const ur = lang === 'ur';
+    const T = UI[lang];
+    const D = ur ? W.ur : {
+      bride:W.bride, groom:W.groom, brideParents:W.brideParents, groomParents:W.groomParents,
+      dateNum:W.dateOrdinal, monthYear:`${W.month} ${W.year}`,
+      timelineDate:`${W.dateNum} ${W.month.slice(0,3)}, ${W.year}`, rsvpDeadline:W.rsvpDeadline,
+      venueName:W.venueName, venueAddress:W.venueAddress, program:W.program,
+      welcomeMessage:W.welcomeMessage, welcomeNote:W.welcomeNote, closingMessage:W.closingMessage
+    };
+    window.LANG = lang;
+    window.UI_SCRATCH = T.scratchCanvas;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = ur ? 'rtl' : 'ltr';
+
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = T[el.dataset.i18n]; });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.placeholder = T[el.dataset.i18nPh]; });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => { el.setAttribute('aria-label', T[el.dataset.i18nAria]); });
+
+    $('heroAmp').textContent = T.amp;
+    $('pageTitle').textContent = ur ? `${D.bride} اور ${D.groom} — دعوت نامہ` : `${D.bride} & ${D.groom} — Wedding Invitation`;
+    $('heroBride').textContent = D.bride;
+    $('heroGroom').textContent = D.groom;
+    $('groomParents').textContent = D.groomParents;
+    $('brideParents').textContent = D.brideParents;
+    $('welcomeMessage').textContent = D.welcomeMessage;
+    $('welcomeNote').textContent = D.welcomeNote;
+
+    const nextEv = getNextEvent();
+    if (nextEv) {
+      const evDate = new Date(nextEv.startISO);
+      const monthsEn = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      const monthsUr = ["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر"];
+      const dayNum = evDate.getDate();
+      const monthStr = ur ? monthsUr[evDate.getMonth()] : monthsEn[evDate.getMonth()];
+      const yearStr = evDate.getFullYear();
+      const getOrdinal = (n) => { const s=["th","st","nd","rd"],v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); };
+      $('revealDateNum').textContent = ur ? String(dayNum).replace(/\d/g, c => '۰۱۲۳۴۵۶۷۸۹'[c]) : getOrdinal(dayNum);
+      $('revealMonthYear').textContent = `${monthStr} ${yearStr}`;
+      const scratchLabel = document.getElementById('scratchEventName');
+      if (scratchLabel) scratchLabel.textContent = ur ? "تاریخ ہے" : "the date is";
+    }
+
+    $('venueName').textContent = D.venueName;
+    $('venueAddress').textContent = D.venueAddress;
+    $('venueMapBtn').href = W.venueMap;
+    $('directionsBtn').href = mapsDirections(W.venueName, W.venueAddress);
+
+    /* FIX: RSVP deadline — sirf tab show karo jab buyer ne di ho */
+    if (D.rsvpDeadline) {
+      $('rsvpEyebrow').textContent = T.respond(D.rsvpDeadline);
+      $('rsvpEyebrow').style.display = '';
+    } else {
+      $('rsvpEyebrow').textContent = '';
+      $('rsvpEyebrow').style.display = 'none';
+    }
+
+    $('footerNames').textContent = ur ? `${D.bride} اور ${D.groom}` : `${D.bride} & ${D.groom}`;
+    $('closingMessage').textContent = D.closingMessage;
+    $('thanksTitle').textContent = T.thanksTitle;
+    $('thanksBody').textContent = T.thanksBody;
+
+    /* TIMELINE (home page / hidden initial) */
+    const timelineList = document.getElementById('timelineList');
+    const ev = window.currentEvent || getNextEvent();
+    const isUrTimeline = (lang === 'ur');
+    const program = ev
+      ? (isUrTimeline
+          ? (Array.isArray(ev.ur?.program) ? ev.ur.program : (Array.isArray(ev.program) ? ev.program : []))
+          : (Array.isArray(ev.program) ? ev.program : []))
+      : [];
+    const evDateLabel = isUrTimeline
+      ? (ev?.ur?.date || ev?.date || D.timelineDate || '')
+      : (ev?.date || D.timelineDate || '');
+
+    timelineList.innerHTML = program
+      .filter(it => it && it.time && String(it.time).trim() !== '')
+      .map(it => `
+        <div class="t-item">
+          <div class="t-title">${it.label || ''}</div>
+          <div class="t-time">${evDateLabel} · ${fmtTime(it.time)}</div>
+          <div class="t-desc">${it.sub || ''}</div>
+        </div>`).join('');
+
+    const stamp = iso => iso.replace(/[-:]/g,'').replace(/\.\d{3}$/,'');
+    const params = new URLSearchParams({
+      action:'TEMPLATE',
+      text: ur ? `${D.bride} اور ${D.groom} کی شادی` : `${W.bride} & ${W.groom}'s Wedding`,
+      dates:`${stamp(W.startISO)}/${stamp(W.endISO)}`,
+      ctz:W.timezone || 'Asia/Karachi',
+      details: ur ? `${D.bride} اور ${D.groom}` : `${W.bride} & ${W.groom}`,
+      location: ur ? `${D.venueName}، ${D.venueAddress}` : W.venueName + ', ' + W.venueAddress
+    });
+    calendarURL = 'https://calendar.google.com/calendar/render?' + params.toString();
+    $('saveDateBtn').href = calendarURL;
+
+    document.querySelectorAll('.lang-toggle button').forEach(b => {
+      const on = b.dataset.lang === lang;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', on);
+    });
+    if(window.__repaintScratch) window.__repaintScratch();
+    if(window.__tick) window.__tick();
+    if(window.__render) window.__render();
+    try{ localStorage.setItem('inviteLang', lang); }catch(e){}
+  }
+
+  $('saveDateBtn').target = '_blank';
+  $('saveDateBtn').addEventListener('click', function(e){
+    e.preventDefault();
+    window.location.href = calendarURL;
+  });
+
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+  $('rsvpForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const ur = window.LANG === 'ur';
+    const name = $('rname').value.trim();
+    const attending = $('rattend').value;
+    const guests = $('rguests').value || '1';
+    const message = $('rmsg').value.trim();
+    const text = (ur ? [
+      `السلام علیکم! میں ${W.ur.bride} اور ${W.ur.groom} کی شادی کے لیے جواب دینا چاہتا/چاہتی ہوں۔`,
+      `نام: ${name}`, `شرکت: ${attending}`, `مہمان: ${guests}`, message ? `پیغام: ${message}` : ''
+    ] : [
+      `Hi! I'd like to RSVP for ${W.bride} & ${W.groom}'s wedding.`,
+      `Name: ${name}`, `Attendance: ${attending}`, `Guests: ${guests}`, message ? `Message: ${message}` : ''
+    ]).filter(Boolean).concat(window.__tag ? [window.__tag()] : []).join('\n');
+    const number = W.whatsappNumber.replace(/\D/g,'');
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+    $('rsvpForm').style.display = 'none';
+    $('rsvpThanks').classList.add('show');
+    const T = UI[ur ? 'ur' : 'en'];
+    $('thanksTitle').textContent = T.thanksTitle;
+    $('thanksBody').textContent = T.thanksBody;
+  });
+
+  let saved = 'en';
+  try{ saved = localStorage.getItem('inviteLang') || 'en'; }catch(e){}
+  setLang(saved === 'ur' ? 'ur' : 'en');
+})();
+
+/* ---------- Gallery carousel + swipe ---------- */
+(function(){
+  const frame = document.getElementById('carouselFrame');
+  if(!frame) return;
+  const imgs = Array.from(frame.querySelectorAll('img'));
+  const dots = Array.from(document.getElementById('carouselDots').children);
+  const prev = document.getElementById('carouselPrev');
+  const next = document.getElementById('carouselNext');
+  let idx = 0, timer = null, startX = null, startY = null;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(i){
+    if(!imgs.length) return;
+    imgs[idx].classList.remove('is-active');
+    if(dots[idx]) dots[idx].classList.remove('is-active');
+    idx = (i + imgs.length) % imgs.length;
+    imgs[idx].classList.add('is-active');
+    if(dots[idx]) dots[idx].classList.add('is-active');
+  }
+  function startAuto(){ if(reduced) return; clearInterval(timer); timer = setInterval(()=>show(idx+1), 5500); }
+  function stopAuto(){ clearInterval(timer); }
+  dots.forEach((dot,i)=>dot.addEventListener('click',()=>{ show(i); startAuto(); }));
+  if(prev) prev.addEventListener('click',()=>{ show(idx-1); startAuto(); });
+  if(next) next.addEventListener('click',()=>{ show(idx+1); startAuto(); });
+  frame.addEventListener('pointerdown', e => {
+    startX = e.clientX; startY = e.clientY;
+    frame.setPointerCapture?.(e.pointerId); stopAuto();
+  });
+  frame.addEventListener('pointerup', e => {
+    if(startX === null) return;
+    const dx = e.clientX - startX, dy = e.clientY - startY;
+    if(Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) show(idx + (dx < 0 ? 1 : -1));
+    startX = null; startY = null; startAuto();
+  });
+  frame.addEventListener('pointercancel', ()=>{ startX = null; startY = null; startAuto(); });
+  frame.addEventListener('mouseenter', stopAuto);
+  frame.addEventListener('mouseleave', startAuto);
+  frame.addEventListener('focusin', stopAuto);
+  frame.addEventListener('focusout', startAuto);
+  startAuto();
+})();
+
+/* ---------- Countdown ---------- */
+function tick(){
+  const nextEv = getNextEvent();
+  let diff = 0;
+  if (nextEv) diff = new Date(nextEv.startISO) - new Date();
+  if(diff < 0) diff = 0;
+  const d = Math.floor(diff/(1000*60*60*24));
+  const h = Math.floor((diff/(1000*60*60))%24);
+  const m = Math.floor((diff/(1000*60))%60);
+  const s = Math.floor((diff/1000)%60);
+  const N = v => { v = String(v).padStart(2,'0'); return window.LANG === 'ur' ? v.replace(/\d/g, c => '۰۱۲۳۴۵۶۷۸۹'[c]) : v; };
+  document.getElementById('cd-days').textContent = N(d);
+  document.getElementById('cd-hours').textContent = N(h);
+  document.getElementById('cd-mins').textContent = N(m);
+  document.getElementById('cd-secs').textContent = N(s);
+}
+window.__tick = tick;
+tick();
+setInterval(tick, 1000);
+
+/* ---------- Menu + event rendering ---------- */
+(function(){
+  const W = WEDDING;
+  const $ = id => document.getElementById(id);
+  const T = () => ({ en:{ home:'Home', details:'View details' }, ur:{ home:'ہوم', details:'تفصیل دیکھیں' } })[window.LANG === 'ur' ? 'ur' : 'en'];
+  const cur = () => {
+    const m = location.hash.match(/^#\/(\w+)/);
+    return m && WEDDING.events.find(e => e.id === m[1]);
+  };
+  const dd = e => window.LANG === 'ur' ? Object.assign({}, e, e.ur) : e;
+
+  const nav = document.createElement('div');
+  nav.innerHTML = `
+    <button id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div id="menuOverlay"></div>
+    <nav id="menuDrawer"></nav>`;
+  while(nav.firstChild) document.body.appendChild(nav.firstChild);
+  const toggle = open => document.body.classList.toggle('menu-open', open);
+  $('menuBtn').onclick = () => toggle(true);
+  $('menuOverlay').onclick = () => toggle(false);
+
+  window.__tag = () => `[Full invite${cur() ? ' · ' + cur().name : ''}]`;
+
+  const stamp = iso => iso.replace(/[-:]/g,'');
+  const KEYS = ['ivory','blush','lilac','plum','plum-deep','near-black','gold','gold-soft','ink','ink-soft'];
+  const PAT = {
+    paisley:'<path d="M30 12c10 0 16 8 12 18-4 9-14 10-18 4 4 1 8-1 8-6 0-4-4-6-8-4 0-6 3-12 6-12z"/><circle cx="46" cy="48" r="2"/>',
+    star:'<path d="M30 8l4 14 14-4-10 10 10 10-14-4-4 14-4-14-14 4 10-10-10-10 14 4z"/>',
+    lattice:'<path d="M30 6l24 24-24 24L6 30z M30 18l12 12-12 12-12-12z"/>',
+    lights:'<circle cx="15" cy="15" r="3"/><circle cx="45" cy="40" r="2"/><circle cx="42" cy="12" r="1.5"/><circle cx="12" cy="46" r="1.5"/>'
+  };
+
+  function applyTheme(ev){
+    const R = document.documentElement;
+    const th = ev && ev.theme;
+    KEYS.forEach(k => R.style.removeProperty('--' + k));
+    R.classList.remove('ev-dark');
+    $('evHead').style.backgroundImage = '';
+    if(!th) return;
+    KEYS.forEach((k,i) => R.style.setProperty('--' + k, th.v[i]));
+    R.classList.toggle('ev-dark', !!th.dark);
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="none" stroke="${th.v[6]}" stroke-opacity=".4" stroke-width="1.2">${PAT[th.pat] || ''}</svg>`;
+    $('evHead').style.backgroundImage = `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+  }
+
+  window.__render = function(scroll){
+    const ev = cur();
+    const t = T();
+    const ur = window.LANG === 'ur';
+
+    if((ev && ev.id) !== window.__lastEv){
+      window.__lastEv = ev && ev.id;
+      applyTheme(ev);
+      const es = $('eventSections');
+      es.classList.remove('enter'); void es.offsetWidth; es.classList.add('enter');
+    }
+
+    $('homeTop').style.display = ev ? 'none' : '';
+    $('rsvpSection').style.display = ev ? 'none' : '';
+    $('eventSections').style.display = ev ? '' : 'none';
+
+    $('menuDrawer').innerHTML = `
+      <a href="#/home" class="${ev ? '' : 'on'}">${t.home}</a>
+      ${WEDDING.events.map(e => `<a href="#/${e.id}" class="${ev && ev.id === e.id ? 'on' : ''}">${dd(e).name}</a>`).join('')}`;
+
+    const MONS_ = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    const dig = v => ur ? String(v).replace(/\d/g, c => '\u06f0\u06f1\u06f2\u06f3\u06f4\u06f5\u06f6\u06f7\u06f8\u06f9'[c]) : String(v);
+
+    $('eventsStrip').innerHTML = WEDDING.events.map(e => {
+      const d = dd(e), pp = e.startISO.slice(0,10).split('-'), dt = new Date(+pp[0], +pp[1]-1, +pp[2]);
+      const mon = ur ? dt.toLocaleDateString('ur-PK',{month:'long'}) : MONS_[+pp[1]-1];
+      const wd = dt.toLocaleDateString(ur ? 'ur-PK' : 'en-GB',{weekday:'long'});
+      const c = e.theme && e.theme.v ? e.theme.v[5] : '#21173A';
+      return `<a class="cal-tile" href="#/${e.id}" style="--c:${c}">
+        <span class="cal-top">${mon} ${dig(pp[0])}</span>
+        <span class="cal-day">${dig(+pp[2])}</span>
+        <span class="cal-name">${d.name}</span>
+        <span class="cal-wd">${wd}</span></a>`;
+    }).join('');
+
+    $('evCardList').innerHTML = WEDDING.events.map(e => {
+      const d = dd(e);
+      return `<a class="celeb" href="#/${e.id}" aria-label="${t.details}: ${d.name}" style="background-image:url(images/${(e.themeId || e.id)}-ambience.webp)">
+        <span class="celeb-info">
+          <span class="celeb-txt"><b>${d.name}</b><small>${d.date}</small></span>
+          <span class="celeb-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span></a>`;
+    }).join('');
+
+    [...document.body.classList].filter(c => c.startsWith('th-')).forEach(c => document.body.classList.remove(c));
+
+    if(ev){
+      document.body.classList.add('th-' + ev.themeId);
+      const es = $('eventSections');
+      es.classList.remove('anim'); void es.offsetWidth; es.classList.add('anim');
+
+      const d = dd(ev);
+      const fallback = 'linear-gradient(135deg,var(--plum-deep),var(--plum))';
+      const im = n => `url(images/${ev.themeId}-${n}.webp)`;
+
+      $('evHead').style.backgroundImage = `${im('hero')}, ${fallback}`;
+      $('evDetail').style.backgroundImage = `${im('detail')}, ${fallback}`;
+      $('evAmb').style.backgroundImage = `${im('ambience')}, ${fallback}`;
+
+      $('evAmbName').textContent = d.venueName;
+      $('evAmbDate').textContent = d.date;
+      $('evEyebrow').textContent = d.note;
+      $('evMood').textContent = ev.theme && ev.theme.mood ? ev.theme.mood[ur ? 'ur' : 'en'] : '';
+      $('evDetailMood').textContent = ev.mood || '';
+      $('evTitle').textContent = d.name;
+      $('evDate').textContent = d.date;
+
+      const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const pp = ev.startISO.slice(0,10).split('-');
+      const shortDate = ur ? d.date : `${+pp[2]} ${MON[+pp[1]-1]}, ${pp[0]}`;
+
+      /* =========================================================
+         FIX: TIMELINE — form ke gatheringTime / dinnerTime /
+         rukhsatiTime se dynamic cards banao (no hardcoded fallback)
+         ========================================================= */
+      const timelineItems = [];
+      const rawData = ev;
+
+      if (rawData.gatheringTime) {
+        timelineItems.push({
+          label: ur ? 'مہمانوں کی آمد' : 'Guest Arrival',
+          time: fmtTime(rawData.gatheringTime),
+          sub: ur ? 'ہماری تقریب کے آغاز پر تشریف لائیں۔' : 'We warmly welcome you as our celebration begins.'
+        });
+      }
+      if (rawData.dinnerTime) {
+        timelineItems.push({
+          label: ur ? 'عشائیہ' : 'Dinner Time',
+          time: fmtTime(rawData.dinnerTime),
+          sub: ur ? 'عشائیہ میں شامل ہوں۔' : 'Join us for a festive dinner.'
+        });
+      }
+      if (rawData.rukhsatiTime) {
+        timelineItems.push({
+          label: ur ? 'رخصتی' : 'Rukhsati Time',
+          time: fmtTime(rawData.rukhsatiTime),
+          sub: ur ? 'الوداع کا شاندار لمحہ۔' : 'The grand farewell.'
+        });
+      }
+      /* Safe fallback — sirf agar form ne koi time na diya ho (validation edge case) */
+      if (timelineItems.length === 0 && Array.isArray(d.program)) {
+        d.program.forEach(item => {
+          timelineItems.push({ label: item.label, time: fmtTime(item.time), sub: item.sub });
+        });
+      }
+
+      $('timelineList').innerHTML = timelineItems.map(item => `
+        <div class="t-item">
+          <div class="t-title">${item.label}</div>
+          <div class="t-time">${shortDate} \u00b7 ${item.time}</div>
+          <div class="t-desc">${item.sub}</div>
+        </div>`).join('');
+
+      $('venueName').textContent = d.venueName;
+      $('venueAddress').textContent = d.venueAddress;
+      $('venueMapBtn').href = ev.venueMap;
+      $('directionsBtn').href = mapsDirections(ev.venueName, ev.venueAddress);
+
+      $('evCalBtn').href = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
+        action:'TEMPLATE', text:`${ev.name} — ${W.bride} & ${W.groom}`,
+        dates:`${stamp(ev.startISO)}/${stamp(ev.endISO)}`,
+        ctz:W.timezone || 'Asia/Karachi',
+        location:`${ev.venueName}, ${ev.venueAddress}`
+      });
+
+      document.title = `${d.name} — ${W.bride} & ${W.groom}`;
+    }
+
+    if(scroll === true) window.scrollTo(0,0);
+    if(window.__observeReveals) window.__observeReveals();
+  };
+
+  window.addEventListener('hashchange',()=>{ toggle(false); window.__render(true); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') toggle(false); });
+  window.__render();
+})();
+
+/* ---------- Scroll reveals ---------- */
+(function(){
+  let observer = null;
+  window.__observeReveals = function(){
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const els = document.querySelectorAll('section:not(.hero), .celeb, .cal-tile');
+    if(reduced || !('IntersectionObserver' in window)){ els.forEach(el => el.classList.add('is-visible')); return; }
+    if(!observer){
+      observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } });
+      }, { rootMargin:'0px 0px -8% 0px', threshold:.08 });
+    }
+    els.forEach(el => {
+      if(el.dataset.revealBound) return;
+      el.dataset.revealBound = '1'; el.classList.add('reveal-item'); observer.observe(el);
+    });
+  };
+  window.__observeReveals();
+})();
+
+/* ---------- Scroll button ---------- */
+(function(){
+  const btn = document.getElementById('scrollBtn');
+  if(!btn) return;
+  const root = document.documentElement;
+  const tops = () => Array.from(document.querySelectorAll('#inviteContent section, #inviteContent footer'))
+    .filter(el => el.offsetHeight > 0).map(el => el.getBoundingClientRect().top + window.scrollY);
+  const atBottom = () => root.scrollHeight > window.innerHeight + 50 && window.innerHeight + window.scrollY >= root.scrollHeight - 8;
+  function update(){
+    const b = atBottom();
+    btn.dataset.state = b ? 'up' : 'down';
+    btn.setAttribute('aria-label', b ? 'Back to top' : 'Scroll to next section');
+  }
+  btn.addEventListener('click', () => {
+    if(atBottom()){ window.scrollTo({ top:0, behavior:'smooth' }); return; }
+    const y = window.scrollY, next = tops().find(t => t > y + 24);
+    window.scrollTo({ top: next !== undefined ? next : root.scrollHeight, behavior:'smooth' });
+  });
+  addEventListener('scroll', update, { passive:true });
+  addEventListener('resize', update);
+  addEventListener('hashchange', () => setTimeout(update, 60));
+  setInterval(update, 500);
+  update();
+})();
+
+/* ---------- Background music toggle ---------- */
+(function(){
+  const audio = document.getElementById('bgMusic');
+  const btn = document.getElementById('musicBtn');
+  if(!audio || !btn) return;
+  btn.addEventListener('click', async () => {
+    if(audio.paused){
+      try{
+        await audio.play();
+        btn.setAttribute('aria-pressed','true');
+        btn.setAttribute('aria-label','Pause background music');
+      }catch(e){ btn.setAttribute('aria-pressed','false'); btn.setAttribute('aria-label','Toggle background music'); }
+    }else{
+      audio.pause();
+      btn.setAttribute('aria-pressed','false');
+      btn.setAttribute('aria-label','Play background music');
+    }
+  });
+  audio.addEventListener('play', ()=>btn.setAttribute('aria-pressed','true'));
+  audio.addEventListener('pause', ()=>btn.setAttribute('aria-pressed','false'));
+})();
+
+/* ============================================================
+   FORM SYNC — postMessage + renderInvite
+   ============================================================ */
+window.addEventListener('message', function(e) {
+  if (e.origin !== location.origin) return;
+  if (e.data && e.data.type === 'invite-data') window.renderInvite(e.data.data, { preview: e.data.preview, mode: e.data.mode });
+});
+
+window.renderInvite = function(data, opts) {
+  opts = opts || {};
+  const previewMode = new URLSearchParams(location.search).get('preview');
+  const isFormPreview = (opts.preview === true) || (opts.mode === 'order')
+    || previewMode === '2' || previewMode === 'order';
+
+  const str = v => v == null ? '' : String(v).trim();
+  const setIf = (obj, key, val) => { if (val !== undefined && val !== null && val !== '') obj[key] = val; };
+  const ord = n => { const s=['th','st','nd','rd'],v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); };
+
+  const W = WEDDING;
+
+  /* ---------- 1) BRIDE / GROOM ---------- */
+  if (data.bride) {
+    if (data.bride.name || data.brideName)     W.bride = str(data.bride.name || data.brideName);
+    if (data.bride.nameUr || data.brideNameUr) W.ur.bride = str(data.bride.nameUr || data.brideNameUr);
+    const bf = data.bride.father ?? data.brideFather;
+    const bm = data.bride.mother ?? data.brideMother;
+    if (bf !== undefined || bm !== undefined) {
+      const parts = [str(bf), str(bm)].filter(Boolean);
+      if (parts.length) W.brideParents = 'Daughter of ' + parts.join(' & ');
+    }
+  }
+  if (data.groom) {
+    if (data.groom.name || data.groomName)     W.groom = str(data.groom.name || data.groomName);
+    if (data.groom.nameUr || data.groomNameUr) W.ur.groom = str(data.groom.nameUr || data.groomNameUr);
+    const gf = data.groom.father ?? data.groomFather;
+    const gm = data.groom.mother ?? data.groomMother;
+    if (gf !== undefined || gm !== undefined) {
+      const parts = [str(gf), str(gm)].filter(Boolean);
+      if (parts.length) W.groomParents = 'Son of ' + parts.join(' & ');
+    }
+  }
+
+  /* ---------- 2) TOP-LEVEL TEXTS ---------- */
+  setIf(W, 'welcomeMessage',  data.welcomeMessage);
+  setIf(W, 'welcomeNote',     data.welcomeNote);
+  setIf(W, 'closingMessage',  data.closingMessage);
+  setIf(W, 'tagline',         data.tagline);
+  setIf(W, 'whatsappNumber',  data.rsvpWhatsapp || data.whatsappNumber);
+  setIf(W, 'timezone',        data.timezone);
+  if (data.ur) {
+    setIf(W.ur, 'welcomeMessage', data.ur.welcomeMessage);
+    setIf(W.ur, 'welcomeNote',    data.ur.welcomeNote);
+    setIf(W.ur, 'closingMessage', data.ur.closingMessage);
+  }
+
+  /* ---------- FIX 2d) RSVP DEADLINE (optional) ---------- */
+  if (Object.prototype.hasOwnProperty.call(data, 'rsvpDeadline')) {
+    const raw = str(data.rsvpDeadline);
+    let dl = '';
+    if (raw) {
+      const dt = new Date(raw);
+      if (!isNaN(dt.getTime())) {
+        const dd2 = dt.getDate();
+        const s2 = ['th','st','nd','rd'], v2 = dd2 % 100;
+        const suffix = s2[(v2-20)%10] || s2[v2] || s2[0];
+        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        dl = `${dd2}${suffix} ${months[dt.getMonth()]}`;
+      } else {
+        dl = raw;
+      }
+    }
+    W.rsvpDeadline = dl;
+    if (W.ur) W.ur.rsvpDeadline = (data.ur && str(data.ur.rsvpDeadline)) || dl;
+  }
+
+  /* ---------- FIX 1b) AUDIO TRACK ---------- */
+  if (Object.prototype.hasOwnProperty.call(data, 'audio_track')) {
+    const track = str(data.audio_track);
+    const bgm = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    if (!track || track === 'none') {
+      window.__audioTrackEnabled = false;
+      if (bgm) {
+        bgm.pause(); bgm.removeAttribute('src');
+        bgm.querySelectorAll('source').forEach(s => s.remove());
+        try { bgm.load(); } catch(e){}
+      }
+      if (musicBtn) musicBtn.style.display = 'none';
+    } else {
+      window.__audioTrackEnabled = true;
+      if (bgm) {
+        bgm.querySelectorAll('source').forEach(s => s.remove());
+        bgm.src = `../audio/${track}.mp3`;
+        try { bgm.load(); } catch(e){}
+      }
+      if (musicBtn) musicBtn.style.display = '';
+    }
+  }
+
+  /* ---------- FIX 2c) GUEST NOTE ---------- */
+  {
+    const noteText = str(data.note || data.guestNote);
+    const nW = document.getElementById('guestNoteWrap');
+    const nE = document.getElementById('guestNote');
+    if (nW && nE) {
+      if (noteText) { nE.textContent = noteText; nW.hidden = false; }
+      else { nE.textContent = ''; nW.hidden = true; }
+    }
+  }
+
+  /* ---------- 3) MAIN EVENT ---------- */
+  if (data.mainEvent) {
+    const m = data.mainEvent;
+    setIf(W, 'dateNum',     m.dateNum);
+    if (m.dateOrdinal) W.dateOrdinal = m.dateOrdinal;
+    else if (m.dateNum) W.dateOrdinal = ord(+m.dateNum);
+    setIf(W, 'month', m.month); setIf(W, 'year', m.year); setIf(W, 'day', m.day);
+    setIf(W, 'startTime', m.startTime); setIf(W, 'endTime', m.endTime);
+    if (m.startISO) W.startISO = m.startISO;
+    else if (m.date && (m.startTime24 || m.gatheringTime)) W.startISO = `${m.date}T${m.startTime24 || m.gatheringTime}:00`;
+    if (m.endISO) W.endISO = m.endISO;
+    else if (m.date && m.endTime24) W.endISO = `${m.date}T${m.endTime24}:00`;
+    setIf(W, 'venueName', m.venueName); setIf(W, 'venueAddress', m.venueAddress);
+    setIf(W, 'venueMap', m.venueMap || m.mapsUrl);
+    if (Array.isArray(m.program) && m.program.length) {
+      W.program = m.program.map(p => ({ time: str(p.time), label: str(p.label), sub: str(p.sub) }));
+    }
+    setIf(W.ur, 'dateNum', m.dateNumUr); setIf(W.ur, 'monthYear', m.monthYear);
+    setIf(W.ur, 'timelineDate', m.timelineDate); setIf(W.ur, 'venueName', m.venueNameUr);
+    setIf(W.ur, 'venueAddress', m.venueAddressUr);
+    if (Array.isArray(m.programUr) && m.programUr.length) {
+      W.ur.program = m.programUr.map(p => ({ time: str(p.time), label: str(p.label), sub: str(p.sub) }));
+    }
+  }
+
+  /* ---------- 4) EVENTS ---------- */
+  if (Array.isArray(data.events) && data.events.length) {
+    const mappedEvents = [];
+    data.events.forEach(ev => {
+      const typeLower = str(ev.type || ev.eventType || ev.name).toLowerCase();
+      let base = null;
+      if (/mehendi|dholki|mayoon/.test(typeLower)) base = TEMPLATE_BASE_EVENTS.find(e => e.id === 'mehendi');
+      else if (/qawali|qawwali/.test(typeLower)) base = TEMPLATE_BASE_EVENTS.find(e => e.id === 'qawali');
+      else if (/nikah|nikkah|barat/.test(typeLower)) base = TEMPLATE_BASE_EVENTS.find(e => e.id === 'nikkah');
+      else if (/walima|valima|reception/.test(typeLower)) base = TEMPLATE_BASE_EVENTS.find(e => e.id === 'walima');
+      if (!base) return;
+
+      const newEv = JSON.parse(JSON.stringify(base));
+      newEv.id = typeLower.replace(/[^a-z0-9]/g, '') || base.id;
+      newEv.themeId = base.id;
+
+      const startT24 = ev.gatheringTime || ev.startTime24 || ev.startTime || base.startISO.slice(11,16);
+      const endT24   = ev.endTime24 || ev.endTime || ev.endingTime || base.endISO.slice(11,16);
+      const eventDate = ev.date || ev.eventDate || base.startISO.slice(0,10);
+      newEv.startISO = `${eventDate}T${startT24}:00`;
+      newEv.endISO   = `${eventDate}T${endT24}:00`;
+
+      const dObj = new Date(newEv.startISO);
+      const dateEn = dObj.toLocaleDateString('en-US', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+      const dateUr = dObj.toLocaleDateString('ur-PK', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+
+      setIf(newEv, 'name',         ev.type || ev.eventType || ev.name);
+      setIf(newEv, 'note',         ev.note || ev.description);
+      setIf(newEv, 'mood',         ev.mood);
+      setIf(newEv, 'date',         ev.dateDisplay || dateEn);
+      setIf(newEv, 'startTime',    ev.startTimeDisplay);
+      setIf(newEv, 'endTime',      ev.endTimeDisplay);
+
+      /* FIX 1a: timing fields copy — __render inhi se timeline banata hai */
+      newEv.gatheringTime = str(ev.gatheringTime) || null;
+      newEv.dinnerTime    = str(ev.dinnerTime) || null;
+      newEv.rukhsatiTime  = (str(ev.type || '').toLowerCase() === 'barat')
+                            ? (str(ev.rukhsatiTime) || null)
+                            : null;
+
+      setIf(newEv, 'venueName',    ev.venueName || ev.venue);
+      setIf(newEv, 'venueAddress', ev.venueAddress || ev.address);
+      if (ev.mapsUrl || ev.googleMapsLink || ev.mapUrl) {
+        newEv.venueMap = str(ev.mapsUrl || ev.googleMapsLink || ev.mapUrl);
+      } else if (newEv.venueName && newEv.venueAddress) {
+        newEv.venueMap = `https://maps.google.com/?q=${encodeURIComponent(newEv.venueName + ', ' + newEv.venueAddress)}`;
+      }
+
+      if (Array.isArray(ev.program) && ev.program.length) {
+        newEv.program = ev.program.map(p => ({ time: str(p.time), label: str(p.label), sub: str(p.sub) }));
+      }
+
+      if ((ev.themeMood || ev.moodEn) && newEv.theme) {
+        newEv.theme.mood = {
+          en: str(ev.themeMood || ev.moodEn),
+          ur: str(ev.themeMoodUr || ev.moodUr || ev.themeMood || ev.moodEn)
+        };
+      }
+
+           if (newEv.ur) {
+        // ✅ Urdu name translation (Nikkah / Barat issue fix)
+        const urduTypeMap = {
+          'mehendi': 'مہندی',
+          'mayoon': 'مایوں',
+          'dholki': 'ڈھولکی',
+          'qawali night': 'قوالی نائٹ',
+          'nikah': 'نکاح',
+          'barat': 'بارات',
+          'valima': 'ولیمہ'
+        };
+        setIf(newEv.ur, 'name', ev.typeUr || ev.nameUr || urduTypeMap[typeLower] || ev.type || ev.name);
+        
+        setIf(newEv.ur, 'note',         ev.noteUr);
+        
+        setIf(newEv.ur, 'note',         ev.noteUr);
+        setIf(newEv.ur, 'mood',         ev.moodUr);
+        setIf(newEv.ur, 'date',         ev.dateDisplayUr || dateUr);
+        setIf(newEv.ur, 'venueName',    ev.venueNameUr);
+        setIf(newEv.ur, 'venueAddress', ev.venueAddressUr);
+
+        /* FIX 1a urdu: timing fields */
+        newEv.ur.gatheringTime = newEv.gatheringTime;
+        newEv.ur.dinnerTime    = newEv.dinnerTime;
+        newEv.ur.rukhsatiTime  = newEv.rukhsatiTime;
+
+        if (Array.isArray(ev.program) && ev.program.length) {
+          newEv.ur.program = ev.program.map((p, i) => ({
+            time:  str(p.timeUr  || (base.ur.program[i] && base.ur.program[i].time)  || p.time),
+            label: str(p.labelUr || (base.ur.program[i] && base.ur.program[i].label) || p.label),
+            sub:   str(p.subUr   || (base.ur.program[i] && base.ur.program[i].sub)   || p.sub)
+          }));
+        }
+      }
+
+      mappedEvents.push(newEv);
+    });
+
+    if (mappedEvents.length) {
+      W.events.length = 0;
+      W.events.push(...mappedEvents);
+      if (location.hash && location.hash !== '#/home') {
+        const curId = location.hash.replace('#/', '');
+        if (!W.events.find(e => e.id === curId)) window.location.hash = '#/home';
+      }
+    }
+  }
+
+  /* ---------- 5) Re-render ---------- */
+  if (window.__render) window.__render(false);
+  const lang = window.LANG || 'en';
+  const langBtn = document.querySelector(`.lang-toggle button[data-lang="${lang}"]`);
+  if (langBtn) langBtn.click();
+
+  /* ---------- 6) Preview restrictions ---------- */
+  document.body.classList.toggle('is-preview-2', isFormPreview);
+  if (isFormPreview) {
+    const bgm = document.getElementById('bgMusic');
+    if (bgm) bgm.pause();
+    const envVideo = document.getElementById('envelopeVideo');
+    if (envVideo) { envVideo.pause(); envVideo.muted = true; }
+    document.querySelectorAll(
+      '#rsvpForm input, #rsvpForm select, #rsvpForm textarea, #rsvpForm button, ' +
+      '#saveDateBtn, #evCalBtn, #venueMapBtn, #directionsBtn'
+    ).forEach(el => {
+      el.classList.add('is-disabled');
+      if (['BUTTON','INPUT','SELECT','TEXTAREA'].includes(el.tagName)) el.disabled = true;
+    });
+  }
+};
+
+</script>
+<script src="../audio-fix.js"></script>
+</body>
+</html>

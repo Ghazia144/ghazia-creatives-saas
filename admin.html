@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Admin Dashboard — Ghazia Creatives</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/webp" href="images/favicon.webp">
+<link rel="apple-touch-icon" href="images/favicon.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.js"></script>
+<script src="js/config.js"></script>
+<script src="js/admin-config.js"></script>
+
+<style>
+  body { background: #f4f4f5; }
+  .admin-main { padding: 40px 0 80px; min-height: 80vh; }
+  
+  /* Login Card */
+  .login-card { max-width: 400px; margin: 60px auto; background: #fff; padding: 36px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+  .login-card h2 { text-align: center; margin-bottom: 24px; font-family: 'Playfair Display', serif; color: var(--maroon-dk); }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; color: var(--muted); }
+  .field input { width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 4px; font-family: 'Jost', sans-serif; font-size: 16px; }
+  .btn-login { width: 100%; padding: 14px; background: var(--maroon); color: #fff; border: none; border-radius: 4px; font-size: 16px; font-weight: 500; cursor: pointer; margin-top: 10px; }
+  
+  /* Dashboard Header */
+  .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .admin-header h1 { font-size: 28px; color: var(--maroon-dk); font-family: 'Playfair Display', serif; }
+  .btn-logout { background: transparent; border: 1px solid var(--line); padding: 8px 16px; border-radius: 4px; cursor: pointer; color: var(--muted); }
+  
+  /* Tabs */
+  .tabs { display: flex; gap: 10px; margin-bottom: 24px; }
+  .tab { padding: 10px 20px; background: #fff; border: 1px solid var(--line); border-radius: 30px; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--muted); transition: all 0.2s; }
+  .tab.active { background: var(--maroon); border-color: var(--maroon); color: #fff; }
+  
+  /* Order Cards */
+  .order-list { display: grid; gap: 16px; }
+  .order-card { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+  .order-card-header { display: flex; justify-content: space-between; margin-bottom: 16px; border-bottom: 1px solid var(--line); padding-bottom: 16px; }
+  .order-code { font-family: monospace; font-size: 15px; font-weight: 600; color: var(--maroon-dk); background: var(--cream); padding: 4px 8px; border-radius: 4px; }
+  .order-time { font-size: 13px; color: var(--muted); }
+  
+  .order-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; font-size: 14px; }
+  .order-grid div { color: var(--muted); }
+  .order-grid strong { color: var(--ink); display: block; margin-top: 2px; }
+  
+  .duplicate-warning { background: #fdf2f2; color: #B23A48; padding: 8px 12px; border-radius: 4px; font-size: 13px; font-weight: 600; margin-bottom: 16px; display: inline-block; }
+  
+  .screenshot-thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 1px solid var(--line); }
+  
+  .order-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; border-top: 1px solid var(--line); padding-top: 16px; }
+  .order-actions .btn { padding: 10px 16px; font-size: 13px; }
+  .btn-approve { background: #2e7d32; color: #fff; border-color: #2e7d32; }
+  .btn-approve:hover { background: #1b5e20; }
+  .btn-reject { background: #B23A48; color: #fff; border-color: #B23A48; }
+  .btn-wa { background: #25D366; color: #fff; border-color: #25D366; }
+  
+  /* Modal / Alert */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; }
+  .modal-content { background: #fff; max-width: 400px; width: 100%; border-radius: 8px; padding: 24px; text-align: center; }
+  .modal-content h3 { margin-bottom: 12px; color: var(--maroon-dk); }
+  .modal-content select, .modal-content input, .modal-content textarea { width: 100%; padding: 10px; margin-bottom: 16px; border: 1px solid var(--line); border-radius: 4px; font-family: 'Jost', sans-serif; }
+  
+  /* Image Modal */
+  #imgModal img { max-width: 100%; max-height: 85vh; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<main class="admin-main">
+  <div class="wrap">
+
+    <!-- LOGIN SECTION -->
+    <div id="loginSection" class="login-card">
+      <h2>Admin Login</h2>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="adminEmail" autocomplete="username">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="adminPassword" autocomplete="current-password">
+      </div>
+      <button class="btn-login" id="loginBtn">Log In</button>
+      <p id="loginError" style="color: #B23A48; font-size: 13px; text-align: center; margin-top: 12px;"></p>
+    </div>
+
+    <!-- DASHBOARD SECTION -->
+    <div id="dashboardSection" style="display: none;">
+      <div class="admin-header">
+        <h1>Dashboard</h1>
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+      
+      <div class="tabs">
+        <div class="tab" data-filter="pending">Pending</div>
+        <div class="tab" data-filter="paid">Paid</div>
+        <div class="tab active" data-filter="all">All</div>
+      </div>
+
+      <div id="orderList" class="order-list">
+        <p style="text-align:center; color: var(--muted);">Loading orders...</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Reject Modal -->
+<div class="modal-overlay" id="rejectModal">
+  <div class="modal-content">
+    <h3>Reject Payment</h3>
+    <select id="rejectReasonSelect">
+      <option value="Screenshot is blurry or unreadable.">Screenshot blurry</option>
+      <option value="Transaction ID does not match our bank statement.">Txn ID mismatch</option>
+      <option value="Amount transferred is incorrect.">Incorrect amount</option>
+      <option value="custom">Other (type below)</option>
+    </select>
+    <input type="text" id="rejectReasonCustom" placeholder="Type custom reason..." style="display:none;">
+    <div style="display:flex; gap:10px;">
+      <button class="btn btn-outline" id="cancelReject" style="flex:1;">Cancel</button>
+      <button class="btn btn-reject" id="confirmReject" style="flex:1;">Reject</button>
+    </div>
+  </div>
+</div>
+
+<!-- Image Zoom Modal -->
+<div class="modal-overlay" id="imgModal">
+  <img id="zoomedImg" src="" alt="Zoomed Screenshot">
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

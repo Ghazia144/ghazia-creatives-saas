@@ -1,0 +1,21 @@
+# Dependencies (if added later)
+node_modules/
+
+# Environment Variables (Secret Keys)
+.env
+.env.local
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Editor Folders
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local Config (if any)
+js/config.local.js
