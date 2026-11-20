@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://jqegjvndpzsgxodtljvq.supabase.co" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>Your Order Details — Ghazia Creatives</title>
 <link rel="icon" type="image/webp" href="images/favicon.webp">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -268,15 +271,17 @@
       if (emailRegex.test(email)) {
         localStorage.setItem('userEmail', email); // Local save
         
-        // NAYA: Backend (Supabase) par email bhejein
+        // Backend (Supabase) par email BACKGROUND mein bhejein.
+        // Pehle yahan "await" tha, is liye server slow hota to popup 25-30 sec band nahi hota tha.
         try {
-            await fetch('https://jqegjvndpzsgxodtljvq.supabase.co/functions/v1/save-lead', {
+            fetch('https://jqegjvndpzsgxodtljvq.supabase.co/functions/v1/save-lead', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email })
-            });
+                body: JSON.stringify({ email: email }),
+                keepalive: true
+            }).catch((err) => console.log("save-lead failed (ignored)", err));
         } catch (err) {
-            console.log("Backend error, but proceeding", err);
+            console.log("save-lead error (ignored)", err);
         }
 
         // Popup close karein
@@ -290,31 +295,71 @@
     });
   });
 
-    // Audio Player Logic
+    // Audio Player Logic (fast preview)
     const audioPlayer = document.getElementById('audioPreview');
     const playBtns = document.querySelectorAll('.play-btn');
-    
+
     if (audioPlayer && playBtns.length > 0) {
+      audioPlayer.preload = 'auto';
+      let activeBtn = null;
+      let currentSrc = '';
+      const warmed = new Set();
+
+      // Track ko pehle se cache mein la lo taake click par foran chale
+      const warm = (src) => {
+        if (!src || warmed.has(src)) return;
+        warmed.add(src);
+        try { fetch(src, { cache: 'force-cache' }).catch(() => {}); } catch (_) {}
+      };
+
+      // Jab audio section screen par aaye tab sab tracks (ab halke hain) background mein load karo
+      const optionsBox = document.querySelector('.audio-options');
+      if (optionsBox && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          if (entries.some(en => en.isIntersecting)) {
+            playBtns.forEach(b => warm(b.getAttribute('data-src')));
+            io.disconnect();
+          }
+        }, { rootMargin: '200px' });
+        io.observe(optionsBox);
+      }
+      playBtns.forEach(btn => {
+        const preload = () => warm(btn.getAttribute('data-src'));
+        btn.addEventListener('pointerenter', preload, { passive: true });
+        btn.addEventListener('touchstart', preload, { passive: true });
+      });
+
+      const resetBtns = () => playBtns.forEach(b => { b.textContent = '▶'; });
+
       playBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-          e.preventDefault(); 
+          e.preventDefault();
           const src = btn.getAttribute('data-src');
-          
-          if (audioPlayer.src.endsWith(src) && !audioPlayer.paused) {
+
+          // Same track chal raha ho to pause
+          if (currentSrc === src && !audioPlayer.paused) {
             audioPlayer.pause();
             btn.textContent = '▶';
-          } else {
-            audioPlayer.src = src;
-            audioPlayer.play();
-            playBtns.forEach(b => b.textContent = '▶'); 
-            btn.textContent = '⏸'; 
+            return;
           }
+
+          resetBtns();
+          activeBtn = btn;
+          if (currentSrc !== src) {
+            currentSrc = src;
+            audioPlayer.src = src;
+          }
+          btn.textContent = '⏳'; // loading
+          const p = audioPlayer.play();
+          if (p && p.catch) p.catch(() => { btn.textContent = '▶'; });
         });
       });
-      
-      audioPlayer.addEventListener('ended', () => {
-        playBtns.forEach(b => b.textContent = '▶');
-      });
+
+      audioPlayer.addEventListener('playing', () => { if (activeBtn) activeBtn.textContent = '⏸'; });
+      audioPlayer.addEventListener('waiting', () => { if (activeBtn && !audioPlayer.paused) activeBtn.textContent = '⏳'; });
+      audioPlayer.addEventListener('pause', () => { if (activeBtn) activeBtn.textContent = '▶'; });
+      audioPlayer.addEventListener('ended', resetBtns);
+      audioPlayer.addEventListener('error', resetBtns);
     }
 
 </script>

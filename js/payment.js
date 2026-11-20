@@ -16,6 +16,7 @@ let selectedMethod = "bank";
 let selectedFile = null;
 let resizedBlob = null;
 let previewUrl = null;
+let pendingUpload = null; // { blob, promise } - screenshot background mein upload hota hai
 
 function setErr(id, msg) {
   const el = $("err_" + id);
@@ -155,7 +156,7 @@ function renderPaymentForm() {
       <label class="field">
         <span>Screenshot *</span>
         <div class="file-row">
-          <input type="file" id="screenshot" accept="image/*" capture="environment">
+          <input type="file" id="screenshot" accept="image/*">
           <img id="thumb" class="thumb" alt="Screenshot preview">
         </div>
         <small class="err" id="err_screenshot"></small>
@@ -244,13 +245,36 @@ function bindFormEvents() {
       const thumb = $("thumb");
       thumb.src = previewUrl;
       thumb.style.display = "block";
+      // Submit dabane se pehle hi upload shuru kar do
+      const creds = getCreds();
+      pendingUpload = creds ? startUpload(creds, resizedBlob) : null;
     } catch (err) {
       setErr("screenshot", err.message || "Could not process image.");
       resizedBlob = null;
+      pendingUpload = null;
     }
   });
 
   $("submitBtn").addEventListener("click", submitPayment);
+}
+
+// ---------- Background upload (screenshot chunne ke foran baad upload shuru) ----------
+function startUpload(creds, blob) {
+  const promise = (async () => {
+    const upload = await api("upload-url", {
+      public_code: creds.public_code,
+      secret_token: creds.secret_token
+    });
+    const putRes = await fetch(upload.signedUrl, {
+      method: "PUT",
+      headers: { "Content-Type": "image/jpeg" },
+      body: blob
+    });
+    if (!putRes.ok) throw new Error("Could not upload screenshot. Please try again.");
+    return upload.path;
+  })();
+  promise.catch(() => {}); // asli error submit par handle hota hai
+  return { blob, promise };
 }
 
 // ---------- API calls ----------
@@ -341,21 +365,14 @@ async function submitPayment() {
   try {
     const txn = $("txn_id").value.trim();
 
-    // 1) Ask for a signed upload URL
-    const upload = await api("upload-url", {
-      public_code: creds.public_code,
-      secret_token: creds.secret_token
-    });
-
-    // 2) Upload the resized image directly to Storage
-    const putRes = await fetch(upload.signedUrl, {
-      method: "PUT",
-      headers: { "Content-Type": "image/jpeg" },
-      body: resizedBlob
-    });
-
-    if (!putRes.ok) {
-      throw new Error("Could not upload screenshot. Please try again.");
+    // 1+2) Screenshot upload (aksar pehle hi ho chuka hota hai)
+    let screenshotPath = null;
+    if (pendingUpload && pendingUpload.blob === resizedBlob) {
+      try { screenshotPath = await pendingUpload.promise; } catch (_) { screenshotPath = null; }
+    }
+    if (!screenshotPath) {
+      pendingUpload = startUpload(creds, resizedBlob);
+      screenshotPath = await pendingUpload.promise;
     }
 
     // 3) Submit the payment
@@ -364,7 +381,7 @@ async function submitPayment() {
       secret_token: creds.secret_token,
       method: selectedMethod,
       txn_id: txn,
-      screenshot_path: upload.path
+      screenshot_path: screenshotPath
     });
 
     window.location.href = `status.html?c=${encodeURIComponent(creds.public_code)}`;

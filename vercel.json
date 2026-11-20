@@ -15,5 +15,13 @@
       "source": "/i/:slug",
       "destination": "/i.html"
     }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.(mp3|mp4|webp|png|jpg|jpeg|gif|woff2)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    }
   ]
 }

@@ -274,16 +274,23 @@ function updatePreview() {
   }, 250);
 }
 
+// Desktop preview panel sirf 960px+ par dikhta hai (CSS). Mobile par heavy invite load karna bekar hai.
+function isDesktopView() { return window.matchMedia("(min-width: 960px)").matches; }
+
 function renderPreviewPanel() {
   const isReady = PREVIEW_READY.includes(DESIGN_ID);
   const designObj = designs.find(d => d.id === DESIGN_ID) || {};
   const thumb = designObj.image || 'images/design-1.webp';
   const desktopFrame = $("desktopPhoneFrame");
   if (isReady) {
-    desktopFrame.innerHTML = `<iframe id="previewIframe" src="t/${DESIGN_ID}/index.html?preview=order" title="Live Preview"></iframe>`;
-    $("previewIframe").addEventListener("load", updatePreview);
+    if (isDesktopView()) {
+      desktopFrame.innerHTML = `<iframe id="previewIframe" src="t/${DESIGN_ID}/index.html?preview=order" title="Live Preview"></iframe>`;
+      $("previewIframe").addEventListener("load", updatePreview);
+    } else {
+      desktopFrame.innerHTML = ""; // mobile: preview "Show preview" button dabane par hi load hoga
+    }
   } else {
-    desktopFrame.innerHTML = `<div class="coming-soon-placeholder"><img src="${thumb}" alt="Design thumbnail"><h3>Preview coming soon</h3></div>`;
+    desktopFrame.innerHTML = `<div class="coming-soon-placeholder"><img src="${thumb}" alt="Design thumbnail" loading="lazy"><h3>Preview coming soon</h3></div>`;
   }
   $("mobileIframeContainer").innerHTML = "";
 }
@@ -293,6 +300,10 @@ function initPreview() {
   const form = $("orderForm");
   form.addEventListener("input", updatePreview); form.addEventListener("change", updatePreview);
   $("toggleSizeBtn").addEventListener("click", () => $("desktopPhoneFrame").classList.toggle("wide"));
+  // Screen bari ho jaye (rotate / resize) to desktop preview ab bana do
+  const mq = window.matchMedia("(min-width: 960px)");
+  const onMq = (e) => { if (e.matches && PREVIEW_READY.includes(DESIGN_ID) && !$("previewIframe")) renderPreviewPanel(); };
+  if (mq.addEventListener) mq.addEventListener("change", onMq); else if (mq.addListener) mq.addListener(onMq);
   $("showMobilePreview").addEventListener("click", () => {
     const container = $("mobileIframeContainer");
     if (PREVIEW_READY.includes(DESIGN_ID) && !container.querySelector("iframe")) {
@@ -325,9 +336,12 @@ async function switchDesign(newId) {
   renderSwitcher(); renderPreviewPanel(); updatePreview();
 }
 
+let slowSaveTimer;
 function setSubmitting(on) {
   const btn = $("submitBtn"); if (!btn) return;
+  clearTimeout(slowSaveTimer);
   btn.disabled = on; btn.textContent = on ? "Saving…" : "Save & continue";
+  if (on) slowSaveTimer = setTimeout(() => { btn.textContent = "Still saving… please wait"; }, 6000);
 }
 
 async function submitOrder() {

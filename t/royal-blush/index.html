@@ -155,7 +155,7 @@
   .bg-pink{background:var(--blush-pink);}
 
   #scratchSection {
-    background: url('scratch-bg.png') center/cover no-repeat;
+    background: url('scratch-bg.webp') center/cover no-repeat;
     position: relative;
     padding: 80px 0 60px;
   }
@@ -545,7 +545,7 @@
     <div class="divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
     
     <div class="venue-arch arch-frame">
-      <img src="venue.png" alt="Venue" style="object-position:center;">
+      <img src="venue.webp" alt="Venue" style="object-position:center;">
     </div>
     
     <div class="venue-carousel" id="venueCarousel"></div>
@@ -581,7 +581,7 @@
     <div class="section-title">RSVP</div>
     <div class="divider"><span class="line"></span><span class="mark">&#10022;</span><span class="line"></span></div>
 
-    <img src="couple.png" alt="Couple" class="dress-code-img" loading="lazy">
+    <img src="couple.webp" alt="Couple" class="dress-code-img" loading="lazy">
 
     <div class="rsvp-card" id="rsvpFormContainer">
       <svg class="rsvp-cap" viewBox="0 0 380 130" aria-hidden="true">
@@ -955,9 +955,9 @@
     if(!track) return;
     
     const galleryData = [
-      { src: "gallery-1.png" },
-      { src: "gallery-2.png" },
-      { src: "gallery-3.png" }
+      { src: "gallery-1.webp" },
+      { src: "gallery-2.webp" },
+      { src: "gallery-3.webp" }
     ];
     track.innerHTML = galleryData.map((item, i) => `
       <div class="carousel-slide ${i === 0 ? 'active' : ''}">

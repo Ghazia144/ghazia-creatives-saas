@@ -74,7 +74,7 @@ async function openOrder(orderId) {
     const o = data.order;
     
     const baseUrl = typeof SITE_URL !== 'undefined' ? SITE_URL : 'https://ghaziacreatives.com';
-    const inviteUrl = `${baseUrl}/i.html?c=${o.public_code}`;
+    const inviteUrl = o.slug ? `${baseUrl}/i/${o.slug}` : `${baseUrl}/i.html?c=${o.public_code}`;
     const statusUrl = `${baseUrl}/status.html?c=${o.public_code}`;
     const editUrl = `${baseUrl}/edit.html?c=${o.public_code}&k=${o.secret_token}`;
     
