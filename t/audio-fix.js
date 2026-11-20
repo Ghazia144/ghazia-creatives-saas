@@ -1,3 +1,31 @@
+/* ===== MOBILE DEMO BUTTON =====
+   Desktop par har design apna "Make This Invite Yours" button khud banata hai (phone-frame wale wrapper mein).
+   Mobile par wo wrapper chalta hi nahi, isliye button nahi tha. Yahan mobile ke liye wohi button neeche beech mein lagta hai.
+   Sirf tab jab demo seedha khula ho: asli invite ya form ka preview (iframe) mein ye kabhi nahi aata. */
+(function () {
+  try {
+    if (window.self !== window.top) return;                               // iframe = asli invite / preview
+    if (/[?&](full|nomockup)\b/.test(location.search)) return;
+    var isDesktop = innerWidth > 820 && matchMedia('(pointer:fine)').matches;
+    if (isDesktop) return;                                                // desktop ka button design khud banata hai
+    var m = location.pathname.match(/\/t\/([^\/]+)\//);
+    if (!m) return;
+    function add() {
+      if (document.getElementById('mobileDemoCta')) return;
+      var a = document.createElement('a');
+      a.id = 'mobileDemoCta';
+      a.href = '/order.html?design=' + encodeURIComponent(m[1]);
+      a.textContent = 'Make This Invite Yours';
+      a.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));' +
+        'z-index:2147483000;background:#C9A15A;color:#2B1218;font:600 12px/1 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;' +
+        'letter-spacing:.08em;text-transform:uppercase;text-decoration:none;white-space:nowrap;padding:13px 22px;border-radius:30px;' +
+        'border:1px solid rgba(255,255,255,.35);box-shadow:0 4px 20px rgba(0,0,0,.3);-webkit-tap-highlight-color:transparent;';
+      document.body.appendChild(a);
+    }
+    if (document.body) add(); else document.addEventListener('DOMContentLoaded', add);
+  } catch (e) {}
+})();
+
 /* audio-fix.js — sab invite templates ke liye shared nasheed fix.
 
    1) PREVIEW MODE (?preview=order ya ?preview=2): koi bhi <audio> kabhi play nahi hota
