@@ -95,7 +95,7 @@ const designs = [
     desc: "A dreamy fairytale invitation with enchanting visuals and magical details. Includes full event program, venue details, countdown timer and RSVP form.",
     vibe: "Romantic · Fairytale",
     category: "premium", 
-    image: "images/design-7.jfif",
+    image: "images/design-7.webp",
     liveUrl: "t/fairytale/index.html?demo=1"
   },
   {
@@ -107,7 +107,7 @@ const designs = [
     desc: "A beautiful botanical themed invitation with lush green aesthetics. Includes full event program, venue details, countdown timer and RSVP form.",
     vibe: "Green · Nature · Elegant",
     category: "standard", 
-    image: "images/design-8.png",
+    image: "images/design-8.webp",
     liveUrl: "t/green-magic/index.html?demo=1"
   }
 ];

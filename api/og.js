@@ -26,7 +26,7 @@ export default async function handler(req, res) {
   let title = "Wedding Invitation";
   let description = "You are cordially invited to our wedding celebration.";
   // TIP: images/default-og.jpg (1200x630) bana kar upload karein aur yahan wohi laga dein
-  const image = `${SITE_URL}/images/logo.webp`;
+  const image = `${SITE_URL}/images/default-og.jpg`;
 
   try {
     if (slug) {

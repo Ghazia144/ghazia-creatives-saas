@@ -1,3 +1,8 @@
+// SECURITY: order ka koi bhi data HTML mein dalne se pehle escape karo (naam, venue waghera customer likhta hai)
+function esc(v) {
+  return String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
 const supabaseClient = supabase.createClient(SUPABASE_FUNCTIONS_URL.replace('/functions/v1', ''), SUPABASE_PUBLISHABLE_KEY);
 const ADMIN_FUNC_URL = `${SUPABASE_FUNCTIONS_URL}/admin`;
 let currentFilter = 'all'; let currentOrderIdToReject = null;
@@ -36,7 +41,7 @@ async function callAdminApi(action, payload = {}) {
 async function loadOrders() {
   $('orderList').innerHTML = '<p style="text-align:center; color: var(--muted);">Loading...</p>';
   try { const data = await callAdminApi('list', { filter: currentFilter }); renderOrders(data.orders); }
-  catch (err) { $('orderList').innerHTML = `<p style="color: red;">${err.message}</p>`; }
+  catch (err) { $('orderList').innerHTML = `<p style="color: red;">${esc(err.message)}</p>`; }
 }
 
 function renderOrders(orders) {
@@ -46,22 +51,22 @@ function renderOrders(orders) {
     return `
       <div class="order-card">
         <div class="order-card-header">
-          <div><span class="order-code">${o.public_code}</span><span style="margin-left: 10px; font-weight: 600; text-transform: capitalize; color: ${o.status === 'paid' ? '#2e7d32' : (o.status === 'pending' ? '#e65100' : 'var(--muted)')}">${o.status}</span></div>
+          <div><span class="order-code">${esc(o.public_code)}</span><span style="margin-left: 10px; font-weight: 600; text-transform: capitalize; color: ${o.status === 'paid' ? '#2e7d32' : (o.status === 'pending' ? '#e65100' : 'var(--muted)')}">${esc(o.status)}</span></div>
           <div class="order-time">${time}</div>
         </div>
         <div class="order-grid">
-          <div>Design<strong>${o.design_id.replace('-', ' ')}</strong></div>
+          <div>Design<strong>${esc(String(o.design_id).replace(/-/g, ' '))}</strong></div>
           <div>Plan<strong>${o.plan === 1 ? '1 Event' : (o.plan === 2 ? '2 Events' : '2+ Events')}</strong></div>
-          <div>Amount<strong>Rs ${o.amount}</strong></div>
-          <div>Method<strong style="text-transform:uppercase;">${o.payment_method || 'N/A'}</strong></div>
-          <div>Txn ID<strong>${o.txn_id || 'N/A'}</strong></div>
-          <div>Customer WhatsApp<strong>${o.customer_whatsapp}</strong></div>
-          <div>Edits<strong>${o.edits_used} / ${o.edits_max}</strong></div>
+          <div>Amount<strong>Rs ${esc(o.amount)}</strong></div>
+          <div>Method<strong style="text-transform:uppercase;">${esc(o.payment_method || 'N/A')}</strong></div>
+          <div>Txn ID<strong>${esc(o.txn_id || 'N/A')}</strong></div>
+          <div>Customer WhatsApp<strong>${esc(o.customer_whatsapp)}</strong></div>
+          <div>Edits<strong>${esc(o.edits_used)} / ${esc(o.edits_max)}</strong></div>
         </div>
         <div style="display:flex; justify-content: space-between; align-items: center; margin-top: 16px;">
           <div class="btn-group" style="flex-direction:row; gap: 8px;">
-            <button class="btn btn-outline" onclick="openOrder('${o.id}')" style="padding: 8px 12px; font-size: 12px;">View Details</button>
-            <button class="btn btn-outline" onclick="grantEdit('${o.id}')" style="padding: 8px 12px; font-size: 12px;">+1 Edit</button>
+            <button class="btn btn-outline" onclick="openOrder('${esc(o.id)}')" style="padding: 8px 12px; font-size: 12px;">View Details</button>
+            <button class="btn btn-outline" onclick="grantEdit('${esc(o.id)}')" style="padding: 8px 12px; font-size: 12px;">+1 Edit</button>
           </div>
         </div>
       </div>`;
@@ -88,25 +93,25 @@ async function openOrder(orderId) {
       <div id="superModalOverlay" style="position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; background: rgba(0,0,0,0.85) !important; z-index: 2147483647 !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 15px !important; box-sizing: border-box !important;">
         <div style="background: #fff !important; width: 100% !important; max-width: 500px !important; max-height: 90vh !important; overflow-y: auto !important; border-radius: 8px !important; padding: 20px !important; box-sizing: border-box !important; text-align: left !important;">
           
-          <h3 style="text-align:center; margin-bottom: 15px; font-size: 18px; color: #000;">Order ${o.public_code}</h3>
+          <h3 style="text-align:center; margin-bottom: 15px; font-size: 18px; color: #000;">Order ${esc(o.public_code)}</h3>
           
           ${data.duplicate_txn ? '<div style="text-align:center; margin-bottom:16px; padding: 8px; background: #fdf2f2; color: red; font-weight: bold;">⚠️ DUPLICATE TXN ID</div>' : ''}
           
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; font-size: 14px; color: #000;">
-              <div><span style="color: #888;">Bride</span><br><strong>${o.data.bride.name}</strong></div>
-              <div><span style="color: #888;">Groom</span><br><strong>${o.data.groom.name}</strong></div>
+              <div><span style="color: #888;">Bride</span><br><strong>${esc(o.data?.bride?.name)}</strong></div>
+              <div><span style="color: #888;">Groom</span><br><strong>${esc(o.data?.groom?.name)}</strong></div>
           </div>
           
-          ${data.screenshot_url ? `<div style="margin-bottom: 15px;"><p style="font-size: 12px; color: #888; margin-bottom: 5px;">Screenshot:</p><img src="${data.screenshot_url}" style="width: 100%; max-height: 250px; object-fit: contain; border: 1px solid #ddd; border-radius: 4px;"></div>` : '<p>No screenshot.</p>'}
+          ${data.screenshot_url ? `<div style="margin-bottom: 15px;"><p style="font-size: 12px; color: #888; margin-bottom: 5px;">Screenshot:</p><img src="${esc(data.screenshot_url)}" style="width: 100%; max-height: 250px; object-fit: contain; border: 1px solid #ddd; border-radius: 4px;"></div>` : '<p>No screenshot.</p>'}
           
           <div style="display:flex; flex-direction: column; gap: 10px; margin-top: 20px;">
             ${o.status === 'pending' ? `
-              <button onclick="approveOrder('${o.id}')" style="width: 100%; background: #2e7d32; color: white; padding: 12px; border: none; border-radius: 4px; font-weight: bold; font-size: 15px; cursor: pointer;">Approve Payment</button>
-              <button onclick="promptReject('${o.id}')" style="width: 100%; background: #B23A48; color: white; padding: 12px; border: none; border-radius: 4px; font-weight: bold; font-size: 15px; cursor: pointer;">Reject Payment</button>
+              <button onclick="approveOrder('${esc(o.id)}')" style="width: 100%; background: #2e7d32; color: white; padding: 12px; border: none; border-radius: 4px; font-weight: bold; font-size: 15px; cursor: pointer;">Approve Payment</button>
+              <button onclick="promptReject('${esc(o.id)}')" style="width: 100%; background: #B23A48; color: white; padding: 12px; border: none; border-radius: 4px; font-weight: bold; font-size: 15px; cursor: pointer;">Reject Payment</button>
             ` : ''}
             
             ${o.status === 'paid' ? `
-              <a href="${waLink}" target="_blank" style="display: block; width: 100%; text-align: center; background: #25D366; color: white; padding: 12px; border-radius: 4px; text-decoration: none; font-weight: bold; box-sizing: border-box;">Send WhatsApp Link</a>
+              <a href="${esc(waLink)}" target="_blank" style="display: block; width: 100%; text-align: center; background: #25D366; color: white; padding: 12px; border-radius: 4px; text-decoration: none; font-weight: bold; box-sizing: border-box;">Send WhatsApp Link</a>
             ` : ''}
             
             <button onclick="document.getElementById('superModalOverlay').remove()" style="width: 100%; background: #eee; color: #333; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 15px; cursor: pointer; margin-top: 5px;">Close</button>

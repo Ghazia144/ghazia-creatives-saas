@@ -171,7 +171,7 @@ function renderPaymentForm() {
         <small class="err" id="err_submit"></small>
       </div>
 
-      <p class="pay-note">Your payment will be verified by our team. You'll be redirected after submitting.</p>
+      <p class="pay-note">Your payment will be verified by our team. You'll be redirected after submitting. By submitting, you agree to our <a href="terms.html" target="_blank" rel="noopener" style="text-decoration:underline;">Terms &amp; Refund Policy</a>.</p>
     </div>
   `;
 

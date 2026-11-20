@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /t/
+
+Sitemap: https://ghaziacreatives.com/sitemap.xml
