@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="preload" as="image" href="images/envelope-poster.jpg" fetchpriority="high">
 <script>(function () {
   if (window.self !== window.top) return;
   if (/[?&](full|nomockup)\b/.test(location.search)) return;
@@ -57,7 +58,7 @@
     });
   }, 0);
 })();</script>
-<meta name="theme-color" content="#171029">
+<meta name="theme-color" content="#E9DFD3">
 <meta name="description" content="Wedding invitation.">
 <meta property="og:title" content="Wedding Invitation">
 <meta property="og:description" content="Together with our families, we invite you to celebrate our wedding.">
@@ -142,7 +143,8 @@ const TEMPLATE_BASE_EVENTS = JSON.parse(JSON.stringify(WEDDING.events));
 <title id="pageTitle">Wedding Invitation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap"></noscript>
 <style>
   :root{
     --ivory:#FAF7FD; --blush:#F1EAFA; --lilac:#E6DBF4; --plum:#5E4391; --plum-deep:#3B2A66;
@@ -164,7 +166,7 @@ const TEMPLATE_BASE_EVENTS = JSON.parse(JSON.stringify(WEDDING.events));
   .divider .mark{font-size:15px;letter-spacing:2px;}
   .eyebrow{font-size:14px;color:var(--plum);font-style:italic;letter-spacing:.5px;}
 
-  #envelopeIntro{position:fixed;inset:0;z-index:9999;background:#171029;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;}
+  #envelopeIntro{position:fixed;inset:0;z-index:9999;background:#171029 url("images/envelope-poster.jpg") center/cover no-repeat;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;}
   .envelope-video{width:100%;height:100%;object-fit:cover;object-position:center;display:block;-webkit-tap-highlight-color:transparent;}
   #envelopeIntro.is-leaving{opacity:0;transition:opacity 1.4s ease;pointer-events:none;}
   .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;background:#B9D8E6;}
@@ -639,6 +641,10 @@ const TEMPLATE_BASE_EVENTS = JSON.parse(JSON.stringify(WEDDING.events));
       @media (max-width: 680px) { .float-ctrls { right: 14px !important; } }
       .venue-carousel { justify-content: center; }
   }
+#envelopeIntro{ background:#E9DFD3 url("images/envelope-poster.jpg") center/cover no-repeat; }
+.envelope-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+.envelope-video{ position:relative; z-index:1; background:transparent; }
+.envelope-hint{ z-index:3; }
 </style>
 </head>
 <body class="envelope-locked">
@@ -666,6 +672,9 @@ const TEMPLATE_BASE_EVENTS = JSON.parse(JSON.stringify(WEDDING.events));
 <audio id="bgMusic" loop preload="none"></audio>
 
 <div id="envelopeIntro" role="button" tabindex="0" data-i18n-aria="envAria" aria-label="Tap the seal to open your invitation">
+  
+  <img class="envelope-bg" src="envelope-poster.jpg" alt="" fetchpriority="high" loading="eager">
+
   <video id="envelopeVideo" class="envelope-video" playsinline webkit-playsinline="true" muted preload="auto" poster="images/envelope-poster.jpg">
     <source src="videos/envelope.mp4" type="video/mp4">
   </video>
@@ -1502,13 +1511,14 @@ setInterval(tick, 1000);
     [...document.body.classList].filter(c => c.startsWith('th-')).forEach(c => document.body.classList.remove(c));
 
     if(ev){
-      document.body.classList.add('th-' + ev.themeId);
+            const tid = ev.themeId || ev.id; // demo events mein themeId nahi hota, isliye id use karo
+      document.body.classList.add('th-' + tid);
       const es = $('eventSections');
       es.classList.remove('anim'); void es.offsetWidth; es.classList.add('anim');
 
       const d = dd(ev);
       const fallback = 'linear-gradient(135deg,var(--plum-deep),var(--plum))';
-      const im = n => `url(images/${ev.themeId}-${n}.webp)`;
+      const im = n => `url(images/${tid}-${n}.webp)`;
 
       $('evHead').style.backgroundImage = `${im('hero')}, ${fallback}`;
       $('evDetail').style.backgroundImage = `${im('detail')}, ${fallback}`;

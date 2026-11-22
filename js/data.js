@@ -75,14 +75,14 @@ const designs = [
   },
   {
     id: "shaadi-festivities",
-    name: "Shaadi Festivities — 4 Events",
+    name: "Shaadi Festivities",
     badge: "Premium",
     category: "premium", 
     dynamic: true,
     maxPlan: 3,
     desc: "One invite for your entire wedding week. Five beautiful pages — Mehendi, Qawali Night, Nikkah / Barat and Walima — each with its own theme, event date, venue details and Add to Google Calendar button.",
     vibe: "4 Events · 5 Pages · English / Urdu",
-    delivery: "24 hours",
+    delivery: "within few minutes",
     image: "images/design-6.webp",
     liveUrl: "t/shaadi-festivities/index.html?demo=1"
   },

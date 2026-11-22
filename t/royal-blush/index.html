@@ -666,6 +666,35 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
 <script>
+
+const WEDDING = {
+  bride: { name: "Noor", father: "Mr. & Mrs. Imran Sheikh" },
+  groom: { name: "Zayan", father: "Mr. & Mrs. Ahmed Raza" },
+  rsvpWhatsapp: "923183040506",
+  rsvpDeadline: "2027-03-01",
+  note: "Your presence is our greatest gift.",
+  events: [
+    {
+      type: "Mehndi", date: "2027-03-18",
+      gatheringTime: "19:00", dinnerTime: "21:00",
+      venueName: "Movenpick Hotel Karachi", venueAddress: "Club Road, Karachi",
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Movenpick%20Karachi"
+    },
+    {
+      type: "Barat", date: "2027-03-20",
+      gatheringTime: "19:30", dinnerTime: "21:00", rukhsatiTime: "23:00",
+      venueName: "Pearl Continental Banquet", venueAddress: "Shahrah-e-Faisal, Karachi",
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Pearl%20Continental%20Karachi"
+    },
+    {
+      type: "Walima", date: "2027-03-21",
+      gatheringTime: "19:00", dinnerTime: "20:30",
+      venueName: "Karachi Marriott Hotel", venueAddress: "Abdullah Haroon Road, Karachi",
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Marriott%20Karachi"
+    }
+  ]
+};
+
   const __state = { data:null, preview:false, countdownTarget:null };
 
   function parseEventDateTime(ev){
@@ -1347,7 +1376,9 @@
     }
   })();
 
-  if(typeof WEDDING !== 'undefined') window.renderInvite(WEDDING);
+ if (typeof WEDDING !== 'undefined' && !new URLSearchParams(location.search).get('preview')) {
+  window.renderInvite(WEDDING);
+}
 
 // ==========================================
 // FIX: Universal Audio Logic
