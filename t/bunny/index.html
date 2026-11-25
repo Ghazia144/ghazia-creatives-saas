@@ -1427,7 +1427,7 @@ function getNextEvent(fallbackLast){
         // ✅ FIX: Agar deadline nahi hai, toh line ko bilkul hide kar do
       var rsvpEyebrow = $('rsvpEyebrow');
       if (W.rsvpDeadline && W.rsvpDeadline.trim() !== '') {
-        rsvpEyebrow.textContent = `Kindly respond by ${W.rsvpDeadline}`;
+        rsvpEyebrow.textContent = `Kindly respond by ${fmtDeadline(W.rsvpDeadline)}`;
         rsvpEyebrow.style.display = ''; // Wapas show karo
       } else {
         rsvpEyebrow.textContent = '';
@@ -1694,6 +1694,18 @@ function getNextEvent(fallbackLast){
       else { music.muted = !music.muted; }
       syncMusicUI();
     });
+
+    window.applyInviteAudio = function(track){
+  track = String(track||'').trim();
+  if(!track || track==='none'){ window.__audioTrackNone = true; try{music.pause();}catch(e){} musicBtn.style.display='none'; return; }
+  if(window.__audioTrackNone){ window.__audioTrackNone = false; music.muted = false; }
+  musicBtn.style.display = '';
+  if(music.src.indexOf('/'+track+'.mp3') === -1){
+    var was = !music.paused; music.src = '../audio/'+track+'.mp3'; music.load();
+    if(was) tryPlay();
+  }
+};
+
     window.inviteMusic = music;
     if(window.invitePreview){ try{ music.pause(); }catch(e){} }
     syncMusicUI();
@@ -1770,6 +1782,7 @@ function getNextEvent(fallbackLast){
       if(data.rsvpWhatsapp) W.whatsappNumber = str(data.rsvpWhatsapp);
       if(data.note !== undefined) W.note = str(data.note).trim();
       if(data.rsvpDeadline !== undefined) W.rsvpDeadline = str(data.rsvpDeadline).trim();
+      if(Object.prototype.hasOwnProperty.call(data,'audio_track') && window.applyInviteAudio) window.applyInviteAudio(data.audio_track);
 
       if(window.refreshInvite) window.refreshInvite();
     };
@@ -1783,32 +1796,6 @@ function getNextEvent(fallbackLast){
     });
   })();
 
-  // ---------- Audio track from form ----------
-  window.addEventListener('message', function(e){
-    if(e.origin !== location.origin) return;
-    var msg = e.data;
-    if(!msg || msg.type !== 'invite-data' || !msg.data) return;
-
-    var track = String(msg.data.audio_track || 'nasheed-1');
-    var music = window.inviteMusic;
-
-    if(track === 'none'){
-      window.__audioTrackNone = true;
-      if(music){ try{ music.pause(); }catch(e){} music.muted = true; }
-      return;
-    }
-
-    window.__audioTrackNone = false;
-    if(!music) return;
-
-    var newSrc = '../audio/' + track + '.mp3';
-    if(!music.src || music.src.indexOf(track + '.mp3') === -1){
-      var wasMuted = music.muted;
-      music.src = newSrc;
-      music.muted = wasMuted;
-      try{ music.load(); }catch(e){}
-    }
-  });
 </script>
 <script src="../audio-fix.js"></script>
 </body>
