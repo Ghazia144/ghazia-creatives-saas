@@ -1023,7 +1023,6 @@ function fmtTime(t){
     if(opened) return;
     opened = true;
     intro.classList.add('is-playing');
-    if(!document.body.classList.contains('is-preview-2')) video.muted = false;
     // FIX: nasheed start on user click (browser gesture)
     const bgm = document.getElementById('bgMusic');
     if (bgm && window.__audioTrackEnabled !== false

@@ -374,6 +374,16 @@ body.is-preview-2::after{
   </div>
 </section>
 
+
+<section class="bg-section" id="note-section" style="display:none;padding:30px 16px;">
+  <div class="bg-inner">
+    <div class="detail-card">
+      <div class="detail-hd">✦ A Note For Our Guests</div>
+      <div class="detail-txt" id="guest-note" style="white-space:pre-line;"></div>
+    </div>
+  </div>
+</section>
+
 <section class="bg-section">
 <div class="bg-inner">
   <h2 class="sec-title reveal">Save The Date</h2>
@@ -688,6 +698,13 @@ ${ev.rukhsatiTime ? `<div class="prog-time" style="text-align:left; margin-top:2
     });
   }
 
+  function renderNote(){
+  const sec = $('note-section'), el = $('guest-note');
+  if(!sec || !el) return;
+  const txt = String(W.note || '').trim();
+  el.textContent = txt;
+  sec.style.display = txt ? '' : 'none';
+}
 
   function renderRsvp(){
        var rsvpLabel = document.getElementById('rsvp-deadline-label');
@@ -730,7 +747,8 @@ ${ev.rukhsatiTime ? `<div class="prog-time" style="text-align:left; margin-top:2
       W.events = data.events.slice(0, 7);
     }
     if(data.rsvpWhatsapp) W.whatsappNumber = data.rsvpWhatsapp;
-    if(data.note) W.note = data.note;
+   const nt = data.note ?? data.guestNote ?? data.guestMessage ?? data.message;
+if(nt !== undefined) W.note = String(nt).trim();
     if(data.tagline) W.tagline = data.tagline;
     if(data.rsvpDeadline) W.rsvpDeadline = data.rsvpDeadline;
 
@@ -739,6 +757,7 @@ ${ev.rukhsatiTime ? `<div class="prog-time" style="text-align:left; margin-top:2
 
     const safe = function(fn){ try { fn(); } catch(err){ console.error('[' + (fn.name || 'render') + ']', err); } };
     safe(renderMeta);
+    safe(renderNote);
     safe(renderHero);
     safe(renderScratch);
     safe(renderProgram);

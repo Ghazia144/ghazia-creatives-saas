@@ -639,18 +639,43 @@ $('hero-names-label').textContent = 'the wedding of';
   }
   setInterval(tickCountdown, 1000);
 
+let currentTrack = null;
+function applyAudio(track){
+  const a = $('inviteAudio'), btn = $('muteBtn');
+  track = String(track || '').trim();
+  if (!track || track === 'none') {
+    a.pause(); a.removeAttribute('src'); try{ a.load(); }catch(e){}
+    btn.style.display = 'none'; currentTrack = 'none'; return;
+  }
+  btn.style.display = '';
+  if (track === currentTrack) return;          // same track: restart nahi
+  const wasPlaying = !a.paused;
+  a.src = '../audio/' + track + '.mp3';
+  currentTrack = track;
+  if (wasPlaying) a.play().catch(()=>{});
+}
+
   function renderInvite(data, opts){
     opts = opts || {}; data = data || {};
     const isPreview2 = (opts.preview === true) || (opts.mode === 'order') || new URLSearchParams(location.search).get('preview') === 'order';
 
     if(data.bride && data.bride.name) W.bride = data.bride.name;
     if(data.groom && data.groom.name) W.groom = data.groom.name;
+    if (data.bride && 'father' in data.bride) {
+  const f = String(data.bride.father || '').trim();
+  W.brideParents = f ? 'Daughter of ' + f : '';
+}
+if (data.groom && 'father' in data.groom) {
+  const f = String(data.groom.father || '').trim();
+  W.groomParents = f ? 'Son of ' + f : '';
+}
     if(data.events && Array.isArray(data.events) && data.events.length){
       W.events = data.events.map(canonEvent).filter(Boolean).slice(0, 7); // 7 events fix
     }
     if(data.rsvpWhatsapp) W.whatsappNumber = data.rsvpWhatsapp;
     if(data.rsvpDeadline) W.rsvpDeadline = data.rsvpDeadline;
     if(data.note) W.note = data.note;
+    if (Object.prototype.hasOwnProperty.call(data, 'audio_track')) applyAudio(data.audio_track);
 
     state.preview2 = isPreview2;
     document.body.classList.toggle('is-preview-2', isPreview2);
@@ -818,23 +843,6 @@ $('hero-names-label').textContent = 'the wedding of';
 
 })();
 
-// UNIVERSAL AUDIO LOGIC
-window.addEventListener('message', function(e) {
-  if (e.origin !== location.origin) return;
-  var msg = e.data;
-  if (msg && msg.type === 'invite-data' && msg.data) {
-    var audioTrack = msg.data.audio_track || 'nasheed-1';
-    var bgMusic = document.getElementById('inviteAudio');
-    if (bgMusic) {
-      if (audioTrack === 'none') {
-        bgMusic.pause(); bgMusic.style.display = 'none';
-      } else {
-        bgMusic.src = '../audio/' + audioTrack + '.mp3';
-        bgMusic.style.display = 'block';
-      }
-    }
-  }
-});
 
   // Venue Cards Mouse Drag Logic
   (function initVenueDrag() {
