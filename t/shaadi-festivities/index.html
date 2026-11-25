@@ -102,8 +102,8 @@ const WEDDING = {
       theme:{ pat:"lattice", v:["#FBF5EC","#F6E6DA","#F0D5CB","#8E1B2E","#5E0F1D","#2A0A10","#B98A3E","#E6C98A","#3A1F24","#7A5A5F"], mood:{en:"With the blessings of Allah, two families become one.", ur:"اللہ کی رحمتوں کے سائے میں دو خاندان ایک ہو رہے ہیں۔"} },
       name:"Nikkah / Barat", note:"The ceremony of our union", date:"Saturday, 30th January 2027", startISO:"2027-01-30T16:00:00", endISO:"2027-01-30T23:00:00",
       venueName:"Pearl Continental Karachi", venueAddress:"Club Road, Karachi", venueMap:"https://www.google.com/maps/search/?api=1&query=Pearl",
-      program:[{time:"4:00 PM",label:"Guest Arrival",sub:"We warmly welcome you as our celebration begins."},{time:"4:30 PM",label:"Nikkah Ceremony",sub:"Your gracious presence is requested for the ceremony."},{time:"7:30 PM",label:"Barat & Dinner",sub:"Dinner, dancing, and celebration to follow."}],
-      ur:{ mood:"دو خاندان، ایک عہد — ہمارے ابدی سفر کے گواہ بنیں، پھر شاندار بارات کا جشن منائیں۔", name:"نکاح / بارات", note:"ہمارے بندھن کی تقریب", date:"ہفتہ، ۳۰ جنوری ۲۰۲۷", venueName:"پرل کانٹینینٹل کراچی", venueAddress:"کلب روڈ، کراچی", program:[{time:"شام ۴:۰۰ بجے",label:"مہمانوں کی آمد",sub:"ہماری تقریب کے آغاز پر ہم آپ کا پرتپاک خیرمقدم کرتے ہیں۔"},{time:"شام ۴:۳۰ بجے",label:"تقریبِ نکاح",sub:"تقریب میں آپ کی گرانقدر شرکت درکار ہے۔"},{time:"شام ۷:۳۰ بجے",label:"بارات اور عشائیہ",sub:"عشائیہ، رقص اور جشن کے ساتھ۔"}] }
+      program:[{time:"4:00 PM",label:"Guest Arrival",sub:"We warmly welcome you as our celebration begins."},{time:"4:30 PM",label:"Nikkah Ceremony",sub:"Your gracious presence is requested for the ceremony."},{time:"7:30 PM",label:"Barat & Dinner",sub:"Dinner, dancing, and celebration to follow."},{time:"10:30 PM",label:"Rukhsati",sub:"The grand farewell."}],
+      ur:{ mood:"دو خاندان، ایک عہد — ہمارے ابدی سفر کے گواہ بنیں، پھر شاندار بارات کا جشن منائیں۔", name:"نکاح / بارات", note:"ہمارے بندھن کی تقریب", date:"ہفتہ، ۳۰ جنوری ۲۰۲۷", venueName:"پرل کانٹینینٹل کراچی", venueAddress:"کلب روڈ، کراچی", program:[{time:"شام ۴:۰۰ بجے",label:"مہمانوں کی آمد",sub:"ہماری تقریب کے آغاز پر ہم آپ کا پرتپاک خیرمقدم کرتے ہیں۔"},{time:"شام ۴:۳۰ بجے",label:"تقریبِ نکاح",sub:"تقریب میں آپ کی گرانقدر شرکت درکار ہے۔"},{time:"شام ۷:۳۰ بجے",label:"بارات اور عشائیہ",sub:"عشائیہ، رقص اور جشن کے ساتھ۔"},{time:"رات ۱۰:۳۰ بجے",label:"رخصتی",sub:"الوداع کا شاندار لمحہ۔"}] }
     },
     {
       id:"walima", amb:"#4A3A35", tier:"main", mood:"With gratitude in our hearts and blessings on our new home, be our guest of honour.",
@@ -1697,7 +1697,7 @@ window.renderInvite = function(data, opts) {
     const bm = data.bride.mother ?? data.brideMother;
     if (bf !== undefined || bm !== undefined) {
       const parts = [str(bf), str(bm)].filter(Boolean);
-      if (parts.length) W.brideParents = 'Daughter of ' + parts.join(' & ');
+      if (parts.length) { W.brideParents = 'Daughter of ' + parts.join(' & '); W.ur.brideParents = 'صاحبزادی ' + parts.join(' اور '); }
     }
   }
   if (data.groom) {
@@ -1707,9 +1707,13 @@ window.renderInvite = function(data, opts) {
     const gm = data.groom.mother ?? data.groomMother;
     if (gf !== undefined || gm !== undefined) {
       const parts = [str(gf), str(gm)].filter(Boolean);
-      if (parts.length) W.groomParents = 'Son of ' + parts.join(' & ');
+      if (parts.length) { W.groomParents = 'Son of ' + parts.join(' & '); W.ur.groomParents = 'صاحبزادہ ' + parts.join(' اور '); }
     }
   }
+
+    /* Urdu naam: form mein Urdu naam nahi hota, isliye demo wale naam ki jagah customer ke likhe hue naam */
+  if (data.bride && !str(data.bride.nameUr || data.brideNameUr) && W.bride) W.ur.bride = W.bride;
+  if (data.groom && !str(data.groom.nameUr || data.groomNameUr) && W.groom) W.ur.groom = W.groom;
 
   /* ---------- 2) TOP-LEVEL TEXTS ---------- */
   setIf(W, 'welcomeMessage',  data.welcomeMessage);
@@ -1881,8 +1885,9 @@ window.renderInvite = function(data, opts) {
         setIf(newEv.ur, 'note',         ev.noteUr);
         setIf(newEv.ur, 'mood',         ev.moodUr);
         setIf(newEv.ur, 'date',         ev.dateDisplayUr || dateUr);
-        setIf(newEv.ur, 'venueName',    ev.venueNameUr);
-        setIf(newEv.ur, 'venueAddress', ev.venueAddressUr);
+        // Form mein Urdu venue nahi hota: demo wali Urdu venue ki jagah customer ki likhi hui venue dikhao
+        newEv.ur.venueName    = str(ev.venueNameUr)    || newEv.venueName    || newEv.ur.venueName;
+        newEv.ur.venueAddress = str(ev.venueAddressUr) || newEv.venueAddress || newEv.ur.venueAddress;
 
         /* FIX 1a urdu: timing fields */
         newEv.ur.gatheringTime = newEv.gatheringTime;
