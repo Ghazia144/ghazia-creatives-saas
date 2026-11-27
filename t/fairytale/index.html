@@ -120,10 +120,14 @@ canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
   to{filter:brightness(1.18)}
 }
 
-.names span{display:block;padding:0 .3em}
 .date{padding:0 1.4rem;position:absolute;left:0;right:0;top:calc(7% + 34%);text-align:center;opacity:0;transition:opacity 2s ease;
   font-family:'Cinzel Decorative',serif;letter-spacing:.3em;font-size:clamp(.75rem,3.2vw,1.05rem);color:var(--blush);text-shadow:0 0 10px #000}
-.date small{display:block;margin-top:.8rem;font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:.08em;font-size:1.25em;color:var(--champagne)}
+  .date small{display:block;margin-top:.8rem;font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:.08em;font-size:1.25em;color:var(--champagne)}
+.names span{display:block;padding:0 .3em 30px;position:relative}
+.names span .par{position:absolute;left:0;right:0;bottom:2px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:1.15rem;letter-spacing:.05em;line-height:1.2;color:#FFF6D8;text-shadow:0 0 8px #000,0 2px 6px #000,0 0 14px rgba(0,0,0,.9)}
+#heroInfo{top:calc(7% + 41%)}
+#guestNoteBox{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:1.15rem;line-height:1.5;letter-spacing:.03em;color:#FFF6D8;text-transform:none;text-shadow:0 0 8px #000,0 2px 6px #000,0 0 14px rgba(0,0,0,.9)}
+.title{height:41%}
 #hero.named .names{opacity:1}
 #hero.named .date{opacity:1}
 
@@ -517,7 +521,7 @@ body.is-preview-2::after {
   <div class="vignette"></div>
   <div class="title"><h1 class="names" id="names"></h1></div>
   
-  <p class="date" id="guestNoteBox" style="display:none; margin-top:15px; font-size:1.1rem; line-height:1.4; color:var(--champagne); font-style:italic; text-shadow:0 0 10px #000; padding: 0 10%;"></p>
+  <div class="date" id="heroInfo"><p id="guestNoteBox" style="display:none;"></p></div>
   <div class="scroll">scroll<i></i></div>
 </section>
 
@@ -660,15 +664,15 @@ async function buildTargets(){
   await Promise.race([document.fonts.load('100px "Great Vibes"'), new Promise(r=>setTimeout(r,2500))]);
   const oc = document.createElement('canvas'); oc.width = W; oc.height = H;
   const o = oc.getContext('2d');
-  const boxTop = H*.07, boxH = H*.34;
+ const boxTop = H*.07, boxH = H*.41, EXTRA = 30;
   let fs = Math.min(W*.28, H*.18);
   o.font = `${fs}px "Great Vibes"`;
   const widest = Math.max(...CONFIG.lines.map(l=>o.measureText(l).width));
   if(widest > W*.86){ fs *= (W*.86)/widest; o.font = `${fs}px "Great Vibes"`; }
   $('names').style.fontSize = fs+'px';
-  { const nm=$('names'); nm.textContent=''; CONFIG.lines.forEach(l=>{ const sp=document.createElement('span'); sp.textContent=l; nm.appendChild(sp); }); }
+{ const nm=$('names'); nm.textContent=''; CONFIG.lines.forEach((l,i)=>{ const sp=document.createElement('span'); sp.textContent=l; const pt=(window.__parents||[])[i]; if(pt){ const sm=document.createElement('small'); sm.className='par'; sm.textContent=pt; sp.appendChild(sm); } nm.appendChild(sp); }); }
   o.fillStyle = '#2A1B4D'; o.textAlign = 'center'; o.textBaseline = 'middle';
-  const lh = fs*1.0, y0 = boxTop + boxH/2 - (CONFIG.lines.length-1)*lh/2;
+  const lh = fs + EXTRA, y0 = boxTop + boxH/2 - (CONFIG.lines.length-1)*lh/2 - EXTRA/2;
   CONFIG.lines.forEach((l,i)=>o.fillText(l, W/2, y0 + i*lh));
   const d = o.getImageData(0,0,W,H).data, pts = [], step = Math.max(3, Math.round(W/150));
   for(let y=0;y<H;y+=step) for(let x=0;x<W;x+=step) if(d[(y*W+x)*4+3]>128) pts.push([x,y]);
@@ -797,10 +801,11 @@ function buildEventsCarousel() {
   const events = window.__currentEvents;
   
   let slidesHTML = events.map(ev => {
-    let dStr = ev.date;
-    if(ev.date && ev.date.includes('-')) {
-        const d = new Date(ev.date);
-        if(!isNaN(d)) dStr = d.toLocaleDateString('en-US', { weekday:'short', day:'numeric', month:'short' });
+  let dStr = ev.date;
+if (ev.date && ev.date.includes('-')) {
+  const d = new Date(ev.date + 'T12:00:00');
+  if (!isNaN(d)) dStr = d.toLocaleDateString('en-US', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+
     }
     let timeStr = ev.gatheringTime || '';
     let timesHTML = [];
@@ -995,6 +1000,13 @@ addEventListener('scroll',nxtUpdate,{passive:true}); addEventListener('resize',n
 // ==========================================
 window.renderInvite = function(data, opts) {
   opts = opts || {};
+
+if (Array.isArray(data.events)) {
+  const k = e => (e.date || '9999-12-31') + 'T' + (e.gatheringTime || '00:00');
+  data = Object.assign({}, data, { events: [...data.events].sort((a,b) => k(a) < k(b) ? -1 : k(a) > k(b) ? 1 : 0) });
+}
+
+  if (data.rsvpWhatsapp) { CONFIG.rsvp.whatsapp = data.rsvpWhatsapp; updateWA(); }
   const previewMode = new URLSearchParams(location.search).get('preview');
   const isFormPreview = (opts.preview === true) || (opts.mode === 'order') || previewMode === '2' || previewMode === 'order';
 
@@ -1007,26 +1019,25 @@ window.renderInvite = function(data, opts) {
 
   // 2. MAIN EVENT (Date, Tagline, Guest Note)
   if (data.events && data.events.length > 0) {
-    const mainEv = data.events.find(e => e.type.includes('Barat') || e.type.includes('Nikkah')) || data.events[0];
-    const dateObj = new Date(mainEv.date + 'T12:00:00');
-    const dateStr = dateObj.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
-    
-    const dateEl = document.getElementById('date');
-    if (dateEl) {
-      dateEl.innerHTML = `${dateStr}<small>${CONFIG.tagline}</small>`;
-      window.__dynamicDate = dateStr;
-    }
+  const mainEv = data.events.find(e => /barat|nikah|nikkah/i.test(e.type || '')) || data.events[0];
+const dateObj = new Date((mainEv.date || '') + 'T12:00:00');
+const dateStr = isNaN(dateObj) ? '' : dateObj.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+if (dateStr) window.__dynamicDate = dateStr;
 
-    // FIX: Guest Note
-    const noteBox = document.getElementById('guestNoteBox');
-    if (noteBox) {
-      if (data.note && data.note.trim() !== '') {
-        noteBox.textContent = `"${data.note}"`;
-        noteBox.style.display = 'block';
-      } else {
-        noteBox.style.display = 'none';
-      }
-    }
+// HERO: sirf parents + guest note
+
+window.__parents = [
+  data.bride && data.bride.father ? 'Daughter of ' + data.bride.father : '',
+  data.groom && data.groom.father ? 'Son of ' + data.groom.father : ''
+];
+const nb = document.getElementById('guestNoteBox');
+if (nb) {
+  const n = String(data.note || '').trim();
+  if (n) { nb.textContent = '"' + n + '"'; nb.style.display = 'block'; }
+  else { nb.textContent = ''; nb.style.display = 'none'; }
+}
+
+
 
     // FIX: RSVP Deadline
     const rsvpDl = document.getElementById('rsvpDeadlineText');
@@ -1047,24 +1058,22 @@ window.renderInvite = function(data, opts) {
   }
 
   // 3. AUDIO / NASHEED FIX
-  if (data.audio_track) {
-    const bgm = document.getElementById('bgm');
-    const sndBtn = document.getElementById('snd');
-    
-    if (data.audio_track === 'none') {
-      if (bgm) { bgm.pause(); bgm.removeAttribute('src'); }
-      if (sndBtn) sndBtn.style.display = 'none';
-    } else {
-      if (bgm) {
-        bgm.src = `../audio/${data.audio_track}.mp3`;
-        bgm.load();
-        if (document.getElementById('intro').classList.contains('fade')) {
-           bgm.play().catch(()=>{});
-        }
-      }
-      if (sndBtn) sndBtn.style.display = 'grid';
+if (Object.prototype.hasOwnProperty.call(data, 'audio_track')) {
+  const bgm = document.getElementById('bgm'), sndBtn = document.getElementById('snd');
+  const track = String(data.audio_track || '').trim();
+  if (!track || track === 'none') {
+    if (bgm) { bgm.pause(); bgm.removeAttribute('src'); }
+    if (sndBtn) sndBtn.style.display = 'none';
+  } else {
+    if (sndBtn) sndBtn.style.display = '';
+    const src = '../audio/' + track + '.mp3';
+    if (bgm && bgm.getAttribute('src') !== src) {
+      const was = !bgm.paused;
+      bgm.src = src; try { bgm.load(); } catch(e) {}
+      if (!isFormPreview && (was || document.getElementById('intro')?.classList.contains('fade'))) bgm.play().catch(()=>{});
     }
   }
+}
 
   // 4. VENUE GRID (Only Venue Info - "A Royal Celebration" Section)
   const grid = document.getElementById('eventsGrid');
@@ -1084,11 +1093,11 @@ window.renderInvite = function(data, opts) {
 
     grid.innerHTML = uniqueVenues.map(ev => {
         // Date nikalne ka logic
-        let dStr = ev.date;
-        if(ev.date && ev.date.includes('-')) {
-            const d = new Date(ev.date);
-            if(!isNaN(d)) dStr = d.toLocaleDateString('en-US', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
-        }
+      let dStr = ev.date;
+if (ev.date && ev.date.includes('-')) {
+  const d = new Date(ev.date + 'T12:00:00');
+  if (!isNaN(d)) dStr = d.toLocaleDateString('en-US', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+}
         const evNames = data.events
           .filter(e => (e.venueName || '') + '|' + (e.venueAddress || '') === (ev.venueName || '') + '|' + (ev.venueAddress || ''))
           .map(e => e.type).filter(Boolean).join(' & ');
@@ -1175,34 +1184,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.renderInvite(dummyData, { preview: false }); 
       }
     }, 1000);
-  }
-});
-
-// ==========================================
-// UNIVERSAL AUDIO & PREVIEW LOGIC
-// ==========================================
-window.addEventListener('message', function(e) {
-  if (e.origin !== location.origin) return;
-  var msg = e.data;
-  
-  if (msg && msg.type === 'invite-data' && msg.data) {
-    
-    // 1. Audio Logic
-    var audioTrack = msg.data.audio_track || 'nasheed-1';
-    
-    // Page par jo bhi pehla <audio> tag hai, usko pakad lo (ID ki zaroorat nahi)
-    var bgMusic = document.querySelector('audio'); 
-    
-    if (bgMusic) {
-      if (audioTrack === 'none') {
-        bgMusic.pause();
-        bgMusic.style.display = 'none';
-      } else {
-        // Path set karo
-        bgMusic.src = '../audio/' + audioTrack + '.mp3';
-        bgMusic.style.display = 'block';
-      }
-    }
   }
 });
 

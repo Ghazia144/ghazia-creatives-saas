@@ -123,8 +123,8 @@ const WEDDING = {
     { src: "gallery/gallery-03.webp", alt: "Elegant floral aisle" },
     { src: "gallery/gallery-04.jpg", alt: "Soft lavender setting" }
   ],
-  ur: {
-    bride: "زیان", groom: "نور", brideParents: "صاحبزادی جناب و محترمہ عمران شیخ", groomParents: "صاحبزادہ جناب و محترمہ احمد رضا",
+  ur: {           
+    bride: "نور", groom: "زیان", brideParents: "صاحبزادی جناب و محترمہ عمران شیخ", groomParents: "صاحبزادہ جناب و محترمہ احمد رضا",
     dateNum: "۳۰", monthYear: "جنوری ۲۰۲۷", timelineDate: "۳۰ جنوری ۲۰۲۷", rsvpDeadline: "یکم جنوری",
     venueName: "پرل کانٹینینٹل بینکوئٹ", venueAddress: "شاہراہِ فیصل، کراچی، سندھ",
     program: [
@@ -686,7 +686,7 @@ const TEMPLATE_BASE_EVENTS = JSON.parse(JSON.stringify(WEDDING.events));
 
 <div id="homeTop">
 <section class="hero">
-  <video id="swanVideo" class="hero-video" playsinline webkit-playsinline="true" muted preload="metadata" poster="images/hero-poster.jpg">
+  <video id="swanVideo" class="hero-video" playsinline webkit-playsinline="true" muted preload="metadata" poster="images/envelope-poster.jpg">
     <source src="videos/swan.mp4" type="video/mp4">
   </video>
   <div class="hero-content">
@@ -1256,11 +1256,22 @@ function fmtTime(t){
       const scratchLabel = document.getElementById('scratchEventName');
       if (scratchLabel) scratchLabel.textContent = ur ? "تاریخ ہے" : "the date is";
     }
+    
+// DISPLAY (waise hi rakho)
+$('venueName').textContent    = D.venueName;
+$('venueAddress').textContent = D.venueAddress;
 
-    $('venueName').textContent = D.venueName;
-    $('venueAddress').textContent = D.venueAddress;
-    $('venueMapBtn').href = W.venueMap;
-    $('directionsBtn').href = mapsDirections(W.venueName, W.venueAddress);
+const ev = (function(){
+  const m = location.hash.match(/^#\/(\w+)/);
+  return (m && WEDDING.events.find(e => e.id === m[1])) || getNextEvent();
+})();
+
+const mapUrl = ev && ev.venueMap ? String(ev.venueMap).trim() : '';
+const hasMap = mapUrl !== '';
+$('venueMapBtn').href = hasMap ? mapUrl : '#';
+$('directionsBtn').href = hasMap ? mapsDirections(ev.venueName, ev.venueAddress) : '#';
+$('venueMapBtn').style.display = hasMap ? '' : 'none';
+$('directionsBtn').style.display = hasMap ? '' : 'none';
 
     /* FIX: RSVP deadline — sirf tab show karo jab buyer ne di ho */
     if (D.rsvpDeadline) {
@@ -1278,7 +1289,6 @@ function fmtTime(t){
 
     /* TIMELINE (home page / hidden initial) */
     const timelineList = document.getElementById('timelineList');
-    const ev = window.currentEvent || getNextEvent();
     const isUrTimeline = (lang === 'ur');
     const program = ev
       ? (isUrTimeline
@@ -1298,15 +1308,16 @@ function fmtTime(t){
           <div class="t-desc">${it.sub || ''}</div>
         </div>`).join('');
 
-    const stamp = iso => iso.replace(/[-:]/g,'').replace(/\.\d{3}$/,'');
-    const params = new URLSearchParams({
-      action:'TEMPLATE',
-      text: ur ? `${D.bride} اور ${D.groom} کی شادی` : `${W.bride} & ${W.groom}'s Wedding`,
-      dates:`${stamp(W.startISO)}/${stamp(W.endISO)}`,
-      ctz:W.timezone || 'Asia/Karachi',
-      details: ur ? `${D.bride} اور ${D.groom}` : `${W.bride} & ${W.groom}`,
-      location: ur ? `${D.venueName}، ${D.venueAddress}` : W.venueName + ', ' + W.venueAddress
-    });
+const stamp = iso => iso.replace(/[-:]/g,'').replace(/\.\d{3}$/,'');
+const cEv = nextEv || { startISO:W.startISO, endISO:W.endISO, venueName:W.venueName, venueAddress:W.venueAddress };
+const params = new URLSearchParams({
+  action:'TEMPLATE',
+  text: ur ? `${D.bride} اور ${D.groom} کی شادی` : `${W.bride} & ${W.groom}'s Wedding`,
+  dates:`${stamp(cEv.startISO)}/${stamp(cEv.endISO)}`,
+  ctz:W.timezone || 'Asia/Karachi',
+  details: ur ? `${D.bride} اور ${D.groom}` : `${W.bride} & ${W.groom}`,
+  location: `${cEv.venueName}, ${cEv.venueAddress}`
+});
     calendarURL = 'https://calendar.google.com/calendar/render?' + params.toString();
     $('saveDateBtn').href = calendarURL;
 
@@ -1579,8 +1590,12 @@ setInterval(tick, 1000);
 
       $('venueName').textContent = d.venueName;
       $('venueAddress').textContent = d.venueAddress;
-      $('venueMapBtn').href = ev.venueMap;
-      $('directionsBtn').href = mapsDirections(ev.venueName, ev.venueAddress);
+    const _mapUrl = ev.venueMap ? String(ev.venueMap).trim() : '';
+const _hasMap = _mapUrl !== '';
+$('venueMapBtn').href = _hasMap ? _mapUrl : '#';
+$('directionsBtn').href = _hasMap ? mapsDirections(ev.venueName, ev.venueAddress) : '#';
+$('venueMapBtn').style.display = _hasMap ? '' : 'none';
+$('directionsBtn').style.display = _hasMap ? '' : 'none';
 
       $('evCalBtn').href = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
         action:'TEMPLATE', text:`${ev.name} — ${W.bride} & ${W.groom}`,
@@ -1732,7 +1747,7 @@ window.renderInvite = function(data, opts) {
     const raw = str(data.rsvpDeadline);
     let dl = '';
     if (raw) {
-      const dt = new Date(raw);
+     const dt = new Date(/^\d{4}-\d{2}-\d{2}$/.test(raw) ? raw + 'T12:00:00' : raw);
       if (!isNaN(dt.getTime())) {
         const dd2 = dt.getDate();
         const s2 = ['th','st','nd','rd'], v2 = dd2 % 100;
@@ -1827,7 +1842,8 @@ window.renderInvite = function(data, opts) {
       const endT24   = ev.endTime24 || ev.endTime || ev.endingTime || base.endISO.slice(11,16);
       const eventDate = ev.date || ev.eventDate || base.startISO.slice(0,10);
       newEv.startISO = `${eventDate}T${startT24}:00`;
-      newEv.endISO   = `${eventDate}T${endT24}:00`;
+      const _en = new Date(new Date(newEv.startISO).getTime() + 4*3600*1000), _p = n => String(n).padStart(2,'0');
+newEv.endISO = `${_en.getFullYear()}-${_p(_en.getMonth()+1)}-${_p(_en.getDate())}T${_p(_en.getHours())}:${_p(_en.getMinutes())}:00`;
 
       const dObj = new Date(newEv.startISO);
       const dateEn = dObj.toLocaleDateString('en-US', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
@@ -1849,11 +1865,7 @@ window.renderInvite = function(data, opts) {
 
       setIf(newEv, 'venueName',    ev.venueName || ev.venue);
       setIf(newEv, 'venueAddress', ev.venueAddress || ev.address);
-      if (ev.mapsUrl || ev.googleMapsLink || ev.mapUrl) {
-        newEv.venueMap = str(ev.mapsUrl || ev.googleMapsLink || ev.mapUrl);
-      } else if (newEv.venueName && newEv.venueAddress) {
-        newEv.venueMap = `https://maps.google.com/?q=${encodeURIComponent(newEv.venueName + ', ' + newEv.venueAddress)}`;
-      }
+      newEv.venueMap = str(ev.mapsUrl || ev.googleMapsLink || ev.mapUrl);
 
       if (Array.isArray(ev.program) && ev.program.length) {
         newEv.program = ev.program.map(p => ({ time: str(p.time), label: str(p.label), sub: str(p.sub) }));
@@ -1904,7 +1916,7 @@ window.renderInvite = function(data, opts) {
 
       mappedEvents.push(newEv);
     });
-
+mappedEvents.sort((a,b) => new Date(a.startISO) - new Date(b.startISO));
     if (mappedEvents.length) {
       W.events.length = 0;
       W.events.push(...mappedEvents);

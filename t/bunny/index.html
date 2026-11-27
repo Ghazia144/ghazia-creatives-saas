@@ -82,6 +82,7 @@ const WEDDING = {
   month: "January",
   year: "2027",
   startTime: "4:00 PM",
+    audio_track: "nasheed-1",
   endTime: "11:00 PM",
   startISO: "2027-01-30T16:00:00",
   endISO: "2027-01-30T23:00:00",
@@ -1457,6 +1458,12 @@ function getNextEvent(fallbackLast){
       if(intro) intro.textContent = `${W.bride} & ${W.groom}`;
     }
 
+    function fmtDeadline(val){
+  if(!val) return '';
+  const d = new Date(val);
+  return isNaN(d.getTime()) ? String(val) : fmtShortDate(d);
+}
+
      function renderTimeline(){
       $('timelineList').innerHTML = getSortedEvents().map(ev => {
         const dateStr = ev.dt ? fmtShortDate(ev.dt) : esc(ev.date);
@@ -1664,51 +1671,103 @@ function getNextEvent(fallbackLast){
 
   // ---------- Floating controls: music + auto-scroll ----------
   (function(){
-    var MUSIC_SRC = '../audio/nasheed-1.mp3';
     var dock = document.getElementById('fabDock');
     var musicBtn = document.getElementById('musicBtn');
     var scrollBtn = document.getElementById('scrollBtn');
     if(!dock || !musicBtn || !scrollBtn) return;
 
-    var music = new Audio(MUSIC_SRC);
-    music.loop = true; music.volume = .5; music.preload = 'auto';
-    window.__audioTrackNone = false;
+    var music = new Audio();
+    music.loop = true;
+    music.volume = .5;
+    music.preload = 'none';
+    window.__audioTrackNone = true;
+    musicBtn.style.display = 'none';
 
     function syncMusicUI(){
-      var on = !music.paused && !music.muted;
+      var on = !window.__audioTrackNone && !!music.getAttribute('src') && !music.paused && !music.muted;
       musicBtn.classList.toggle('is-muted', !on);
       musicBtn.setAttribute('aria-label', on ? 'Mute music' : 'Unmute music');
       musicBtn.setAttribute('aria-pressed', on ? 'false' : 'true');
     }
     ['play','pause','volumechange'].forEach(function(ev){ music.addEventListener(ev, syncMusicUI); });
 
-    function tryPlay(){ if(window.invitePreview) return; var p = music.play(); if(p && p.catch) p.catch(function(){}); }
-    window.startInviteMusic = function(){
+    function tryPlay(){
       if(window.invitePreview) return;
-      if(window.__audioTrackNone) return;
-      if(!music.muted) tryPlay();
-    };
+      if(window.__audioTrackNone || !music.getAttribute('src')) return;
+      var p = music.play();
+      if(p && p.catch) p.catch(function(){});
+    }
+
+    window.startInviteMusic = function(){
+  if(window.invitePreview) return;
+  // form ka track abhi tak nahi aaya to hi demo default lagao
+  if(!window.__audioSet) window.applyInviteAudio(WEDDING.audio_track || '');
+  if(window.__audioTrackNone || !music.getAttribute('src')) return;
+  if(!music.muted) tryPlay();
+};
+
     musicBtn.addEventListener('click', function(){
-      if(window.__audioTrackNone) return;
+      if(window.__audioTrackNone || !music.getAttribute('src')) return;
       if(music.paused){ music.muted = false; tryPlay(); }
       else { music.muted = !music.muted; }
       syncMusicUI();
     });
 
+    function resolveTrackSrc(track){
+      if(/^(https?:\/\/|\/|\.\.\/)/i.test(track)) return track;
+      var clean = track.replace(/\.mp3$/i, '');
+      return '../audio/' + clean + '.mp3';
+    }
+
     window.applyInviteAudio = function(track){
-  track = String(track||'').trim();
-  if(!track || track==='none'){ window.__audioTrackNone = true; try{music.pause();}catch(e){} musicBtn.style.display='none'; return; }
-  if(window.__audioTrackNone){ window.__audioTrackNone = false; music.muted = false; }
-  musicBtn.style.display = '';
-  if(music.src.indexOf('/'+track+'.mp3') === -1){
-    var was = !music.paused; music.src = '../audio/'+track+'.mp3'; music.load();
-    if(was) tryPlay();
-  }
-};
+    window.__audioSet = true;
+console.log('[audio] applying:', track);
+      track = String(track || '').trim();
+      if(!track || track.toLowerCase() === 'none'){
+        window.__audioTrackNone = true;
+        try{
+          music.pause();
+          music.removeAttribute('src');
+          music.load();
+        }catch(e){}
+        musicBtn.style.display = 'none';
+        syncMusicUI();
+        return;
+      }
+
+      var nextSrc = resolveTrackSrc(track);
+      window.__audioTrackNone = false;
+      music.muted = false;
+      musicBtn.style.display = '';
+
+      if(music.getAttribute('src') !== nextSrc){
+        var wasPlaying = !music.paused;
+        music.src = nextSrc;
+        music.load();
+        if(wasPlaying || window.__revStarted) tryPlay();
+      } else if(window.__revStarted && music.paused && !window.invitePreview){
+        tryPlay();
+      }
+      syncMusicUI();
+    };
 
     window.inviteMusic = music;
-    if(window.invitePreview){ try{ music.pause(); }catch(e){} }
+
+    // Pehle user gesture par music start karo
+    function armFirstGesture(){
+      const start = () => {
+        if(window.startInviteMusic) window.startInviteMusic();
+        document.removeEventListener('pointerdown', start);
+        document.removeEventListener('keydown', start);
+        document.removeEventListener('touchstart', start);
+      };
+      document.addEventListener('pointerdown', start, { once:true });
+      document.addEventListener('keydown', start, { once:true });
+      document.addEventListener('touchstart', start, { once:true });
+    }
+    armFirstGesture();
     syncMusicUI();
+
 
     // Scroll button
     var root = document.documentElement;

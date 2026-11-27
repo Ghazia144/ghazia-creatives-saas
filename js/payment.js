@@ -116,11 +116,11 @@ function renderPaymentForm() {
   $("payContainer").innerHTML = `
     <div class="pay-card">
       <h1>Complete payment</h1>
-      <p class="pay-note">Order code: <strong>${PUBLIC_CODE}</strong></p>
+      <p class="pay-note">Order code: <strong>${escapeAttr(PUBLIC_CODE)}</strong></p>
 
       <div class="pay-summary">
         <div><strong>Design:</strong> ${designName}</div>
-        <div><strong>Plan:</strong> ${orderSummary.plan === 1 ? "1 Event" : "2 Events"}</div>
+        <div><strong>Plan:</strong> ${orderSummary.plan === 1 ? "1 Event" : (orderSummary.plan === 2 ? "2 Events" : "2+ Events")}</div>
       </div>
 
       <div class="pay-amount">
@@ -313,10 +313,15 @@ async function loadSummary() {
       return;
     }
 
-    orderSummary = data;
+     orderSummary = data;
     renderPaymentForm();
   } catch (err) {
-    showMissingToken();
+    const msg = String(err && err.message || "");
+    if (/failed to fetch|network|load failed/i.test(msg)) {
+      $("payContainer").innerHTML = `<div class="pay-card pay-missing"><h1>Connection problem</h1><p>Internet slow lag raha hai. Please dobara try karein.</p><button type="button" class="btn btn-primary" onclick="location.reload()">Retry</button></div>`;
+    } else {
+      showMissingToken();
+    }
   }
 }
 

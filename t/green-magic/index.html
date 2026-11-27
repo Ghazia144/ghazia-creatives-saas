@@ -763,6 +763,15 @@ var WEDDING = {
 </div>
 
 <script>
+
+function fmtDeadline(v){
+  var s=String(v==null?'':v).trim(), m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+  if(!m) return s;
+  var M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var d=+m[3], t=['th','st','nd','rd'], x=d%100;
+  return d+(t[(x-20)%10]||t[x]||t[0])+' '+M[+m[2]-1]+' '+m[1];
+}
+
 (function(){
   'use strict';
   var W = window.WEDDING;
@@ -834,11 +843,8 @@ var WEDDING = {
     });
     return next || sorted[sorted.length-1];
   }
-  function mapsUrl(ev){
-    if(ev.mapsUrl && /^https?:\/\//i.test(ev.mapsUrl)) return ev.mapsUrl;
-    var q = [ev.venueName, ev.venueAddress].filter(Boolean).join(', ');
-    return q ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q) : '';
-  }
+function mapsUrl(ev){ return ev.mapsUrl || ''; }
+
   function gcal(d){ return d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate()) + 'T' + pad(d.getHours()) + pad(d.getMinutes()) + '00'; }
   function calUrl(ev){
     var s = parseEventDT(ev); if(!s) return '';
@@ -1279,7 +1285,7 @@ var WEDDING = {
       return e;
     });
     if(data.rsvpWhatsapp) W.whatsappNumber = data.rsvpWhatsapp;
-    if(data.rsvpDeadline) W.rsvpDeadline = data.rsvpDeadline;
+if ('rsvpDeadline' in data) W.rsvpDeadline = String(data.rsvpDeadline || '').trim();
 
     state.preview2 = isPreview2;
     document.body.classList.toggle('is-preview-2', isPreview2);

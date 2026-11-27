@@ -57,7 +57,7 @@
   .toggle-size { background: none; border: 1px solid var(--line); border-radius: 4px; font-size: 12px; padding: 4px 8px; cursor: pointer; color: var(--muted); }
   .phone-frame { width: 100%; height: 700px; background: #fff; border: 10px solid #222; border-radius: 36px; overflow: hidden; position: relative; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.15); transition: all 0.3s; max-width: 390px; box-sizing: border-box; }
   .phone-frame.wide { max-width: 100%; height: 600px; border-width: 4px; border-radius: 8px; }
-  .phone-frame iframe { width: 100%; height: 100%; border: none; display: block; background: #f6f2e8; }
+  .phone-frame iframe { width: 100%; height: 100%; border: none; display: block; background: transparent; position: relative; z-index: 1; }
   .preview-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 14px; line-height: 1.5; }
   .coming-soon-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: #EFE3D9; color: var(--muted); text-align: center; padding: 20px; box-sizing: border-box; }
   .coming-soon-placeholder img { width: 120px; height: 120px; border-radius: 8px; margin-bottom: 16px; object-fit: cover; }
@@ -87,6 +87,24 @@
   .audio-option .play-btn { background: var(--paper); border: 1px solid var(--maroon); color: var(--maroon); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; transition: all 0.2s; }
   .audio-option .play-btn:hover { background: var(--maroon); color: #fff; }
   .audio-option:has(input[type="radio"]:checked) { border-color: var(--maroon); background: rgba(107, 43, 58, 0.04); }
+  /* Preview loading state */
+.phone-frame::before,
+.mobile-drawer-body::before {
+  content: "Please wait… your invite is getting ready";
+  position: absolute; left: 0; right: 0; top: 50%; margin-top: 18px;
+  padding: 0 24px; text-align: center; z-index: 0;
+  font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: .04em; color: var(--maroon);
+}
+.phone-frame::after,
+.mobile-drawer-body::after {
+  content: ""; position: absolute; left: 50%; top: 50%; margin: -34px 0 0 -16px;
+  width: 32px; height: 32px; border-radius: 50%; z-index: 0;
+  border: 3px solid rgba(107,43,58,.18); border-top-color: var(--maroon);
+  animation: pvspin 1s linear infinite;
+}
+@keyframes pvspin { to { transform: rotate(360deg); } }
+.phone-frame { background: #F6F0E9; }
+.mobile-drawer-body { background: #F6F0E9; }
 </style>
 </head>
 <body>

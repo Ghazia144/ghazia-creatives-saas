@@ -23,7 +23,13 @@ $('loginBtn').addEventListener('click', async () => {
 
 $('logoutBtn').addEventListener('click', async () => { await supabaseClient.auth.signOut(); location.reload(); });
 
-async function showDashboard() { $('loginSection').style.display = 'none'; $('dashboardSection').style.display = 'block'; await loadOrders(); }
+async function showDashboard() {
+  $('loginSection').style.display = 'none';
+  $('dashboardSection').style.display = 'block';
+  await loadOrders();
+  const o = new URLSearchParams(location.search).get('o');
+  if (o) openOrder(o);
+}
 
 async function callAdminApi(action, payload = {}) {
   const { data: { session } } = await supabaseClient.auth.getSession();

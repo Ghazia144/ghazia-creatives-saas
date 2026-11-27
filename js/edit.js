@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentEditsMax = 3;
   let currentEditsUsed = 0;
   let totalEvents = 1;
+  let originalData = {}; 
 
   const EVENT_TYPES = ["Mehendi", "Mayoon", "Dholki", "Qawali Night", "Nikah", "Barat", "Valima"];
 
@@ -36,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ action: "get-for-edit", public_code: code, secret_token: token })
       });
 
+      
+
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Failed to load");
 
@@ -44,7 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
       currentEditsUsed = json.edits_used || 0;
       
       // Plan 3 means 5 events, Plan 2 means 2, Plan 1 means 1
-      totalEvents = currentPlan === 3 ? 7 : currentPlan;
+      totalEvents = currentPlan === 3
+  ? Math.min(7, Math.max(3, (json.data.events || []).length))
+  : currentPlan;
+
+originalData = json.data || {};
+renderForm(json.data);
 
       renderForm(json.data);
       updateBanner();
@@ -87,47 +95,26 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('errorMsg').textContent = msg;
   }
 
-  function eventBlockHtml(prefix, title) {
-    return `
+  function eventBlockHtml(prefix, title, index) {
+  const removeBtn = (currentPlan === 3 && index > 3)
+    ? `<div style="text-align:right;margin-bottom:10px;"><button type="button" class="btn btn-outline" style="padding:4px 10px;font-size:12px;border-color:#B23A48;color:#B23A48;" onclick="removeEventBlock(${index})">Remove Event</button></div>`
+    : '';
+  return `
       <section class="form-card" id="card_${prefix}">
+        ${removeBtn}
         <h2>${title}</h2>
-        <label class="field">
-          <span>Event type *</span>
-          <select id="${prefix}_type"></select>
-        </label>
-        <label class="field">
-          <span>Event date *</span>
-          <input type="date" id="${prefix}_date">
-        </label>
-        <label class="field">
-          <span>Venue name *</span>
-          <input type="text" id="${prefix}_venue_name" maxlength="80">
-        </label>
-        <label class="field">
-          <span>Venue address *</span>
-          <input type="text" id="${prefix}_venue_address" maxlength="140">
-        </label>
-        <label class="field">
-          <span>Google Maps link (optional)</span>
-          <input type="url" id="${prefix}_maps">
-        </label>
+        <label class="field"><span>Event type *</span><select id="${prefix}_type"></select></label>
+        <label class="field"><span>Event date *</span><input type="date" id="${prefix}_date"></label>
+        <label class="field"><span>Venue name *</span><input type="text" id="${prefix}_venue_name" maxlength="80"></label>
+        <label class="field"><span>Venue address *</span><input type="text" id="${prefix}_venue_address" maxlength="140"></label>
+        <label class="field"><span>Google Maps link (optional)</span><input type="url" id="${prefix}_maps"></label>
         <div class="two-col">
-          <label class="field">
-            <span>Gathering time *</span>
-            <input type="time" id="${prefix}_gathering">
-          </label>
-          <label class="field">
-            <span>Dinner time (optional)</span>
-            <input type="time" id="${prefix}_dinner">
-          </label>
+          <label class="field"><span>Gathering time *</span><input type="time" id="${prefix}_gathering"></label>
+          <label class="field"><span>Dinner time (optional)</span><input type="time" id="${prefix}_dinner"></label>
         </div>
-        <label class="field" id="${prefix}_rukhsati_wrap" hidden>
-          <span>Rukhsati time (optional — Barat only)</span>
-          <input type="time" id="${prefix}_rukhsati">
-        </label>
-      </section>
-    `;
-  }
+        <label class="field" id="${prefix}_rukhsati_wrap" hidden><span>Rukhsati time (optional — Barat only)</span><input type="time" id="${prefix}_rukhsati"></label>
+      </section>`;
+}
 
   function fillTypes(selectId, selectedVal, allSelectedTypes) {
     const select = document.getElementById(selectId);
@@ -226,14 +213,14 @@ document.addEventListener("DOMContentLoaded", () => {
       eventsPayload.push(getEvent('e' + i));
     }
 
-    const payloadData = {
-      bride: { name: document.getElementById('bride_name').value.trim(), father: document.getElementById('bride_father').value.trim() },
-      groom: { name: document.getElementById('groom_name').value.trim(), father: document.getElementById('groom_father').value.trim() },
-      rsvpWhatsapp: document.getElementById('rsvp_whatsapp').value.trim(),
-      note: document.getElementById('note').value.trim(),
-      rsvpDeadline: document.getElementById('rsvp_deadline').value || null,
-      events: eventsPayload
-    };
+   const payloadData = Object.assign({}, originalData, {
+  bride: { name: document.getElementById('bride_name').value.trim(), father: document.getElementById('bride_father').value.trim() },
+  groom: { name: document.getElementById('groom_name').value.trim(), father: document.getElementById('groom_father').value.trim() },
+  rsvpWhatsapp: document.getElementById('rsvp_whatsapp').value.trim(),
+  note: document.getElementById('note').value.trim(),
+  rsvpDeadline: document.getElementById('rsvp_deadline').value || null,
+  events: eventsPayload
+});
 
     try {
       const res = await fetch(`${SUPABASE_FUNCTIONS_URL}/order`, {

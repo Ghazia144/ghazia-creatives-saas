@@ -365,7 +365,7 @@ const WEDDING = {
     <p class="eyebrow">With the blessings of Allah, we cordially invite you to</p>
     <p class="eyebrow" style="margin-bottom:18px;" id="hero-names-label"></p>
     <h1 class="names script" id="hero-bride"></h1>
-    <p class="parents" id="hero-bride-parents"></p>
+<p class="parents" id="hero-bride-parents"></p>
     <span class="amp script">&amp;</span>
     <h1 class="names script" id="hero-groom"></h1>
     <p class="parents" id="hero-groom-parents"></p>
@@ -480,6 +480,15 @@ const WEDDING = {
   const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
+function fmtDeadline(v){
+  var s=String(v==null?'':v).trim(), m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+  if(!m) return s;
+  var M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var d=+m[3], t=['th','st','nd','rd'], x=d%100;
+  return d+(t[(x-20)%10]||t[x]||t[0])+' '+M[+m[2]-1]+' '+m[1];
+}
+
+
   function pad(n){ return String(n).padStart(2,'0'); }
   function fmt12(t){
     if(!t) return '';
@@ -532,7 +541,7 @@ const WEDDING = {
     const next = sorted.find(e => parseEventDT(e) && parseEventDT(e).getTime() > now);
     return next || sorted[sorted.length-1];
   }
-  function mapsUrl(ev){ return ev.mapsUrl || (ev.venueName ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(ev.venueName + ', ' + (ev.venueAddress||'')) : ''); }
+ function mapsUrl(ev){ return ev.mapsUrl || ''; }
 
   function renderMeta(){
     document.title = `${W.bride} & ${W.groom}`;
@@ -540,14 +549,25 @@ const WEDDING = {
     $('intro-names').textContent = `${W.bride} & ${W.groom}`;
   }
 
-  function renderHero(){
-    $('hero-bride').textContent = W.bride;
-    $('hero-groom').textContent = W.groom;
-    $('hero-bride-parents').textContent = W.brideParents || '';
-    $('hero-groom-parents').textContent = W.groomParents || '';
-$('hero-names-label').textContent = 'the wedding of';
+function renderHero(){
+  $('hero-bride').textContent = W.bride;
+  $('hero-groom').textContent = W.groom;
 
+  // element na ho to khud bana lo, crash nahi hoga
+  function parentsEl(id, afterId){
+    let el = document.getElementById(id);
+    if(!el){
+      el = document.createElement('p');
+      el.className = 'parents';
+      el.id = id;
+      $(afterId).after(el);
+    }
+    return el;
   }
+  parentsEl('hero-bride-parents', 'hero-bride').textContent = W.brideParents || '';
+  parentsEl('hero-groom-parents', 'hero-groom').textContent = W.groomParents || '';
+  $('hero-names-label').textContent = 'the wedding of';
+}
 
   function renderScratch(){
     const next = getNextEvent();
@@ -605,22 +625,27 @@ $('hero-names-label').textContent = 'the wedding of';
     });
   }
 
-  function renderRsvp(){
-    const rsvpLabel = $('rsvp-deadline-label');
-    // ✅ FIX: Agar buyer ne deadline nahi di, toh bilkul hide kar do
-    if (W.rsvpDeadline && W.rsvpDeadline.trim() !== '') {
-      rsvpLabel.textContent = `Kindly RSVP by ${W.rsvpDeadline}`;
-      rsvpLabel.style.display = 'block';
-    } else {
-      rsvpLabel.textContent = '';
-      rsvpLabel.style.display = 'none';
-    }
-    
-    // Note ko sirf yahan ek dafa dikhayein
-    if(W.note && !document.getElementById('rsvp-note')) {
-      $('rsvp-deadline-label').insertAdjacentHTML('afterend', `<p id="rsvp-note" style="font-style:italic; color:var(--gold-soft); margin-bottom:20px;">"${W.note}"</p>`);
-    }
+function renderRsvp(){
+  const rsvpLabel = $('rsvp-deadline-label');
+  if (W.rsvpDeadline && String(W.rsvpDeadline).trim() !== '') {
+    rsvpLabel.textContent = `Kindly RSVP by ${fmtDeadline(W.rsvpDeadline)}`;
+    rsvpLabel.style.display = 'block';
+  } else {
+    rsvpLabel.textContent = '';
+    rsvpLabel.style.display = 'none';
   }
+
+  let nEl = document.getElementById('rsvp-note');
+  if (W.note) {
+    if (!nEl) {
+      rsvpLabel.insertAdjacentHTML('afterend', '<p id="rsvp-note" style="font-style:italic; color:var(--gold-soft); margin-bottom:20px;"></p>');
+      nEl = document.getElementById('rsvp-note');
+    }
+    nEl.textContent = '"' + W.note + '"';
+  } else if (nEl) {
+    nEl.remove();
+  }
+}
 
   function renderCountdown(){
     const next = getNextEvent();
@@ -661,11 +686,11 @@ function applyAudio(track){
 
     if(data.bride && data.bride.name) W.bride = data.bride.name;
     if(data.groom && data.groom.name) W.groom = data.groom.name;
-    if (data.bride && 'father' in data.bride) {
+   if (data.bride && typeof data.bride === 'object' && 'father' in data.bride) {
   const f = String(data.bride.father || '').trim();
   W.brideParents = f ? 'Daughter of ' + f : '';
 }
-if (data.groom && 'father' in data.groom) {
+if (data.groom && typeof data.groom === 'object' && 'father' in data.groom) {
   const f = String(data.groom.father || '').trim();
   W.groomParents = f ? 'Son of ' + f : '';
 }
@@ -673,15 +698,17 @@ if (data.groom && 'father' in data.groom) {
       W.events = data.events.map(canonEvent).filter(Boolean).slice(0, 7); // 7 events fix
     }
     if(data.rsvpWhatsapp) W.whatsappNumber = data.rsvpWhatsapp;
-    if(data.rsvpDeadline) W.rsvpDeadline = data.rsvpDeadline;
-    if(data.note) W.note = data.note;
+   
+    if ('rsvpDeadline' in data) W.rsvpDeadline = String(data.rsvpDeadline || '').trim();
+   if (data.note !== undefined) W.note = String(data.note || '').trim();
     if (Object.prototype.hasOwnProperty.call(data, 'audio_track')) applyAudio(data.audio_track);
 
     state.preview2 = isPreview2;
     document.body.classList.toggle('is-preview-2', isPreview2);
 
-    renderMeta(); renderHero(); renderScratch(); renderEvents(); renderTimeline(); renderVenues(); renderRsvp(); renderCountdown();
-
+    [renderMeta, renderHero, renderScratch, renderEvents, renderTimeline, renderVenues, renderRsvp, renderCountdown].forEach(function(fn){
+  try { fn(); } catch(err){ console.error('[' + fn.name + ']', err); }
+});
     if(isPreview2){
       document.querySelectorAll('.f-in, .f-choice, .btn, .venue-map-btn').forEach(el => el.classList.add('is-disabled'));
     }

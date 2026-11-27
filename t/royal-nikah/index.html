@@ -56,6 +56,15 @@
       if (innerWidth <= 820) location.reload(); else fit();
     });
   }, 0);
+
+function fmtDeadline(v){
+  var s=String(v==null?'':v).trim(), m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+  if(!m) return s;
+  var M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var d=+m[3], t=['th','st','nd','rd'], x=d%100;
+  return d+(t[(x-20)%10]||t[x]||t[0])+' '+M[+m[2]-1]+' '+m[1];
+}
+
 })();</script>
 
 <title>Invitation</title>
@@ -496,7 +505,8 @@
       venueName: str(e.venueName || e.venue || '', 120),
       venueAddress: str(e.venueAddress || e.address || '', 200),
       startMs: d ? Date.UTC(y, mo-1, dy, h, mi) : Number.MAX_SAFE_INTEGER,
-      localStart: d ? new Date(y, mo-1, dy, h, mi) : new Date(8640000000000000)
+      localStart: d ? new Date(y, mo-1, dy, h, mi) : new Date(8640000000000000),
+      userMaps: (typeof e.mapsUrl === 'string' && /^https?:\/\//i.test(e.mapsUrl.trim())) ? e.mapsUrl.trim() : '',
     };
   }
 
@@ -550,7 +560,7 @@
     m.names = m.events.map(function(e){ return e.name; }).join(' & ');
     m.couple = [m.bride.name, m.groom.name].filter(Boolean).join(' & ');
     m.events.forEach(function(ev){
-      ev.mapsUrl = mapsUrl(ev);
+      ev.mapsUrl = ev.userMaps;
       ev.calUrl = calendarUrl(ev, m.couple);
     });
     return m;
@@ -761,9 +771,7 @@
 
     var selectInput = el('select', {id: 'rsvp-attendance', disabled: preview || !m.wa});
     selectInput.appendChild(el('option', {value: ''}, 'Select an option'));
-    m.events.forEach(function(ev) {
-      selectInput.appendChild(el('option', {value: 'attending-' + ev.type}, 'Attending ' + ev.name));
-    });
+   selectInput.appendChild(el('option', {value: 'attending'}, 'Attending'));
     selectInput.appendChild(el('option', {value: 'not-attending'}, 'Unable to attend'));
 
     formWrap.appendChild(el('div', {cls: 'rsvp-field'}, el('label', {for: 'rsvp-attendance'}, 'Will you attend?'), selectInput));
@@ -779,12 +787,9 @@
         var msg = 'Assalamualaikum, my name is ' + guestName + '. ';
         if (attendanceVal === 'not-attending') {
           msg += 'Unfortunately, I will not be able to attend the ' + (m.names || 'wedding') + ' of ' + m.couple + '.';
-        } else {
-          var type = attendanceVal.replace('attending-', '');
-          var evObj = m.events.find(function(e) { return e.type === type; });
-          var evName = evObj ? evObj.name : 'event';
-          msg += 'In Sha Allah, I will be attending the ' + evName + ' of ' + m.couple + '.';
-        }
+        }  else {
+  msg += 'In Sha Allah, I will be attending the ' + (m.names || 'wedding') + ' of ' + m.couple + '.';
+}
         var link = 'https://wa.me/' + m.wa + '?text=' + encodeURIComponent(msg);
         window.open(link, '_blank');
       });
@@ -1086,11 +1091,17 @@ window.addEventListener('message', function(e) {
   if (msg && msg.type === 'invite-data' && msg.data) {
     var audioTrack = msg.data.audio_track || 'nasheed-1';
     var bgMusic = document.querySelector('audio');
-    if (bgMusic) {
+        if (bgMusic) {
       if (audioTrack === 'none') {
         bgMusic.pause();
+        bgMusic.removeAttribute('src');
+        try { bgMusic.load(); } catch (err) {}
         bgMusic.style.display = 'none';
+        var mb = document.getElementById('muteBtn');
+        if (mb) mb.style.display = 'none';
       } else {
+        var mb2 = document.getElementById('muteBtn');
+        if (mb2) mb2.style.display = '';
         bgMusic.src = '../audio/' + audioTrack + '.mp3';
         bgMusic.style.display = 'block';
       }

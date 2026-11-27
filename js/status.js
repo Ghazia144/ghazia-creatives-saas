@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const code = params.get('c');
+  const esc = (s) => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   const container = document.getElementById('statusContainer');
 
   if (!code) { renderNotFound(); return; }
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="pulse-ring" style="margin: 0 auto 20px auto;"></div>
       <h1>Verification in Progress</h1>
       <div class="code-badge">Order: ${code}</div>
-      <p>Payment will be verified within 1 hour.</p>
+      <p>Payment will be verified within few minutes.</p>
       <p>Come back in a while. Your invitation will be delivered directly to your WhatsApp when ready.</p>
       <button onclick="location.reload()" class="btn btn-outline" style="margin-top: 20px;">Refresh Now</button>
     `;

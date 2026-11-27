@@ -360,10 +360,12 @@ body.is-preview-2::after{
     <p class="invite-line">✦ You Are Cordially Invited ✦</p>
     <p class="names-top">the wedding of</p>
     <div class="couple-names">
-      <span id="hero-bride"></span>
-      <span class="names-amp">&amp;</span>
-      <span id="hero-groom"></span>
-    </div>
+  <span id="hero-bride"></span>
+  <p class="names-top" id="hero-bride-parents" style="margin:2px 0 6px;line-height:1.4;font-size:clamp(11px,3vw,14px);"></p>
+  <span class="names-amp">&amp;</span>
+  <span id="hero-groom"></span>
+  <p class="names-top" id="hero-groom-parents" style="margin:2px 0 0;line-height:1.4;font-size:clamp(11px,3vw,14px);"></p>
+</div>
     <p class="subtitle-row">✦ &nbsp; <span id="hero-tagline"></span> &nbsp; ✦</p>
     <div class="date-card">
       <div class="date-day-lbl" id="hero-day"></div>
@@ -556,6 +558,14 @@ body.is-preview-2::after{
   const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
+  function fmtDeadline(v){
+  var s=String(v==null?'':v).trim(), m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+  if(!m) return s;
+  var M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var d=+m[3], t=['th','st','nd','rd'], x=d%100;
+  return d+(t[(x-20)%10]||t[x]||t[0])+' '+M[+m[2]-1]+' '+m[1];
+}
+
   function pad(n){ return String(n).padStart(2,'0'); }
   function fmt12(t){
     if(!t) return '';
@@ -617,6 +627,32 @@ body.is-preview-2::after{
     return q ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q) : '';
   }
 
+  function renderParents(){
+  var bp = $('hero-bride-parents');
+  var gp = $('hero-groom-parents');
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  if(bp){
+    if(W.brideParents && String(W.brideParents).trim()){
+      bp.innerHTML = esc(W.brideParents);
+      bp.style.display = '';
+    } else {
+      bp.innerHTML = '';
+      bp.style.display = 'none';
+    }
+  }
+
+  if(gp){
+    if(W.groomParents && String(W.groomParents).trim()){
+      gp.innerHTML = esc(W.groomParents);
+      gp.style.display = '';
+    } else {
+      gp.innerHTML = '';
+      gp.style.display = 'none';
+    }
+  }
+}
+
   function renderMeta(){
     document.title = `${W.bride} & ${W.groom} — ${W.tagline}`;
     $('pg-title').textContent = document.title;
@@ -671,7 +707,7 @@ body.is-preview-2::after{
           <div class="prog-sub">${ev.venueName || ''}</div>
 ${ev.dinnerTime ? `<div class="prog-time" style="text-align:left; margin-top:5px; color:var(--lavender);">Dinner: ${fmt12(ev.dinnerTime)}</div>` : ''}
 ${ev.rukhsatiTime ? `<div class="prog-time" style="text-align:left; margin-top:2px; color:var(--lavender);">Rukhsati: ${fmt12(ev.rukhsatiTime)}</div>` : ''}
-          ${url ? `<a class="prog-link" href="${url}" target="_blank" rel="noopener">📍 Google Maps</a>` : ''}
+          ${url ? `<a class="prog-link" href="${url}" target="_blank" rel="ateopener">📍 Google Maps</a>` : ''}
         </div>`;
       list.appendChild(item);
     });
@@ -743,6 +779,8 @@ ${ev.rukhsatiTime ? `<div class="prog-time" style="text-align:left; margin-top:2
 
     if(data.bride && data.bride.name) W.bride = data.bride.name;
     if(data.groom && data.groom.name) W.groom = data.groom.name;
+    if(data.bride && typeof data.bride === 'object' && 'father' in data.bride) W.brideParents = data.bride.father ? 'Daughter of ' + data.bride.father : '';
+if(data.groom && typeof data.groom === 'object' && 'father' in data.groom) W.groomParents = data.groom.father ? 'Son of ' + data.groom.father : '';
     if(data.events && Array.isArray(data.events) && data.events.length){
       W.events = data.events.slice(0, 7);
     }
@@ -750,13 +788,14 @@ ${ev.rukhsatiTime ? `<div class="prog-time" style="text-align:left; margin-top:2
    const nt = data.note ?? data.guestNote ?? data.guestMessage ?? data.message;
 if(nt !== undefined) W.note = String(nt).trim();
     if(data.tagline) W.tagline = data.tagline;
-    if(data.rsvpDeadline) W.rsvpDeadline = data.rsvpDeadline;
+   if ('rsvpDeadline' in data) W.rsvpDeadline = String(data.rsvpDeadline || '').trim();
 
     state.preview2 = isPreview2;
     document.body.classList.toggle('is-preview-2', isPreview2);
 
     const safe = function(fn){ try { fn(); } catch(err){ console.error('[' + (fn.name || 'render') + ']', err); } };
     safe(renderMeta);
+    safe(renderParents);
     safe(renderNote);
     safe(renderHero);
     safe(renderScratch);

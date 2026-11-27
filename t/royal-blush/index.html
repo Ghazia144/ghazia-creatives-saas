@@ -773,15 +773,7 @@ const WEDDING = {
     });
     return 'https://calendar.google.com/calendar/render?' + params.toString();
   }
-  function buildMapsUrl(ev){
-    if(ev && ev.mapsUrl){
-      const u = safeUrl(ev.mapsUrl);
-      if(u) return u;
-    }
-    const q = [ev?.venueName, ev?.venueAddress].filter(Boolean).join(', ');
-    if(!q) return '';
-    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
-  }
+function mapsUrl(ev){ return ev.mapsUrl || ''; }
 
   window.renderInvite = function(data, opts){
     opts = opts || {};
@@ -843,23 +835,24 @@ const WEDDING = {
       vCar.innerHTML = events.map((ev) => {
         const d = parseDateISO(ev.date);
         const when = [d ? d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }) : (ev.date || ''), fmt12(ev.gatheringTime)].filter(Boolean).join(' · ');
-        const url = buildMapsUrl(ev);
-        const addr = ev.venueAddress || '';
-        
-        return `
-        <div class="venue-slide">
-          <div class="venue-card">
-            <div class="venue-event-tag">${ev.type || 'Event'}</div>
-            <div class="venue-name">${ev.venueName || ''}</div>
-            <div class="venue-address">${addr}</div>
-            <div class="venue-event-when">${when}</div>
-            <div class="map-preview"></div>
-            <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px;">
-              <a class="btn ${isPreview2 ? 'is-disabled' : ''}" href="${url || '#'}" target="_blank" rel="noopener">View on Google Maps</a>
-              <button class="btn btn-outline" type="button" onclick="copyAddress(this)">Copy Address</button>
-            </div>
-          </div>
-        </div>`;
+  const url = mapsUrl(ev);
+const addr = ev.venueAddress || '';
+const hasMap = !!(url && /^https?:\/\//i.test(url));
+
+return `
+<div class="venue-slide">
+  <div class="venue-card">
+    <div class="venue-event-tag">${ev.type || 'Event'}</div>
+    <div class="venue-name">${ev.venueName || ''}</div>
+    <div class="venue-address">${addr}</div>
+    <div class="venue-event-when">${when}</div>
+    ${hasMap ? '<div class="map-preview"></div>' : ''}
+    <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px;">
+      ${hasMap ? `<a class="btn ${isPreview2 ? 'is-disabled' : ''}" href="${url}" target="_blank" rel="noopener">View on Google Maps</a>` : ''}
+      <button class="btn btn-outline" type="button" onclick="copyAddress(this)">Copy Address</button>
+    </div>
+  </div>
+</div>`;
       }).join('');
       
       if(events.length === 1) {
@@ -1153,6 +1146,8 @@ const WEDDING = {
 
     let cachedTarget = null;
     let cachedAt = 0;
+    let lastData = null;
+    
     function refreshTarget(){
       cachedTarget = getNextEventDateTime(__state.data?.events);
       cachedAt = Date.now();
@@ -1160,6 +1155,7 @@ const WEDDING = {
     refreshTarget();
 
     setInterval(() => {
+            if(__state.data !== lastData){ lastData = __state.data; cachedTarget = null; }
       if(!cachedTarget || Date.now() - cachedAt > 60000 || cachedTarget.getTime() <= Date.now()){
         refreshTarget();
       }

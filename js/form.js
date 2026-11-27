@@ -36,7 +36,7 @@ const todayStr = () => {
 };
 
 // --- DYNAMIC EVENT COUNT ---
-let TOTAL_EVENTS = PLAN === 1 ? 1 : (PLAN === 2 ? 2 : 7);
+let TOTAL_EVENTS = PLAN === 1 ? 1 : (PLAN === 2 ? 2 : 3);
 let activeEventPrefixes = [];
 
 function normalizePkPhone(raw) {
@@ -143,6 +143,7 @@ function renderFormStructure() {
 
 // ADD/REMOVE logic for Plan 3
 $("addEventBtn").addEventListener("click", () => {
+  if (TOTAL_EVENTS >= 7) return;
   const draft = collectDraft();
   TOTAL_EVENTS++;
   renderFormStructure();
@@ -240,18 +241,32 @@ function collectDraft() {
   });
   return draft;
 }
+
+function saveDraft() {
+  try {
+    const d = collectDraft();
+    const r = document.querySelector('input[name="audio_track"]:checked');
+    if (r) d.audio_track = r.value;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+  } catch (_) {}
+}
+
 function restoreDraftData(draft) {
+  if (!draft || typeof draft !== "object") return;
   Object.keys(draft).forEach((name) => {
+    if (name === "audio_track") {
+      const r = document.querySelector(`input[name="audio_track"][value="${draft[name]}"]`);
+      if (r) r.checked = true;
+      return;
+    }
     const el = document.querySelector(`[name="${name}"]`); if (!el) return;
-    if (el.type === "checkbox") el.checked = Boolean(draft[name]); 
-    else if (el.type === "radio") { el.checked = (el.value === draft[name]); }
+    if (el.type === "checkbox") el.checked = Boolean(draft[name]);
     else el.value = draft[name];
-    
   });
   for (let i = 1; i <= TOTAL_EVENTS; i++) toggleRukhsati("e" + i);
   updateEventTypes();
 }
-function saveDraft() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(collectDraft())); } catch (_) {} }
+
 function restoreDraft() {
   let raw; try { raw = localStorage.getItem(STORAGE_KEY); } catch (_) { return; }
   if (!raw) return;
@@ -363,16 +378,24 @@ async function submitOrder() {
     };
     if (isUpdate) { payload.public_code = creds.public_code; payload.secret_token = creds.secret_token; }
 
-    const res = await fetch(`${SUPABASE_FUNCTIONS_URL}/order`, {
+    const send = (p) => fetch(`${SUPABASE_FUNCTIONS_URL}/order`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "apikey": SUPABASE_PUBLISHABLE_KEY, "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY}` },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(p)
     });
+    let res = await send(payload);
+    let created = !isUpdate;
+    if (isUpdate && res.status === 409) {
+      localStorage.removeItem(CREDS_KEY);
+      const fresh = { ...payload, action: "create" };
+      delete fresh.public_code; delete fresh.secret_token;
+      res = await send(fresh);
+      created = true;
+    }
     const json = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(json.error || "Could not save your order.");
-
-    if (!isUpdate) localStorage.setItem(CREDS_KEY, JSON.stringify({ public_code: json.public_code, secret_token: json.secret_token }));
-    window.location.href = `payment.html?c=${encodeURIComponent(json.public_code || creds.public_code)}`;
+    if (created) localStorage.setItem(CREDS_KEY, JSON.stringify({ public_code: json.public_code, secret_token: json.secret_token }));
+    window.location.href = `payment.html?c=${encodeURIComponent(json.public_code || (creds && creds.public_code))}`;
   } catch (err) {
     setErr("submit", err.message || "Something went wrong."); setSubmitting(false);
   }
